@@ -1,5 +1,3 @@
-import time
-
 import zmq
 
 if __name__ == '__main__':
@@ -10,10 +8,10 @@ if __name__ == '__main__':
 
     print("Binary send")
     val = 12345
-    data = val.to_bytes(500_000_000, 'big')
-    sock.send(data)
+    data = val.to_bytes(750_000_000, 'big')
+    tracker = sock.send(data, copy=False, track=True)
+    print("ISDONE", tracker.done)
     print("SENT")
-
-    sock.close()
-    ctx.term()
+    tracker.wait()
+    print("ISDONE", tracker.done)
     print("DONE")
