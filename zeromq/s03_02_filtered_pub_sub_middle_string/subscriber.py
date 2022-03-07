@@ -1,5 +1,3 @@
-import time
-
 import zmq
 
 
@@ -8,11 +6,9 @@ def main() -> None:
     ctx = zmq.Context()
     sock = ctx.socket(zmq.SUB)
     sock.setsockopt_string(zmq.SUBSCRIBE, "kogaion")
+    sock.setsockopt_string(zmq.SUBSCRIBE, "excalibur")
     sock.setsockopt_string(zmq.SUBSCRIBE, "baldur")
     sock.connect("ipc://gandalf")
-
-    poller = zmq.Poller()
-    poller.register(sock, zmq.POLLIN)
 
     try:
         while True:

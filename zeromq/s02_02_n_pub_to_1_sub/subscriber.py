@@ -1,5 +1,3 @@
-import random
-
 import zmq
 
 
@@ -9,6 +7,8 @@ if __name__ == '__main__':
     socket = context.socket(zmq.SUB)
     socket.bind("tcp://127.0.0.1:5556")
 
+    # subscribe to all messages
+    # or otherwise said: no filter / empty filter
     socket.setsockopt_string(zmq.SUBSCRIBE, "")
 
     print("Listening for news")
@@ -17,4 +17,4 @@ if __name__ == '__main__':
             message = socket.recv_string()
             print(f"News: {message}", flush=True)
     except KeyboardInterrupt:
-        print(f"\nSubscriber terminated")
+        print("\nSubscriber terminated")

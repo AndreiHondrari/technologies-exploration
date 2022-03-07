@@ -22,10 +22,23 @@ if __name__ == '__main__':
                 "".join(random.sample(string.ascii_lowercase, 3)),
             )
             print("Sending", msg, flush=True)
-            sock.send_string(msg[0], zmq.SNDMORE)
-            sock.send_string(msg[1], zmq.SNDMORE)
-            sock.send_string(msg[2])
 
-            time.sleep(1)
+            sock.send_string(msg[0], zmq.SNDMORE)
+            print("p1")
+            time.sleep(0.5)
+
+            sock.send_string(msg[1], zmq.SNDMORE)
+            print("p2")
+            time.sleep(0.5)
+
+            sock.send_string(msg[2])
+            print("p3")
+            time.sleep(0.5)
+
     except KeyboardInterrupt:
-        print("\nSender terminated")
+        print("\nCtrl+C detected")
+    finally:
+        sock.close(linger=0)
+        ctx.term()
+
+    print("Sender STOP")

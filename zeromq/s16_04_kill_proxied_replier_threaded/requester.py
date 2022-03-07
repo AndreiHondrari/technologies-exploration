@@ -15,6 +15,7 @@ def main() -> None:
 
     try:
         while True:
+            print("SEND PING")
             sock.send_string("PING")
             print("POLL")
             poller.poll()

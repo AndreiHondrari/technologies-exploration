@@ -31,6 +31,6 @@ if __name__ == '__main__':
             )
             sock.send_multipart(msg_parts, zmq.DONTWAIT)
 
-            time.sleep(1)
+            time.sleep(0.5)
     except KeyboardInterrupt:
         print("\nSender terminated")

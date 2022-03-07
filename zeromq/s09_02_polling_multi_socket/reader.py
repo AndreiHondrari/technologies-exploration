@@ -1,5 +1,3 @@
-from typing import Optional
-
 import zmq
 
 if __name__ == '__main__':

@@ -21,11 +21,21 @@ if __name__ == '__main__':
     print(f"[{UID}] Sink connected")
 
     print(f"[{UID}] Start receiving")
-    while True:
-        task = ventilator.recv_pyobj()
-        print(f"[{UID}] Received task: {task}")
-        time.sleep(random.random())
-        result = task * 2
-        task_result = f"{result} for {task}"
-        print(f"Processed: {task_result}")
-        sink.send_pyobj(task_result)
+    try:
+        while True:
+            task = ventilator.recv_pyobj()
+            print(f"[{UID}] Received task: {task}")
+            time.sleep(random.random())
+            result = task * 2
+            task_result = f"{result} for {task}"
+            print(f"Processed: {task_result}")
+            sink.send_pyobj(task_result)
+    except KeyboardInterrupt:
+        print("\nCtrl+C detected")
+    finally:
+        print("Cleaning ...")
+        ventilator.close()
+        sink.close()
+        context.term()
+
+    print(f"[{UID}] worker STOP")

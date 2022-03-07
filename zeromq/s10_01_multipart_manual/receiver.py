@@ -18,17 +18,44 @@ if __name__ == '__main__':
     try:
         while True:
             polled = dict(poller.poll())
+
             when = time.strftime("%H:%M:%S")
-            print(f"[{when}] Multipart detected", flush=True)
-            msg = []
+            print(f"[{when}] Messages detected", flush=True)
+
+            # process all multipart messages on the wire
             while True:
-                try:
-                    msg.append(sock.recv_string(zmq.DONTWAIT))
-                except zmq.Again:
-                    print("Multipart read finished")
+                msg = []
+                message_presence = True
+                more = True
+
+                # gather all the frames for a given multipart message
+                # until there are no more frames for the current multipart
+                # message
+                while more:
+                    try:
+                        frame = sock.recv(zmq.DONTWAIT, copy=False)
+                        more = frame.more
+                        msg.append(frame.bytes.decode())
+
+                    # check if the buffer has emptied
+                    except zmq.Again:
+                        print("No more messages")
+                        message_presence = False
+                        break
+
+                # break out of the messages processing loop
+                # to reach the poller again
+                if not message_presence:
                     break
 
-            print("Received", msg, flush=True)
+                print("Received", msg, flush=True)
 
     except KeyboardInterrupt:
-        print("\nReceiver terminated")
+        print("\nCtrl+C detected")
+
+    finally:
+        print("Cleaning ...")
+        sock.close()
+        ctx.term()
+
+    print("Receiver STOP")

@@ -6,8 +6,16 @@ if __name__ == '__main__':
 
     sock.bind("tcp://*:5555")
 
-    while True:
-        print("Binary recv")
-        data = sock.recv()
-        val = int.from_bytes(data, 'big')
-        print(f"{len(data)} -> {val}")
+    try:
+        while True:
+            print("\n", '-' * 11, sep='')
+            print("Binary recv")
+            data = sock.recv()
+            val = int.from_bytes(data, 'big')
+            print(f"{len(data)} -> {val}")
+
+    except KeyboardInterrupt:
+        print("\nCtrl+C detected")
+    finally:
+        sock.close()
+        ctx.term()

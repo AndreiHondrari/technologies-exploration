@@ -10,11 +10,13 @@ if __name__ == '__main__':
     print(f"Starting client [{UID}]...")
     context = zmq.Context()
     socket = context.socket(zmq.SUB)
+    socket.setsockopt_string(zmq.SUBSCRIBE, CATEGORY)
     socket.connect("tcp://localhost:5556")
 
-    socket.setsockopt_string(zmq.SUBSCRIBE, CATEGORY)
-
     print("Listening for news")
-    while True:
-        message = socket.recv_string()
-        print(f"[{UID}] news: {message}")
+    try:
+        while True:
+            message = socket.recv_string()
+            print(f"[{UID}] news: {message}")
+    except KeyboardInterrupt:
+        print("\nClient A terminated")

@@ -31,4 +31,11 @@ if __name__ == '__main__':
             print(f"[{when}] Received", msg, flush=True)
 
     except KeyboardInterrupt:
-        print("\nReceiver terminated")
+        print("\nCtrl+C detected")
+
+    finally:
+        print("Cleaning ...")
+        sock.close()
+        ctx.term()
+
+    print("Receiver STOP")

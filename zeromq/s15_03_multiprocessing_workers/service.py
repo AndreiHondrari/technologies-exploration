@@ -1,14 +1,15 @@
 import random
-import threading
+import multiprocessing as mp
 
 import zmq
 
 
 def do_work(
-    kill_event: threading.Event,
-    ctx: zmq.Context,
+    kill_event: mp.Event,
     url_workers: str
 ):
+    ctx = zmq.Context()
+
     WORKER_ID = random.randint(1000, 10_000)
     print(f"Worker [{WORKER_ID}] started")
     worker_sock = ctx.socket(zmq.REP)
@@ -37,7 +38,7 @@ def do_work(
 def main() -> None:
     print("Start service")
     URL_CLIENTS = "tcp://*:5555"
-    URL_WORKERS = "inproc://jobs"
+    URL_WORKERS = "ipc://jobs"
 
     ctx = zmq.Context()
 
@@ -47,15 +48,15 @@ def main() -> None:
     workers_sock = ctx.socket(zmq.DEALER)
     workers_sock.bind(URL_WORKERS)
 
-    kill_event = threading.Event()
+    kill_event = mp.Event()
 
     NO_OF_WORKERS = 3
     workers = []
     for i in range(NO_OF_WORKERS):
         workers.append(
-            threading.Thread(
+            mp.Process(
                 target=do_work,
-                args=(kill_event, ctx, URL_WORKERS,)
+                args=(kill_event, URL_WORKERS,)
             )
         )
 

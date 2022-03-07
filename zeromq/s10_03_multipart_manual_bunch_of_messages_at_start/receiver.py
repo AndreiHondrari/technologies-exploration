@@ -17,23 +17,23 @@ if __name__ == '__main__':
     print("Start receiving ....")
     try:
         while True:
+            print('-' * 20)
+            print("Polling ...")
             polled = dict(poller.poll())
 
-            msg_parts = []
-
+            msg = []
             while True:
-                frame = sock.recv(flags=zmq.DONTWAIT, copy=False)
-                msg_parts.append(frame.bytes)
-                if not frame.more:
-                    print("Multipart read finished", flush=True)
+                try:
+                    # we just take whatever there is
+                    # in the buffer, iregardless
+                    # of the fact that it represents
+                    # a last frame or not, for a given
+                    # multipart message
+                    msg_part = sock.recv_string(zmq.DONTWAIT)
+                    msg.append(msg_part)
+                except zmq.Again:
+                    print("No more parts")
                     break
-
-            msg = tuple(
-                map(
-                    lambda s: s.decode(),
-                    msg_parts
-                )
-            )
 
             when = time.strftime("%H:%M:%S")
             print(f"[{when}] Received", msg, flush=True)

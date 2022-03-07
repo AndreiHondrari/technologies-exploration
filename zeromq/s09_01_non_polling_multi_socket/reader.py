@@ -1,3 +1,4 @@
+import time
 from typing import Optional
 
 import zmq
@@ -18,22 +19,20 @@ if __name__ == '__main__':
         while True:
             # SENDER 1
             msg1: Optional[str] = None
-            while True:
-                try:
-                    msg1 = sender1_sock.recv_string(flags=zmq.DONTWAIT)
-                except zmq.Again:
-                    break
+            try:
+                msg1 = sender1_sock.recv_string(flags=zmq.DONTWAIT)
+            except zmq.Again:
+                pass  # nothing to do if there's no message
 
             if msg1 is not None:
                 print("S1", msg1)
 
             # SENDER 2
             msg2: Optional[str] = None
-            while True:
-                try:
-                    msg2 = sender2_sock.recv_string(flags=zmq.DONTWAIT)
-                except zmq.Again:
-                    break
+            try:
+                msg2 = sender2_sock.recv_string(flags=zmq.DONTWAIT)
+            except zmq.Again:
+                pass  # nothing to do if there's no message
 
             if msg2 is not None:
                 print("S2", msg2)

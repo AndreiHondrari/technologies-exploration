@@ -17,19 +17,25 @@ def main() -> None:
     poller.register(dealer, zmq.POLLIN)
 
     while True:
-        print("Poll")
+        # print("Poll")
         polled = dict(poller.poll())
 
         # requesters to repliers
         if router in polled:
             parts = router.recv_multipart()
-            print("R -> D", parts[2])
+            print("\n---\nR -> D")
+            print(parts[0])
+            print(parts[1])
+            print(parts[2])
             dealer.send_multipart(parts)
 
         # repliers to requesters
         if dealer in polled:
             parts = dealer.recv_multipart()
-            print("D -> R", parts[2])
+            print("\n---\nD -> R")
+            print(parts[0])
+            print(parts[1])
+            print(parts[2])
             router.send_multipart(parts)
 
 

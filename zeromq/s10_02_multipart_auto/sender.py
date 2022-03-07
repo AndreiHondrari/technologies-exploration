@@ -32,5 +32,13 @@ if __name__ == '__main__':
             sock.send_multipart(msg_parts, zmq.DONTWAIT)
 
             time.sleep(1)
+
     except KeyboardInterrupt:
-        print("\nSender terminated")
+        print("\nCtrl+C detected")
+
+    finally:
+        print("Cleaning ...")
+        sock.close(linger=0)
+        ctx.term()
+
+    print("Sender STOP")

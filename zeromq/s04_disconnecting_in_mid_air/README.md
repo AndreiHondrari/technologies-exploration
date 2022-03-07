@@ -1,10 +1,20 @@
 # Disconnecting mid-air
 
-## Steps
+## Overview
 
-* start the receiver
-* start sender multiple times
+The receiver tries to connect to a sender and waits for a message.
 
-## Observation
+The sender binds, connects with the receiver and then just closes the socket,
+without ever sending anything.
 
-The receiver never times out or errors out, it just sits quietly until a proper sender will provide him with some data.
+## How to test
+
+- start the receiver
+- start sender multiple times
+
+Notice the receiver patiently waits.
+
+## Conclusion
+
+The receiver never times out or errors out, it just sits quietly until a proper
+sender will provide him with some data.
