@@ -75,7 +75,7 @@ def main() -> None:
                     sockets.append(new_socket)
 
                 except zmq.ZMQError as zerr:
-                    print(repr(zerr))
+                    # print(repr(zerr))
                     break
 
             for s in sockets:
