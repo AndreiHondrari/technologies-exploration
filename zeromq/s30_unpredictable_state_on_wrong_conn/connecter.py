@@ -68,7 +68,7 @@ def main(socket_type: int) -> None:
                 tprint("EVENT_ENDPOINT:", event['endpoint'])
 
     except KeyboardInterrupt:
-        tprint("nCtrl+C detected")
+        tprint("\nCtrl+C detected")
 
     tprint("Closing socket ...")
     binder.disable_monitor()

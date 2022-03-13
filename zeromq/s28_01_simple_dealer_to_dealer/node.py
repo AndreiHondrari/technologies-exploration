@@ -30,7 +30,7 @@ def main() -> None:
             time.sleep(0.3 + random() * 0.7)
 
     except KeyboardInterrupt:
-        tprint("nCtrl+C detected")
+        tprint("\nCtrl+C detected")
 
     finally:
         tprint("Closing socket ...")

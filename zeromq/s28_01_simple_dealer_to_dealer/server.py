@@ -28,7 +28,7 @@ def main() -> None:
             tprint("RECV", msg)
 
     except KeyboardInterrupt:
-        tprint("nCtrl+C detected")
+        tprint("\nCtrl+C detected")
 
     finally:
         tprint("Closing socket ...")

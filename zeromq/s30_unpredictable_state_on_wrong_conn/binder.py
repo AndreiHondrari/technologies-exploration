@@ -83,7 +83,7 @@ def main(socket_type: int) -> None:
                     tprint("REASON:", zmq.strerror(event['value']))
 
     except KeyboardInterrupt:
-        tprint("nCtrl+C detected")
+        tprint("\nCtrl+C detected")
 
     tprint("Closing socket ...")
     connecter.disable_monitor()

@@ -111,7 +111,7 @@ def main() -> None:
             time.sleep(0.3 + 0.7 * random())
 
     except KeyboardInterrupt:
-        tprint("nCtrl+C detected")
+        tprint("\nCtrl+C detected")
 
     except zmq.ZMQError as zerr:
         tprint(
