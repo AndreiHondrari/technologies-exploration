@@ -131,6 +131,7 @@ sequenceDiagram
 
 ## How to test the negative flow
 
+- select a non-matching pair of socket types
 - start the connecter
 - start the binder and let it stabilise
 - stop the binder
