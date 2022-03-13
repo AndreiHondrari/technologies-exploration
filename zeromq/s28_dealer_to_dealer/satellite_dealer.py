@@ -20,7 +20,7 @@ Reply = namedtuple(
 
 def main() -> None:
     UID = random.randint(1000, 10_000)
-    print(f"WORKER {UID} DEALER START")
+    print(f"SATELLITE {UID} DEALER START")
     ctx = zmq.Context()
 
     central_dealer = ctx.socket(zmq.DEALER)
@@ -71,7 +71,7 @@ def main() -> None:
     print("Terminating context ...")
     ctx.term()
 
-    print(f"WORKER {UID} DEALER END")
+    print(f"SATELLITE {UID} DEALER END")
 
 
 if __name__ == '__main__':

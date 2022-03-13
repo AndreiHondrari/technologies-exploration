@@ -21,14 +21,14 @@ def main() -> None:
     print("CENTRAL DEALER START")
     ctx = zmq.Context()
 
-    workers = ctx.socket(zmq.DEALER)
+    satellites = ctx.socket(zmq.DEALER)
 
     print("Register polling")
     poller = zmq.Poller()
-    poller.register(workers, zmq.POLLIN)
+    poller.register(satellites, zmq.POLLIN)
 
     try:
-        workers.bind("tcp://127.0.0.1:7777")
+        satellites.bind("tcp://127.0.0.1:7777")
 
         # This is technically a bad way to do it and
         # a better way to wait for all the repliers to connect
@@ -55,14 +55,14 @@ def main() -> None:
                 task_id=task_id.encode(),
                 magic_number=count_magic_value.to_bytes(4, 'big')
             )
-            workers.send_multipart(envelope)
+            satellites.send_multipart(envelope)
 
         # wait for results
         print("Wait for results ...", flush=True)
         for i in range(NUMBER_OF_TASKS * 9):
             poller.poll(10_000)
 
-            raw_response = workers.recv_multipart()
+            raw_response = satellites.recv_multipart()
             reply = Reply(*raw_response)
             task_id = reply.task_id.decode()
             value = int.from_bytes(reply.value, 'big')
@@ -73,7 +73,7 @@ def main() -> None:
 
     finally:
         print("Closing socket ...")
-        workers.close(1)
+        satellites.close(1)
 
     print("Terminating context ...")
     ctx.term()

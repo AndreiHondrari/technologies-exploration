@@ -13,8 +13,8 @@ distributed dealer nodes.
 flowchart
   X[Central dealer]
 
-  A[Worker dealer 1]
-  B[Worker dealer 2]
+  A[Satellite dealer 1]
+  B[Satellite dealer 2]
 
   X -- send --> A
   X -- send --> B
@@ -35,8 +35,8 @@ sequenceDiagram
   actor T as Tester
 
   participant X as Central Dealer
-  participant A as Worker Dealer 1
-  participant B as Worker Dealer 2
+  participant A as Satellite Dealer 1
+  participant B as Satellite Dealer 2
 
   %% initialization
   T ->>+ A : start
@@ -48,12 +48,12 @@ sequenceDiagram
   X ->>+ B : send
 
   par
-    loop Worker 1 sends 9 values
+    loop Satellite 1 sends 9 values
       A -->> X : send a value
       X ->> X : display value
     end
   and
-    loop Worker 2 sends 9 values
+    loop Satellite 2 sends 9 values
       B -->> X : send a value
       X ->> X : display value
     end
@@ -70,12 +70,12 @@ sequenceDiagram
 
 ## How to test
 
-- open two worker dealers
+- open two satellite dealers
 - open the central dealer
 
 ## Observations
 
-- the central dealer and the worker dealer can send and receive any number of
+- the central dealer and the satellite dealer can send and receive any number of
   times (of course within the limit of the buffer), and in any order as desired
 - create an asynchronous way of dealing with sends and receives (compared to
   REQ/REP where you either mandatory have to send after a receive or receive
