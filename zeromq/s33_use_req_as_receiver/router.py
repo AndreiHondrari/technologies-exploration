@@ -1,7 +1,7 @@
 import time
 import copy
 
-from random import randint, random
+from random import randint
 from typing import Any, Set
 
 import zmq
