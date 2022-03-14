@@ -8,3 +8,4 @@
 - https://google.github.io/flatbuffers/
 - https://google.github.io/
 - https://opensource.google/
+- https://aioquic.readthedocs.io/en/latest/ - Python QUIC library
