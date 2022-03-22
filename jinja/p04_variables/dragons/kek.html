@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Korbus</title>
+
+    <style media="screen">
+      body {
+        padding: 50px;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <hr>
+
+    <p>Lemnu greu nu este usor !</p>
+    <p>{{ part1 }}</p>
+    <p>{{ part2 }}</p>
+
+    <div class="">
+      {{ some_md | markdown }}
+    </div>
+
+    {% include 'lol.html' %}
+
+    <ul>
+    {% for k in pieces %}
+        <li>{{ k }}</li>
+    {% endfor %}
+    </ul>
+  </body>
+</html>
