@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>This is home</title>
+
+    <style media="screen">
+      body {
+        --bcol: 30;
+        background-color: rgb(var(--bcol), var(--bcol), var(--bcol));
+        color: white;
+        font-size: 20px;
+        padding: 50px;
+      }
+
+      a {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+
+    <a href="{{ request.url_for('home') }}">
+      <h1>Hello from template !</h1>
+    </a>
+
+    {% block body %}{% endblock %}
+  </body>
+</html>
