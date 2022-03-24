@@ -1,27 +1,34 @@
+from functools import partial
 from typing import List
+
 from pydantic import BaseModel
 
+hprint = partial(print, "\n#")
 
-class SomeSubclass(BaseModel):
+
+class SubItemA(BaseModel):
     a: int
     b: int
 
 
-class SomeSubclassB(BaseModel):
+class SubItemB(BaseModel):
     bla: str
 
 
-class SomeClass(BaseModel):
+class Item(BaseModel):
     x: int
-    p: SomeSubclass
-    q: List[SomeSubclassB]
+    p: SubItemA
+    q: List[SubItemB]
 
 
 if __name__ == '__main__':
-    x1 = SomeSubclass(a=77, b=88)
+    x1 = SubItemA(a=77, b=88)
+
     l1 = [
-        SomeSubclassB(bla="foo"),
-        SomeSubclassB(bla="bar"),
+        SubItemB(bla="foo"),
+        SubItemB(bla="bar"),
     ]
-    o1 = SomeClass(x=11, p=x1, q=l1)
-    print("o1:", o1)
+
+    hprint("Item")
+    item = Item(x=11, p=x1, q=l1)
+    print(item)

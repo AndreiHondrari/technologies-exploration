@@ -1,15 +1,25 @@
+from functools import partial
+
 from pydantic import BaseModel
 
+hprint = partial(print, "\n#")
 
-class SomeClass(BaseModel):
+
+class Item(BaseModel):
     x: int
     bla: str = "Something"
 
 
 if __name__ == '__main__':
-    o1 = SomeClass(x=11)
-    print("o1:", o1)
+    item = Item(x=11)
+    hprint("Our object")
+    print("item:", item)
 
-    print("o1 json:", o1.json())
-    print("o1 dict:", o1.dict())
-    print("o1 schema:", o1.schema())
+    hprint("To JSON")
+    print(item.json())
+
+    hprint("To dict")
+    print(item.dict())
+
+    hprint("Schema")
+    print(item.schema())
