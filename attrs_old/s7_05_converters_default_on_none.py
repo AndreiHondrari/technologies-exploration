@@ -4,7 +4,7 @@ import attr
 @attr.s(kw_only=True)
 class SomeClass:
     a: str = attr.ib(
-        converter=attr.converters.default_if_none("")  # type: ignore
+        converter=attr.converters.default_if_none("")  # type: ignore[misc]
     )
 
 
