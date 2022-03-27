@@ -29,6 +29,10 @@ def main() -> None:
     hprint("underlying table")
     print(repr(Potato.__table__))
 
+    hprint("Accessing metadata of the Base class")
+    print("BASE_METADATA", Base.metadata)
+    print("BASE_METADATA_TABLES", Base.metadata.tables.keys())
+
 
 if __name__ == "__main__":
     main()
