@@ -1,12 +1,9 @@
-"""
-Assign labels to columns when selecting.
-"""
-
+import random
 from functools import partial
 
 from sqlalchemy import (
     create_engine,
-    Column, Integer, String,
+    Column, Integer, String, ForeignKey,
 
     insert, select,
 )
@@ -32,6 +29,23 @@ class Item(Base):
         )
 
 
+class Potato(Base):
+    __tablename__ = "potato"
+
+    pk = Column(Integer, primary_key=True)
+
+    name = Column(String(30))
+    worth = Column(Integer)
+
+    item_id = Column(ForeignKey('item.id'))
+
+    def __repr__(self) -> str:
+        return (
+            f"Potato(pk={self.pk}, "
+            f"name='{self.name}', worth={self.worth}, item_id={self.item_id})"
+        )
+
+
 def prepare_database() -> Engine:
 
     engine = create_engine(
@@ -45,14 +59,26 @@ def prepare_database() -> Engine:
 def populate_database(engine: Engine) -> None:
     # insert data
     hprint("Add some data")
+    ITEM_VALUES = [
+        {
+            'title': f"kaboom-{i}-{random.randint(100, 1_000)}",
+            'value': i
+        }
+        for i in range(10)
+    ]
+
+    POTATO_VALUES = [
+        {
+            'name': f"bulba-{i}",
+            'worthiness': i * 11,
+            'item_id': 5,
+        }
+        for i in range(5)
+    ]
+
     with engine.begin() as conn:
-        conn.execute(
-            insert(Item.__table__),
-            [
-                {'title': 'kaboom', 'value': 111},
-                {'title': 'traktor', 'value': 222},
-            ]
-        )
+        conn.execute(insert(Item), ITEM_VALUES)
+        conn.execute(insert(Potato), POTATO_VALUES)
 
 
 def main() -> None:
@@ -61,19 +87,13 @@ def main() -> None:
     populate_database(engine)
 
     hprint("Get the data")
-    statement = select(
-        Item.id.label('divine_identity'),
-        Item.title.label('given_name'),
-        Item.value.label('worthiness'),
-    )
+    statement = select(Item).join_from(Item, Potato)
     print(statement)
 
     with Session(engine) as session:
         items = session.execute(statement)
-        hprint("Result")
-        print("COLUMN_NAMES", items.keys())
         for x in items:
-            print(f"{x.divine_identity} | {x.given_name} | {x.worthiness}")
+            print(x)
 
 
 if __name__ == "__main__":

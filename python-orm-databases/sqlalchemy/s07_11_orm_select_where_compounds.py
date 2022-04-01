@@ -1,19 +1,16 @@
-"""
-Assign labels to columns when selecting.
-"""
-
+import random
 from functools import partial
 
 from sqlalchemy import (
     create_engine,
     Column, Integer, String,
 
-    insert, select,
+    insert, select, and_, or_
 )
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import declarative_base, Session
 
-hprint = partial(print, " \n#")
+hprint = partial(print, "\n#")
 
 
 Base = declarative_base()
@@ -45,14 +42,16 @@ def prepare_database() -> Engine:
 def populate_database(engine: Engine) -> None:
     # insert data
     hprint("Add some data")
+    VALUES = [
+        {
+            'title': f"kaboom-{i}-{random.randint(100, 1_000)}",
+            'value': i
+        }
+        for i in range(100)
+    ]
+
     with engine.begin() as conn:
-        conn.execute(
-            insert(Item.__table__),
-            [
-                {'title': 'kaboom', 'value': 111},
-                {'title': 'traktor', 'value': 222},
-            ]
-        )
+        conn.execute(insert(Item.__table__), VALUES)
 
 
 def main() -> None:
@@ -61,19 +60,22 @@ def main() -> None:
     populate_database(engine)
 
     hprint("Get the data")
-    statement = select(
-        Item.id.label('divine_identity'),
-        Item.title.label('given_name'),
-        Item.value.label('worthiness'),
+    statement = select(Item).where(
+        and_(
+            or_(
+                Item.value == 1,
+                Item.value < 5,
+                Item.value > 95,
+            ),
+            Item.value % 2 == 1
+        )
     )
     print(statement)
 
     with Session(engine) as session:
-        items = session.execute(statement)
-        hprint("Result")
-        print("COLUMN_NAMES", items.keys())
+        items = session.scalars(statement)
         for x in items:
-            print(f"{x.divine_identity} | {x.given_name} | {x.worthiness}")
+            print(x)
 
 
 if __name__ == "__main__":

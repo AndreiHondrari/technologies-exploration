@@ -1,0 +1,55 @@
+{
+	"folders": {},
+	"connections": {
+		"sqlite_jdbc-17fe014c8f9-d234dab9e556850": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "db1-sqlite-memory",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": ":memory:",
+				"url": "jdbc:sqlite::memory:",
+				"type": "dev",
+				"auth-model": "native"
+			}
+		},
+		"postgres-jdbc-17fe01531f3-5bfdda4e713b3553": {
+			"provider": "postgresql",
+			"driver": "postgres-jdbc",
+			"name": "db2-postgres-somedb",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "5432",
+				"database": "somedb",
+				"url": "jdbc:postgresql://localhost:5432/somedb",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-show-non-default-db@": "false",
+					"@dbeaver-show-template-db@": "false",
+					"@dbeaver-show-unavailable-db@": "false",
+					"show-database-statistics": "false",
+					"@dbeaver-read-all-data-types-db@": "false",
+					"@dbeaver-use-prepared-statements-db@": "false",
+					"postgresql.dd.plain.string": "false",
+					"postgresql.dd.tag.string": "false"
+				},
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}
