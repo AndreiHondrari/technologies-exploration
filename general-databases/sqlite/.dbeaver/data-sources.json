@@ -1,0 +1,30 @@
+{
+	"folders": {},
+	"connections": {
+		"sqlite_jdbc-17ffa404db4-7463a0c03498451b": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "sqlite-mem",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": ":memory:",
+				"url": "jdbc:sqlite::memory:",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}
