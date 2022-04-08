@@ -9,22 +9,39 @@ DROP TABLE IF EXISTS t1;
 -- main start
 
 create table if not exists t1 (
-	a bytea
+	a bytea,
+	b bit(3)
 );
 
-insert into t1 values
+/*
+ * bytea
+ */
+insert into t1(a) values
 	('\xffe3cd'),
 	('\000'),
 	('\047'),
 	('\127')
 ;
 
--- titles: binary (bytea)
+-- titles: bytea
 select 
 	a, 
 	encode(a, 'hex') as hex, 
 	encode(a, 'escape') as escape
 from t1;
+
+delete from t1;
+
+/*
+ * bit string
+ */
+insert into t1(b) values
+	('001'),
+	('101')
+;
+
+-- title: bit string
+select b from t1;
 
 -- main end
 
