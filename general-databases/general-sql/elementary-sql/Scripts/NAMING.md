@@ -21,3 +21,9 @@ Where the parts have the following meanings:
 - **concept description** - a simple and very short description explaining what
   the script does
 - **database type** - _**'sqlite'**_, or _**'postgres'**_
+
+## Simplified format
+
+You could also have:
+
+`s <concept_index> _ <subconcept_index> _ <optional: sqlite/postgres> _ <concept description>.sql`

@@ -12,6 +12,9 @@
 				"url": "jdbc:sqlite::memory:",
 				"type": "dev",
 				"auth-model": "native"
+			},
+			"custom-properties": {
+				"resultset.binary.representation": "hex"
 			}
 		},
 		"postgres-jdbc-17fe01531f3-5bfdda4e713b3553": {
@@ -36,8 +39,7 @@
 					"postgresql.dd.plain.string": "false",
 					"postgresql.dd.tag.string": "false"
 				},
-				"auth-model": "native",
-				"handlers": {}
+				"auth-model": "native"
 			}
 		}
 	},

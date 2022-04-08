@@ -4,10 +4,17 @@
 
 -- setup
 DROP TABLE IF EXISTS t1;
+DROP TABLE IF EXISTS t2;
+
 CREATE TABLE IF NOT EXISTS t1 (
 	x integer,
 	y integer,
 	descr varchar(30)
+);
+
+CREATE TABLE IF NOT EXISTS t2 (
+	a integer,
+	b integer
 );
 
 INSERT INTO t1 VALUES
@@ -35,21 +42,31 @@ INSERT INTO t1 VALUES
 	(566, 566, "akko"),
 	(577, 577, "akama");
 
+INSERT INTO t2 VALUES
+	(NULL, 11),
+	(NULL, 123),
+	(777, 22),
+	(999, 234);
+	
 -- main start
 
--- title: having count
-SELECT *, COUNT(*) AS '# of items'
-FROM t1 
-GROUP BY x 
-HAVING COUNT(*) > 1;
+-- title: (t2) null query
+SELECT * FROM t2 WHERE a ISNULL;
 
--- title: having average
-SELECT *, ROUND(AVG(y), 2) as 'average y'
-FROM t1 
-GROUP BY x
-HAVING AVG(y) < 100;
+-- title: (t2) non-null query
+SELECT * FROM t2 WHERE a NOTNULL;
+
+-- title: (t1) in list
+SELECT * FROM t1 WHERE x IN (111, 222, 333);
+
+-- title: (t1) not in list
+SELECT * FROM t1 WHERE x NOT IN (111, 222, 333) AND x < 1000;
+
+-- title: (t1) between
+SELECT * FROM t1 WHERE x BETWEEN 450 and 1000;
 
 -- main end
 
 -- cleanup
 DROP TABLE IF EXISTS t1;
+DROP TABLE IF EXISTS t2;
