@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS t2 (
 );
 
 INSERT INTO t2 VALUES (1, 11), (2, 22), (3, 33);
-INSERT INTO t2 VALUES (2, 44);  -- will fail
+INSERT OR IGNORE INTO t2 VALUES (2, 44);  -- will fail
 
 SELECT * FROM t2;
 

@@ -1,3 +1,6 @@
+/*
+ * defining with CONSTRAINT
+ */
 DROP TABLE IF EXISTS t1;
 
 CREATE TABLE IF NOT EXISTS t1 (
@@ -10,8 +13,30 @@ CREATE TABLE IF NOT EXISTS t1 (
 INSERT INTO t1(pk, x) VALUES (1, 11);
 INSERT INTO t1(pk, x) VALUES (2, 22);
 INSERT INTO t1(pk, x) VALUES (3, 33);
-INSERT INTO t1(pk, x) VALUES (2, 44);  -- should fail
+INSERT OR IGNORE INTO t1(pk, x) VALUES (2, 44);  -- should fail
 
 SELECT * FROM t1;
 
 DROP TABLE IF EXISTS t1;
+
+/*
+ * defining without CONSTRAINT
+ */
+DROP TABLE IF EXISTS t2;
+
+CREATE TABLE IF NOT EXISTS t2 (
+	pk NOT NULL,
+	x,
+
+	PRIMARY KEY (pk)
+);
+
+INSERT INTO t2(pk, x) VALUES (1, 11);
+INSERT INTO t2(pk, x) VALUES (2, 22);
+INSERT INTO t2(pk, x) VALUES (3, 33);
+INSERT OR IGNORE INTO t2(pk, x) VALUES (2, 44);  -- should fail
+
+SELECT * FROM t2;
+
+DROP TABLE IF EXISTS t2;
+
