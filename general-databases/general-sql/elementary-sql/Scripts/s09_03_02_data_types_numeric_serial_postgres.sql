@@ -9,11 +9,11 @@ DROP TABLE IF EXISTS t1;
 -- main start
 
 CREATE TABLE IF NOT EXISTS t1 (
-	h SMALLSERIAL,
-	i SERIAL,
-	j BIGSERIAL,
-	
-	k varchar
+    h SMALLSERIAL,
+    i SERIAL,
+    j BIGSERIAL,
+    
+    k varchar
 );
 
 /*
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS t1 (
  * themselves at each insert
  */
 insert into t1(k) values
-	(null), (null), (null), (null), (null);
+    (null), (null), (null), (null), (null);
 
 -- title: just inserts
 SELECT * FROM t1;

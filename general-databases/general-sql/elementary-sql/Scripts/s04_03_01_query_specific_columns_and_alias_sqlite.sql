@@ -5,8 +5,8 @@
 -- setup
 DROP TABLE IF EXISTS t1;
 CREATE TABLE IF NOT EXISTS t1 (
-	x integer,
-	y integer
+    x integer,
+    y integer
 );
 
 INSERT INTO t1 VALUES (11, 233);
@@ -26,8 +26,8 @@ SELECT x FROM t1;
 
 -- title: alias columns
 SELECT
-	x AS this,
-	y AS that
+    x AS this,
+    y AS that
 FROM t1;
 
 -- main end

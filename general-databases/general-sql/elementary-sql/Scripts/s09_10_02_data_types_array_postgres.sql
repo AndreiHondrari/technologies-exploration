@@ -9,11 +9,11 @@ DROP TABLE IF EXISTS t1;
 -- main start
 
 create table if not exists t1 (
-	a integer array
+    a integer array
 );
 
 insert into t1 values
-	('{1, 2, 3}')
+    ('{1, 2, 3}')
 ;
 
 SELECT * FROM t1;

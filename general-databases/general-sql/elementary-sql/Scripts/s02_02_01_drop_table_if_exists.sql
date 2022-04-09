@@ -6,7 +6,7 @@
  */
 
 CREATE TABLE IF NOT EXISTS some_table (
-	x integer
+    x integer
 );
 
 DROP TABLE some_table;

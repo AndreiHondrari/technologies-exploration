@@ -5,8 +5,8 @@
 -- setup
 DROP TABLE IF EXISTS t1;
 CREATE TABLE IF NOT EXISTS t1 (
-	x integer,
-	y integer
+    x integer,
+    y integer
 );
 
 INSERT INTO t1 VALUES (11, 233);
@@ -24,10 +24,10 @@ INSERT INTO t1 VALUES (99, 600);
 -- title: subquery
 SELECT this, that
 FROM (
-	SELECT 
-		x as this, 
-		y as that 
-	FROM t1
+    SELECT 
+        x as this, 
+        y as that 
+    FROM t1
 );
 
 -- main end

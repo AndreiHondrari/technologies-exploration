@@ -2,26 +2,26 @@ DROP TABLE IF EXISTS t3;
 DROP TABLE IF EXISTS t4;
 
 CREATE TABLE IF NOT EXISTS t3 (
-	x integer
+    x integer
 );
 
 CREATE TABLE IF NOT EXISTS t4 (
-	x_ref integer,
-	k integer
+    x_ref integer,
+    k integer
 );
 
 
 INSERT INTO t3 VALUES
-	(11), (22), (33), (44), (55), (66), (77)
+    (11), (22), (33), (44), (55), (66), (77)
 ;
 
 INSERT INTO t4 VALUES
-	(11, 7),
-	(11, 29),
-	(22, 70),
-	(22, 60),
-	(33, 29),
-	(44, 9000)
+    (11, 7),
+    (11, 29),
+    (22, 70),
+    (22, 60),
+    (33, 29),
+    (44, 9000)
 ;
 
 -- title: original sums

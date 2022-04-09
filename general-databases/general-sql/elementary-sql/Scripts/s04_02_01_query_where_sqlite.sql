@@ -5,7 +5,7 @@
 -- setup
 DROP TABLE IF EXISTS t1;
 CREATE TABLE IF NOT EXISTS t1 (
-	x integer
+    x integer
 );
 
 INSERT INTO t1 VALUES (11);

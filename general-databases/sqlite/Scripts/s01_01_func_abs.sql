@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS t1;
 
 CREATE TABLE IF NOT EXISTS t1 (
-	x
+    x
 );
 
 INSERT INTO t1 VALUES (123), (-123), (0), (555), (-555);

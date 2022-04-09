@@ -7,21 +7,21 @@
 DROP TABLE IF EXISTS t1;
 
 CREATE TABLE IF NOT EXISTS t1 (
-	a1 integer,
-	a2 integer,
-	a3 integer
+    a1 integer,
+    a2 integer,
+    a3 integer
 );
 
 INSERT INTO t1 VALUES
-	(11, NULL, NULL),
-	(22, NULL, NULL),
-	(33, 333, NULL),
-	(44, 444, 4444),
-	(55, NULL, 5555),
-	(NULL, 666, NULL),
-	(NULL, NULL, 7777);
+    (11, NULL, NULL),
+    (22, NULL, NULL),
+    (33, 333, NULL),
+    (44, 444, 4444),
+    (55, NULL, 5555),
+    (NULL, 666, NULL),
+    (NULL, NULL, 7777);
 
-	
+    
 -- main start
 
 -- title: multiplex column
@@ -30,11 +30,11 @@ INSERT INTO t1 VALUES
  * First case match, first served.
  */
 SELECT
-	CASE
-		WHEN a3 NOTNULL THEN a3
-		WHEN a2 NOTNULL THEN a2
-		WHEN a1 NOTNULL THEN a1
-	END a
+    CASE
+        WHEN a3 NOTNULL THEN a3
+        WHEN a2 NOTNULL THEN a2
+        WHEN a1 NOTNULL THEN a1
+    END a
 FROM t1;
 
 -- main end

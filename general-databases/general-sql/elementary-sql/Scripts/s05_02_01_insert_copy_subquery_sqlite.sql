@@ -2,20 +2,20 @@ DROP TABLE IF EXISTS t1;
 DROP TABLE IF EXISTS t2;
 
 CREATE TABLE IF NOT EXISTS t1 (
-	a int,
-	b int
+    a int,
+    b int
 );
 
 CREATE TABLE IF NOT EXISTS t2 (
-	x int,
-	y int
+    x int,
+    y int
 );
 
 INSERT INTO t1 VALUES 
-	(1, 11),
-	(2, 22),
-	(3, 33),
-	(4, 44)
+    (1, 11),
+    (2, 22),
+    (3, 33),
+    (4, 44)
 ;
 
 INSERT INTO t2 

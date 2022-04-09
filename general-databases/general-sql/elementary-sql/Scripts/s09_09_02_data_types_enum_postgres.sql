@@ -14,15 +14,15 @@ create type somehow
 as enum ('like-this', 'like-that', 'noway');
 
 create table if not exists t1 (
-	a somehow,
-	b varchar
+    a somehow,
+    b varchar
 );
 
 insert into t1 values
-	('like-this', 'gandalf'),
-	('like-this', 'maxime'),
-	('like-that', 'gnocchi'),
-	('noway', 'chuck')
+    ('like-this', 'gandalf'),
+    ('like-this', 'maxime'),
+    ('like-that', 'gnocchi'),
+    ('noway', 'chuck')
 ;
 
 select * from t1;

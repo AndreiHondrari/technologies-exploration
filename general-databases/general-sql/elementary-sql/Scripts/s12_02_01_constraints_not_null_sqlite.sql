@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS t1;
 
 CREATE TABLE IF NOT EXISTS t1 (
-	a,
-	b NOT NULL
+    a,
+    b NOT NULL
 );
 
 INSERT INTO t1(a) VALUES (9000);  -- will throw error
