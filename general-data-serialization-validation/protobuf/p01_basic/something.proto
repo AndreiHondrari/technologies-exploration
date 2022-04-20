@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package gandalf;
+
+message Thing {
+    optional string title = 1;
+    optional int32 p = 2;
+    optional string bla = 3;
+
+    enum PotatoType {
+        RED = 0;
+        WHITE = 1;
+        TRANSPARENT = 99;
+    };
+
+    message InnerThang {
+        int64 val = 1;
+        optional PotatoType kek = 2;
+    }
+
+    repeated InnerThang gags = 4;
+}
+
+message That {
+    repeated int32 vals = 1;
+}
