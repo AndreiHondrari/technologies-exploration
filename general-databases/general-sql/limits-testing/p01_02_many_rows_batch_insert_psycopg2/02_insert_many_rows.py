@@ -28,11 +28,16 @@ def main() -> None:
             val = random.randint(100, 1_000)
             values.append((i, val,))
 
-        print("Executing in batch ... (probably 120 seconds)")
+        print("Executing in batch ... (several tens of seconds)")
         execute_values(
             curr,
             "INSERT INTO test_table_1 VALUES %s",
-            values
+            values,
+
+            # Page size increased from 100
+            # affects the bulk insert time from
+            # 120 seconds to roughly 58 seconds (so about half)
+            page_size=100_000  # NOTICE the large page size (default 100)
         )
 
         print("Committing ...")
