@@ -2,7 +2,7 @@ from functools import partial
 
 from sqlalchemy import MetaData, Table, Column, Integer, String
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 def main() -> None:

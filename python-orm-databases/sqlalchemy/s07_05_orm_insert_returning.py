@@ -14,7 +14,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import declarative_base
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 Base = declarative_base()

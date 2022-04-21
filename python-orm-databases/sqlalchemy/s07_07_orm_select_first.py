@@ -9,7 +9,7 @@ from sqlalchemy import (
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import declarative_base, Session
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 Base = declarative_base()

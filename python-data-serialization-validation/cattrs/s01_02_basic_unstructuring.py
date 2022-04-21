@@ -4,7 +4,7 @@ from typing import Dict, Any
 import attr
 import cattr
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 @attr.define

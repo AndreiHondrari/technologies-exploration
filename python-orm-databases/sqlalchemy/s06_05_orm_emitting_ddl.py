@@ -5,7 +5,7 @@ from sqlalchemy import (
     create_engine,
 )
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 def main() -> None:

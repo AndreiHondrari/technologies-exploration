@@ -6,7 +6,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import declarative_base, relationship
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 def main() -> None:

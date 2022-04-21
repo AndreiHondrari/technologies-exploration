@@ -2,7 +2,7 @@ from functools import partial
 
 from pydantic import BaseModel
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 class Item(BaseModel):

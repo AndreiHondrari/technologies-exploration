@@ -9,7 +9,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy.exc import InvalidRequestError
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 Base = declarative_base()

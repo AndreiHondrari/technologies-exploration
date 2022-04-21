@@ -2,7 +2,7 @@ from functools import partial
 
 import attr
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 @attr.define(order=True)

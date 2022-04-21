@@ -10,7 +10,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 def prepare_database(engine: Engine) -> None:

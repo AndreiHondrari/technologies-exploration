@@ -5,7 +5,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import registry
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 def main() -> None:

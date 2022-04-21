@@ -9,7 +9,7 @@ from functools import partial
 
 from sqlalchemy import create_engine, text
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 def main() -> None:

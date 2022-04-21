@@ -2,7 +2,7 @@ from functools import partial
 
 import attr
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 def convert_to_something(value: int) -> str:

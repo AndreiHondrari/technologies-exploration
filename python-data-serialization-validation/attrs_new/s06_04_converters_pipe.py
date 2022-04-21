@@ -2,7 +2,7 @@ from functools import partial
 
 import attr
 
-hprint = partial(print, "\n#")
+hprint = partial(print, " \n#")
 
 
 def double_value(value: int) -> int:
