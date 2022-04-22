@@ -24,7 +24,7 @@ END;
 /*
  * do some inserts
  */
-INSERT INTO t1 VALUES ("gandalf"), ("maxime");
+INSERT INTO t1 VALUES ('gandalf'), ('maxime');
 
 SELECT * FROM t1;
 SELECT * FROM t2;

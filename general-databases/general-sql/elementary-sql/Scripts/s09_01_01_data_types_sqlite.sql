@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS t1 (
     e BLOB
 );
 
-INSERT INTO t1(a) VALUES (11), ("some"), (23.45), (x'ffaa00');
+INSERT INTO t1(a) VALUES (11), ('some'), (23.45), (x'ffaa00');
 
 -- title: dynamic type
 SELECT a, typeof(a), b, c, d, e FROM t1;
@@ -24,8 +24,8 @@ SELECT a, typeof(a), b, c, d, e FROM t1;
 
 DELETE FROM t1;
 INSERT INTO t1(b, c, d, e) VALUES 
-    (123, 78.99, "some text", x'fe7900ff'), 
-    ("not int", "not float", 9999, "not blob");
+    (123, 78.99, 'some text', x'fe7900ff'), 
+    ('not int', 'not float', 9999, 'not blob');
 
 -- title: type not enforced
 SELECT * FROM t1;

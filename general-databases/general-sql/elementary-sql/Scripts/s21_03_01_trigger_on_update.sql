@@ -33,11 +33,11 @@ END;
 /*
  * initial values
  */
-INSERT INTO t1 VALUES (1, "gandalf"), (2, "dolores ipsum");
+INSERT INTO t1 VALUES (1, 'gandalf'), (2, 'dolores ipsum');
 
-UPDATE t1 SET descr = "maxime" WHERE pk = 1;
-UPDATE t1 SET descr = "consectur est" WHERE pk = 2;
-UPDATE t1 SET descr = "jeff" WHERE pk = 1;
+UPDATE t1 SET descr = 'maxime' WHERE pk = 1;
+UPDATE t1 SET descr = 'consectur est' WHERE pk = 2;
+UPDATE t1 SET descr = 'jeff' WHERE pk = 1;
 
 SELECT * FROM t1;
 SELECT rowid, * FROM t1_history;

@@ -31,7 +31,7 @@ INSERT INTO t2 VALUES
     (11), (11), (11), (44);
 
 /*
- * silently "fail" the insertion if
+ * silently 'fail' the insertion if
  * the foreign key does not reference
  * something actually existing
  */

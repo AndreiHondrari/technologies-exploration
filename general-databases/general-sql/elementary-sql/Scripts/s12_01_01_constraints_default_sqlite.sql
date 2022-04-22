@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS t1;
 
 CREATE TABLE IF NOT EXISTS t1 (
     a DEFAULT 123,
-    b DEFAULT "gandalf",
+    b DEFAULT 'gandalf',
     c
 );
 
