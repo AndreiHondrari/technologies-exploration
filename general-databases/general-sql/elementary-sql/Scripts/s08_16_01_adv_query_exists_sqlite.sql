@@ -12,6 +12,11 @@ CREATE TABLE IF NOT EXISTS t2 (
 
 INSERT INTO t1 VALUES (11), (11), (22), (33), (33), (33);
 
+-- title: determine value existence
+SELECT 
+    EXISTS(SELECT * FROM t1 WHERE a = 22) as "11?",
+    EXISTS(SELECT * FROM t1 WHERE a = 9999) as "9999?";
+
 -- title: t1 if any in t2 (bef)
 SELECT * FROM t1
 WHERE EXISTS(SELECT * FROM t2);
