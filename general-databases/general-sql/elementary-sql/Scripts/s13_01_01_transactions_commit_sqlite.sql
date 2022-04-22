@@ -15,14 +15,11 @@ SELECT * FROM t1;
 
 -- insert with transaction
 
-END TRANSACTION; -- for some reason this is needed???
-BEGIN TRANSACTION;
+BEGIN;
   INSERT INTO t1 VALUES (33);
   INSERT INTO t1 VALUES (44);
   INSERT INTO t1 VALUES (55);
 COMMIT;
-
---END TRANSACTION; -- for some reason this is needed???
 
 -- title: after
 SELECT * FROM t1;
