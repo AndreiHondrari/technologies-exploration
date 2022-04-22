@@ -6,48 +6,54 @@
 DROP TABLE IF EXISTS t1;
 CREATE TABLE IF NOT EXISTS t1 (
     x integer,
-    y integer,
-    descr varchar(30)
+    y integer
 );
 
 INSERT INTO t1 VALUES
-    (111, 10, 'gandalf'),
-    (578, 577, 'GANDHI'),
-    (444, 10, 'tree'),
-    (333, 20, 'forcefield'),
-    (111, 20, 'apples'),
-    (333, 10, 'sword'),
-    (333, 50, 'magical'),
-    (222, 640, 'startdust'),
-    (111, 30, 'quadrant'),
-    (255, 255, 'freaky'),
-    (444, 1234, 'equation'),
-    (9999, 2, 'equation'),
-    (111, 101, 'quasimodo'),
-    (10567, 2, 'perfect'),
-    (20876, 123, 'broken'),
-    (30567, 256, 'magnificent'),
-    (123777, 2567, 'insane'),
-    (257987, 3765, 'juggernaut'),
-    (NULL, 5678, 'fantasy'),
-    (5678, NULL, 'sorcerer'),
-    (455, 455, 'ak47'),
-    (566, 566, 'akko'),
-    (577, 577, 'akama');
+    (1, 11),
+    (2, 22),
+    (1, 33),
+    (2, 44),
+    (1, 33),
+    (2, 44),
+    (1, 55),
+    (2, 44),
+    (3, 66);
 
 -- main start
 
--- title: first match
-SELECT * FROM t1 WHERE x < 500 GROUP BY x;  -- will always pick the first match for a given grouping
+-- title: group by one column
+SELECT x FROM t1 WHERE x < 500 GROUP BY x;  -- will always pick the first match for a given grouping
 
--- title: count for group
-SELECT x, COUNT(*) FROM t1 WHERE x < 500 GROUP BY x;
+-- title: count for each group
+SELECT x, COUNT(*) FROM t1 GROUP BY x;
+
+-- title: conditional
+SELECT x, COUNT(*) FROM t1 WHERE y > 40 GROUP BY x;
 
 -- title: avg for group
 SELECT x, ROUND(AVG(y), 2) FROM t1 WHERE x < 500 GROUP BY x;
 
 -- title: group by multiple
-SELECT * FROM t1 WHERE x < 500 GROUP BY x, y;
+SELECT x, y FROM t1 WHERE x < 500 GROUP BY x, y;
+
+/*
+ * While performing a select when grouping by only one column works,
+ * the result does not make sense. This is only possible because
+ * Sqlite is permissive. It will by default chose the first value
+ * of the columns that are not used for grouping.
+ * 
+ * Why doesn't it make sense?
+ * Example: Let's assume we have table (a int, b int) with values
+ * (1, 11), (1, 22), (2, 33)
+ * 
+ * if the "SELECT * FROM table GROUP BY a;" were to work
+ * how would the result be for a = 1 ? In column b 
+ * there are 11 and 22 for the same a = 1, 
+ * which one would you should display? 
+ * it wouldn't make sense to display only one of them.
+ */
+select * from t1 group by x;
 
 -- main end
 
