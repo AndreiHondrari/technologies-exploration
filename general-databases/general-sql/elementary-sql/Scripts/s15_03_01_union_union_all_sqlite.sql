@@ -13,14 +13,12 @@ CREATE TABLE IF NOT EXISTS t2 (
 INSERT INTO t1 VALUES
     (11),
     (55),
-    (99)
-;
+    (99);
 
 INSERT INTO t2 VALUES
     (22),
     (11),
-    (55)
-;
+    (55);
 
 -- title: union simple
 SELECT a as kek FROM t1

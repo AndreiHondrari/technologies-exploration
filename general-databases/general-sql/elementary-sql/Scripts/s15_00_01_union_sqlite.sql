@@ -15,12 +15,10 @@ CREATE TABLE IF NOT EXISTS t2 (
 
 
 INSERT INTO t1 VALUES
-    (11, 777), (22, 888), (33, 999)
-;
+    (11, 777), (22, 888), (33, 999);
 
 INSERT INTO t2 VALUES
-    ('a', 55), ('b', 22), ('c', 11)
-;
+    ('a', 55), ('b', 22), ('c', 11);
 
 -- title: unite
 SELECT x FROM t1

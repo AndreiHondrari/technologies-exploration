@@ -15,14 +15,12 @@ CREATE TABLE IF NOT EXISTS t2 (
 INSERT INTO t1 VALUES
     (11, 'gandalf'),
     (55, 'maxime'),
-    (99, 'jonas')
-;
+    (99, 'jonas');
 
 INSERT INTO t2 VALUES
     (22, 'cassidi'),
     (11, 'malcom'),
-    (100, 'lorantae')
-;
+    (100, 'lorantae');
 
 SELECT b as lol, a as kek FROM t1
 UNION

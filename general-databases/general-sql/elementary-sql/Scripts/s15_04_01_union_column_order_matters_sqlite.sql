@@ -15,20 +15,17 @@ CREATE TABLE IF NOT EXISTS t2 (
 INSERT INTO t1 VALUES
     (11, 'gandalf'),
     (55, 'maxime'),
-    (99, 'jonas')
-;
+    (99, 'jonas');
 
 INSERT INTO t2 VALUES
     (22, 'cassidi'),
     (66, 'malcom'),
-    (100, 'lorantae')
-;
+    (100, 'lorantae');
 
 -- title: weird mix
 SELECT b, a FROM t1
 UNION
-SELECT x, y FROM t2
-;
+SELECT x, y FROM t2;
 
 DROP TABLE IF EXISTS t1;
 DROP TABLE IF EXISTS t2;
