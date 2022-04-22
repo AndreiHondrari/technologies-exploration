@@ -1,3 +1,10 @@
+/*
+ * Correlated subqueries are subqueries that
+ * make use of columns from the outer query.
+ * 
+ * They are slow because the subquery is evaluated
+ * for each row of the outer query.
+ */
 DROP TABLE IF EXISTS t3;
 DROP TABLE IF EXISTS t4;
 
@@ -12,8 +19,7 @@ CREATE TABLE IF NOT EXISTS t4 (
 
 
 INSERT INTO t3 VALUES
-    (11), (22), (33), (44), (55), (66), (77)
-;
+    (11), (22), (33), (44), (55), (66), (77);
 
 INSERT INTO t4 VALUES
     (11, 7),
@@ -21,17 +27,30 @@ INSERT INTO t4 VALUES
     (22, 70),
     (22, 60),
     (33, 29),
-    (44, 9000)
-;
+    (44, 9000);
 
 -- title: original sums
 SELECT x_ref, SUM(k) FROM t4 GROUP BY x_ref;
 
+/*
+ * purpose here:
+ * get all t3 identities that
+ * form a sum large enough on t4 via secondary column
+ */
 -- title: uncorellated subquery
-SELECT x FROM (SELECT x_ref as x, SUM(k) as k_sum FROM t4 GROUP BY x_ref) WHERE k_sum > 100;
+SELECT x FROM t3 
+WHERE x IN (
+    SELECT x_ref FROM t4 
+    GROUP BY x_ref 
+    HAVING SUM(k) > 100
+);
 
 -- title: correlated
-SELECT x FROM t3 WHERE 100 < (SELECT SUM(k) FROM t4 WHERE x_ref = x);
+SELECT x FROM t3 
+WHERE 100 < (
+    SELECT SUM(k) FROM t4 
+    WHERE x_ref = x
+);
 
 
 DROP TABLE IF EXISTS t3;
