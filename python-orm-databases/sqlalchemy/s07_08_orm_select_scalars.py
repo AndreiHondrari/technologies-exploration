@@ -67,6 +67,13 @@ def main() -> None:
         for x in items:
             print(x)
 
+    # Notice how only the ID is retrieved
+    hprint("Get the data (fields)")
+    with Session(engine) as session:
+        items = session.scalars(select(Item.id, Item.title))
+        for x in items:
+            print(x)
+
 
 if __name__ == "__main__":
     main()
