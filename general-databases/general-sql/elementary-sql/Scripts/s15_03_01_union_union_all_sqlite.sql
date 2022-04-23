@@ -20,11 +20,19 @@ INSERT INTO t2 VALUES
     (11),
     (55);
 
+/*
+ * Intersects rows
+ */
 -- title: union simple
 SELECT a as kek FROM t1
 UNION
 SELECT x as kek FROM t2;
 
+/*
+ * Unlike simple UNION
+ * it does not intersect, but rather
+ * it adds all rows
+ */
 -- title: union all
 SELECT a as kek FROM t1
 UNION ALL

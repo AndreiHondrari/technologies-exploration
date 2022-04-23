@@ -20,6 +20,9 @@ INSERT INTO t2 VALUES
     ('maxime'),
     ('jeff');
 
+-- title: comma join
+SELECT * FROM t1, t2;
+
 -- title: join (no on)
 SELECT * FROM t1 JOIN t2;
 
