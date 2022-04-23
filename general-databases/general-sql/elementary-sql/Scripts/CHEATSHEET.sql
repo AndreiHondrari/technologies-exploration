@@ -245,7 +245,199 @@ SELECT x FROM t1
 UNION
 SELECT k FROM t2;
 
+-- union with aliases
 SELECT b as lol, a as kek FROM t1
 UNION
 SELECT y as lol, x as kek FROM t2
 ORDER BY kek;
+
+-- union all
+SELECT a as kek FROM t1
+UNION ALL
+SELECT x as kek FROM t2;
+
+/*
+ * b will combine with x
+ * a will combine with y
+ */
+-- union column order matters
+SELECT b, a FROM t1
+UNION
+SELECT x, y FROM t2;
+
+/*
+ * Unline UNION,
+ * INTERSECT will output only does values
+ * that exist in both tables
+ */
+-- intersect
+SELECT x FROM t1
+INTERSECT
+SELECT k FROM t2;
+
+SELECT x, y FROM t1
+INTERSECT
+SELECT k, p FROM t2;
+
+/*
+ * Unline INTERSECT,
+ * EXCEPT will output only does values
+ * that are NOT common in both tables.
+ * Essentially is the opposite of INTERSECT.
+ */
+-- except
+SELECT x FROM t1
+EXCEPT
+SELECT k FROM t2;
+
+SELECT x, y FROM t1
+EXCEPT
+SELECT k, p FROM t2;
+
+/*
+ * JOIN will combine columns.
+ *
+ * ON clause is for filtering which of the
+ * rows should pass. It is usually used as a
+ * cross-table condition
+ *
+ * JOIN with an ON clause will combine
+ * only the cross-condition is true
+ */
+
+/*
+ * select all from an inner join
+ * will show the crossing column from both tables
+ */
+-- inner join
+SELECT * FROM t1 [INNER] JOIN t2 ON t1.k = t2.k;
+
+/*
+ * select all from an inner join
+ * with USING clause on a specific column
+ * will show that column only once
+ * (unlike the INNER JOIN with ON)
+ */
+-- inner join using
+SELECT * FROM t1 JOIN t2 USING(k);
+
+/*
+ * natural joins will look for all
+ * columns that have the same name
+ * and they will use those for
+ * cross-checking.
+ */
+-- natural join
+SELECT * FROM t1 NATURAL JOIN t2;
+
+/*
+ * Cross product of all the rows from both tables
+ */
+
+ -- comma cross join
+SELECT * FROM t1, t2;
+
+-- sqlite no-ON inner cross join
+SELECT * FROM t1 JOIN t2;
+
+ -- postgres ON TRUE inner cross join
+/* basically an ON filter where
+ * everything passes
+ */
+SELECT * FROM t1 JOIN t2 ON TRUE;
+
+-- cross join
+SELECT * FROM t1 CROSS JOIN t2;
+
+/*
+ * Filter by column of another table.
+ * Analogous to INNER JOIN on different columns
+ */
+
+-- filter by inner join on different columns
+SELECT * FROM t1 JOIN t2 ON t1.a = t2.k;
+
+-- filter in scalar subquery
+SELECT * FROM t1 WHERE t1.x IN (SELECT k FROM t2);
+
+-- filter when exists in correlated subquery (slow)
+SELECT * FROM t1
+WHERE EXISTS(
+    SELECT a FROM t2 WHERE a = t1.x
+);
+
+/*
+ * OUTER JOIN - include rows from joining tables
+ * that don't necessarily pass the ON cross-check.
+ * Otherwise said INNER JOIN + rows from tables
+ * that don't match anything in the right.
+ */
+
+-- left join
+SELECT * FROM t1 LEFT OUTER JOIN t2 ON t1.k = t2.k;
+
+-- right join (postgres)
+SELECT * FROM t1 RIGHT OUTER JOIN t2 ON t1.k = t2.k;
+
+/*
+ * Sqlite doesn't have RIGHT OUTER JOIN
+ * so we simply reverse t1 and t2 and
+ * use them in an LEFT OUTER JOIN.
+ */
+-- right join (sqlite)
+SELECT * FROM t2 LEFT OUTER JOIN t1 ON t1.k = t2.k;
+
+-- full outer join (postgres)
+SELECT * FROM t1 FULL OUTER JOIN t2 ON t1.k = t2.k;
+
+/*
+ * Sqlite doesn't have FULL OUTER JOIN
+ * so we make it from left outer join and right outer join.
+ */
+-- full outer join (sqlite)
+SELECT * FROM
+t1 LEFT JOIN t2 ON t1.k = t2.k
+UNION
+SELECT * FROM
+t2 LEFT JOIN t1 ON t1.k = t2.k;
+
+/*
+ * Useful for tables that
+ * have relations pointing to itself
+ */
+-- self join
+SELECT * FROM
+t1 AS foo INNER JOIN t1 as bar
+ON t1.a = t1.b;
+
+/*
+ * Views - queries saved under a name
+ */
+
+-- define view in sqlite
+CREATE VIEW IF NOT EXISTS view1
+AS
+    SELECT * FROM t1;
+
+-- define view in postgres
+CREATE OR REPLACE VIEW view1
+AS
+    SELECT * FROM t1;
+
+-- query from view
+SELECT * FROM view1;
+
+/*
+ * Indexes - special columns designed
+ * to speed up search
+ */
+
+ CREATE TABLE IF NOT EXISTS t1 (
+     pk int NOT NULL,
+     something text NOT NULL,
+     val int NOT NULL,
+
+     PRIMARY KEY (pk)
+ );
+
+ CREATE INDEX idx_t1_some ON t1(something);
