@@ -10,8 +10,7 @@ create table if not exists t1 (
 
 insert into t1 values
     (1, 11, 'blabla'),
-    (2, 22, 'gandalf')
-;
+    (2, 22, 'gandalf');
 
 insert into t1 values (1, 33, 'maxime');
 

@@ -20,16 +20,14 @@ insert into t1 values
     (22, 888), 
     (33, 999), 
     (11, 1010),
-    (66, 888)
-;
+    (66, 888);
 
 insert into t2 values
     ('a', 55), 
     ('b', 22), 
     ('c', 11),
     ('b', 77),
-    ('d', 22)
-;
+    ('d', 22);
 
 -- title: left outer join
 select *

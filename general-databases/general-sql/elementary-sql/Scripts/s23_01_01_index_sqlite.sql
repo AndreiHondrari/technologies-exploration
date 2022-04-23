@@ -15,8 +15,7 @@ CREATE TABLE IF NOT EXISTS t1 (
 INSERT INTO t1 VALUES
     (1, 'lorem ipsum', 111),
     (2, 'consectur sigitur', 111),
-    (3, 'kaelus est', 222)
-;
+    (3, 'kaelus est', 222);
 
 /*
  * index on single column

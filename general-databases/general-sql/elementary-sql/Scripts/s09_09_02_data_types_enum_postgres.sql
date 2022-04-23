@@ -22,8 +22,7 @@ insert into t1 values
     ('like-this', 'gandalf'),
     ('like-this', 'maxime'),
     ('like-that', 'gnocchi'),
-    ('noway', 'chuck')
-;
+    ('noway', 'chuck');
 
 select * from t1;
 

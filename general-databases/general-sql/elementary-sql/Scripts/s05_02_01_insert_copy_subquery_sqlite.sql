@@ -15,8 +15,7 @@ INSERT INTO t1 VALUES
     (1, 11),
     (2, 22),
     (3, 33),
-    (4, 44)
-;
+    (4, 44);
 
 INSERT INTO t2 
 SELECT a, b FROM t1;

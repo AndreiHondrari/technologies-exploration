@@ -46,8 +46,7 @@ INSERT OR IGNORE INTO t1 VALUES
     (555),
     (90),
     (42),
-    (9999)
-;
+    (9999);
 
 SELECT * FROM t1;
 SELECT * FROM t1_attempts;

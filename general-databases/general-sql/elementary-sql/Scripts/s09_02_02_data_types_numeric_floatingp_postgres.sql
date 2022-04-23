@@ -25,8 +25,7 @@ insert into t1(d) values
     (.007),
     (525215215.123456789123456789),
     (5e3),  -- 5 * 10 ^3
-    (1234e-2)  -- 1234 * 10^(-2) = 1234 * 1/100
-;
+    (1234e-2)  -- 1234 * 10^(-2) = 1234 * 1/100;
 
 -- title: double
 select d from t1;
@@ -42,8 +41,7 @@ insert into t1(e) values
     (.007),
     (525215215.123456789123456789),
     (5e3),  -- 5 * 10 ^3
-    (1234e-2)  -- 1234 * 10^(-2) = 1234 * 1/100
-;
+    (1234e-2)  -- 1234 * 10^(-2) = 1234 * 1/100;
 
 -- title: numeric
 select e from t1;
@@ -59,8 +57,7 @@ insert into t1(f) values
     (.007),
     (525215215.123456789123456789),
     (5e3),  -- 5 * 10 ^3
-    (1234e-2)  -- 1234 * 10^(-2) = 1234 * 1/100
-;
+    (1234e-2);  -- 1234 * 10^(-2) = 1234 * 1/100
 
 -- title: real
 select f from t1;
@@ -76,8 +73,7 @@ insert into t1(g) values
     (.007),
     (525215215.123456789123456789),
     (5e3),  -- 5 * 10 ^3
-    (1234e-2)  -- 1234 * 10^(-2) = 1234 * 1/100
-;
+    (1234e-2);  -- 1234 * 10^(-2) = 1234 * 1/100
 
 -- title: double precision
 select g from t1;
@@ -89,8 +85,7 @@ delete from t1;
 insert into t1 values
     ('Infinity', 'Infinity', 'Infinity', 'Infinity'),
     ('-Infinity', '-Infinity', '-Infinity', '-Infinity'),
-    ('NaN', 'NaN', 'NaN', 'NaN')
-;
+    ('NaN', 'NaN', 'NaN', 'NaN');
 
 -- title: special values
 select * from t1;

@@ -25,22 +25,19 @@ INSERT INTO t1 VALUES
     (11, 777), 
     (22, 888), 
     (33, 999), 
-    (11, 1010)
-;
+    (11, 1010);
 
 INSERT INTO t2 VALUES
     ('a', 55),
     ('b', 22),
-    ('c', 11)
-;
+    ('c', 11);
 
 INSERT INTO t3 VALUES
     (11, 222),
     (11, 999),
     (11, 777),
     (33, 222),
-    (33, 999)
-;
+    (33, 999);
 
 -- title: [inner] join
 SELECT * FROM t1 JOIN t2;

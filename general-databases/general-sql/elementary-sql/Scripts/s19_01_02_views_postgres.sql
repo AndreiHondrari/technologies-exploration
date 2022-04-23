@@ -37,8 +37,7 @@ insert into t1 values
     (11, 'sorcerer'),
     (22, 'ak47'),
     (11, 'akko'),
-    (33, 'akama')
-;
+    (33, 'akama');
 
 insert into t2 values (11), (33);
 
@@ -49,15 +48,13 @@ insert into t2 values (11), (33);
 create or replace view view1
 as
     select * from t1 
-    where x = 11
-;
+    where x = 11;
 
 create or replace view view2
 as
     select t1.*
     from t1 inner join t2
-    on t1.x = t2.a
-;
+    on t1.x = t2.a;
 
 /*
  * use views

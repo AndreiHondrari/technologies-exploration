@@ -18,8 +18,7 @@ insert into t1(pk, x)
 values (2, 44)
 on conflict 
     on constraint t1_pk 
-    do nothing
-;  -- should fail
+    do nothing;  -- should fail
 
 select * from t1;
 
@@ -44,8 +43,7 @@ insert into t2(pk, x)
 values (2, 44)
 on conflict
     on constraint t2_pkey
-    do nothing
-;  -- should fail
+    do nothing;  -- should fail
 
 select * from t2;
 

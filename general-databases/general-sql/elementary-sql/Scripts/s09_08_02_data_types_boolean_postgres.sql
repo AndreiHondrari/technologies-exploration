@@ -20,8 +20,7 @@ insert into t1 values
     ('false'),
     ('no'),
     ('off'),
-    ('0')
-;
+    ('0');
 
 select * from t1;
 

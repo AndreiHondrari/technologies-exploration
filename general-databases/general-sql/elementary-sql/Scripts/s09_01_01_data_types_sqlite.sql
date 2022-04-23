@@ -35,8 +35,7 @@ INSERT INTO t1(e) VALUES
     (x''),
     (x'0f'),
     (x'fe00'),
-    (x'6677ff11')
-;
+    (x'6677ff11');
 
 -- title: blobs
 SELECT e FROM t1;

@@ -15,8 +15,7 @@ CREATE TABLE IF NOT EXISTS t1 (
 insert into t1 values 
     (-92233720368547758.08),
     (92233720368547758.07),
-    (42.99)
-;
+    (42.99);
 
 select * from t1;
 

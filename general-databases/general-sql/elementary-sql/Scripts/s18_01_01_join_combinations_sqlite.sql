@@ -13,14 +13,12 @@ CREATE TABLE IF NOT EXISTS t2 (
 INSERT INTO t1 VALUES
     (11),
     (22),
-    (33)
-;
+    (33);
 
 INSERT INTO t2 VALUES
     ('gandalf'),
     ('maxime'),
-    ('jeff')
-;
+    ('jeff');
 
 -- title: join (no on)
 SELECT * FROM t1 JOIN t2;

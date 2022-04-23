@@ -13,8 +13,7 @@ create table if not exists t1 (
 );
 
 insert into t1 values
-    ('{1, 2, 3}')
-;
+    ('{1, 2, 3}');
 
 SELECT * FROM t1;
 

@@ -57,8 +57,7 @@ insert into t1(ship) values
             row('Cassidi Kerst', 'Leutenant Caporal'),
             row('Frigate', '8349')
         )
-    )
-;
+    );
 
 SELECT *, (ship).commander, (ship).shipClass FROM t1;
 

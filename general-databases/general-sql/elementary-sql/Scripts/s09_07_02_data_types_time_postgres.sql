@@ -22,8 +22,7 @@ insert into t1(a) values
     ('1947-06-26'),
     ('February 1, 2000'),
     ('05/02/2002'),
-    ('1999-03-04')
-;
+    ('1999-03-04');
 
 -- title: date
 select a from t1;
@@ -38,8 +37,7 @@ insert into t1(b) values
     ('12:07'),
     ('13:08:45'),
     ('14:09:55.768'),
-    ('12:07+3')
-;
+    ('12:07+3');
 
 -- title: time
 select b from t1;
@@ -52,8 +50,7 @@ delete from t1;
 
 insert into t1(c) values
     ('1947-06-26 12:08:45'),
-    ('1947-06-26 12:08:45 +3:00')
-;
+    ('1947-06-26 12:08:45 +3:00');
 
 -- title: timestamp
 select c from t1;
@@ -71,8 +68,7 @@ insert into t1(b, c) values
     (null, 'now'),
     (null, 'today'),
     (null, 'yesterday'),
-    ('allballs', null)
-;
+    ('allballs', null);
 
 -- title: special
 select b, c from t1;
@@ -88,8 +84,7 @@ insert into t1(d) values
     ('3 4:05:06')    ,
     ('1 year 2 months 3 days 4 hours 5 minutes 6 seconds'),
     ('P1Y2M3DT4H5M6S'),
-    ('P0001-02-03T04:05:06')
-;
+    ('P0001-02-03T04:05:06');
 
 -- title: interval
 select d from t1;

@@ -21,19 +21,16 @@ CREATE TABLE IF NOT EXISTS t1 (
 insert into t1 values
     ('kek', 'lol'),
     ('12345 ', '12345 '),  -- 1 space
-    ('12345   ', '12345   ')  -- 3 spaces
-;
+    ('12345   ', '12345   ');  -- 3 spaces
 
-insert into t1(a) values ('01234567890') -- 11 chars | yields error
-;
+insert into t1(a) values ('01234567890') -- 11 chars | yields error;
 
-insert into t1(b) values ('01234567890') -- 11 chars
-;
+insert into t1(b) values ('01234567890') -- 11 chars;
 
 -- title: a vs b
-select 
-    a, char_length(a), format('%s_', a), 
-    b, char_length(b), format('%s_', b)  
+select
+    a, char_length(a), format('%s_', a),
+    b, char_length(b), format('%s_', b)
 from t1;
 
 /*
@@ -60,19 +57,18 @@ create table if not exists t3 (
     y varchar
 );
 
-insert into t3 values 
+insert into t3 values
     ('a     ', 'a     '),
     ('abcde     ', 'abcde     '),
     (
-        'e48f84bd-47e7-4fcd-b6fa-bbf3dfa94057     ', 
+        'e48f84bd-47e7-4fcd-b6fa-bbf3dfa94057     ',
         'e48f84bd-47e7-4fcd-b6fa-bbf3dfa94057     '
-    )
-;
+    );
 
 -- title: text vs varchar
-select 
-    x, format('%s_', x), 
-    y, format('%s_', y)    
+select
+    x, format('%s_', x),
+    y, format('%s_', y)
 from t3;
 
 -- main end

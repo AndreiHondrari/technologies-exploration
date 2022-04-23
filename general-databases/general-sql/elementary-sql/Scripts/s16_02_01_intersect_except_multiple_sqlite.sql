@@ -20,14 +20,12 @@ INSERT INTO t1 VALUES
     (11, 'c'),
     (33, 'c'),
     (55, 'a'),
-    (33, 'a')
-;
+    (33, 'a');
 
 INSERT INTO t2 VALUES 
     (11, 'b'),
     (22, 'b'),
-    (33, 'a')
-;
+    (33, 'a');
 
 -- title: intersect
 SELECT * FROM t1

@@ -20,8 +20,7 @@ insert into t1(a) values
     ('\xffe3cd'),
     ('\000'),
     ('\047'),
-    ('\127')
-;
+    ('\127');
 
 -- titles: bytea
 select 
@@ -37,8 +36,7 @@ delete from t1;
  */
 insert into t1(b) values
     ('001'),
-    ('101')
-;
+    ('101');
 
 -- title: bit string
 select b from t1;

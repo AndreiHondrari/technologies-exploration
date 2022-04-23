@@ -34,8 +34,7 @@ CREATE TABLE IF NOT EXISTS t1_deletes (
 DROP VIEW IF EXISTS t1view;
 CREATE TEMP VIEW IF NOT EXISTS t1view
 AS
-    SELECT * FROM t1
-;
+    SELECT * FROM t1;
 
 /*
  * create insert trigger for view

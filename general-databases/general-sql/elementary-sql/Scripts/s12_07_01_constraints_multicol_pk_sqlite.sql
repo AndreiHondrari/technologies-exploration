@@ -10,8 +10,7 @@ CREATE TABLE IF NOT EXISTS t1 (
 
 INSERT INTO t1 VALUES
     (1, 11, 'blabla'),
-    (2, 22, 'gandalf')
-;
+    (2, 22, 'gandalf');
 
 INSERT INTO t1 VALUES (1, 33, 'maxime');
 INSERT OR IGNORE INTO t1 VALUES (2, 22, 'cassidi'); -- will fail

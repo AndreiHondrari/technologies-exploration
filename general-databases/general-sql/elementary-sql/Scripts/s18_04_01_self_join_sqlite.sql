@@ -16,8 +16,7 @@ INSERT INTO t1 VALUES
     (33, 11, 'b'),
     (11, 44, 'c'),
     (66, 11, 'd'),
-    (55, 77, 'e')
-;
+    (55, 77, 'e');
 
 -- title: self inner join same col
 SELECT * FROM 

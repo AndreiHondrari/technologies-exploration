@@ -21,8 +21,7 @@ INSERT INTO t1 VALUES
     (11, 'gandalf'), 
     (22, 'maxime'), 
     (33, 'cassidi'), 
-    (44, 'jeff')
-;
+    (44, 'jeff');
 
 INSERT INTO t2 VALUES
     (11), (11), (11), (44);

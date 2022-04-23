@@ -20,16 +20,14 @@ INSERT INTO t1 VALUES
     (22, 888), 
     (33, 999), 
     (11, 1010),
-    (66, 888)
-;
+    (66, 888);
 
 INSERT INTO t2 VALUES
     ('a', 55), 
     ('b', 22), 
     ('c', 11),
     ('b', 77),
-    ('d', 22)
-;
+    ('d', 22);
 
 /*
  * compare to an inner join

@@ -19,8 +19,7 @@ CREATE TABLE IF NOT EXISTS t1 (
  */
 insert into t1(a) values
     (-32768),
-    (32767)
-;
+    (32767);
 
 insert into t1(a) values 32768; -- out of range
 
@@ -33,8 +32,7 @@ delete from t1;
  */
 insert into t1(b) values
     (-2147483648),
-    (2147483647)
-;
+    (2147483647);
 
 insert into t1(b) values 2147483648; -- out of range
 
@@ -47,8 +45,7 @@ delete from t1;
  */
 insert into t1(c) values
     (-9223372036854775808),
-    (9223372036854775807)
-;
+    (9223372036854775807);
 
 insert into t1(c) values 9223372036854775808; -- out of range
 

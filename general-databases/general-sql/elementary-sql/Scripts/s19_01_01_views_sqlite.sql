@@ -34,8 +34,7 @@ INSERT INTO t1 VALUES
     (11, 'sorcerer'),
     (22, 'ak47'),
     (11, 'akko'),
-    (33, 'akama')
-;
+    (33, 'akama');
 
 INSERT INTO t2 VALUES (11), (33);
 
@@ -46,16 +45,14 @@ DROP VIEW IF EXISTS view1;
 CREATE VIEW IF NOT EXISTS view1
 AS
     SELECT * FROM t1 
-    WHERE x = 11
-;
+    WHERE x = 11;
 
 DROP VIEW IF EXISTS view2;
 CREATE VIEW IF NOT EXISTS view2
 AS
     SELECT t1.*
     FROM t1 INNER JOIN t2
-    ON t1.x = t2.a
-;
+    ON t1.x = t2.a;
 
 /*
  * use views

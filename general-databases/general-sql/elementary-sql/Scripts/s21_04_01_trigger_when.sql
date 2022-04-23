@@ -37,8 +37,7 @@ INSERT INTO t1 VALUES
     (5, 100),
     (6, 90),
     (7, 245),
-    (8, 42)
-;
+    (8, 42);
 
 SELECT * FROM t1;
 SELECT rowid, * FROM t1_abscess;

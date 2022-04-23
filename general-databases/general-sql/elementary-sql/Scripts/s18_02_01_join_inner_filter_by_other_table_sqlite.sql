@@ -17,13 +17,11 @@ INSERT INTO t1 VALUES
     (99, 'jonas'),
     (55, 'hermione'),
     (77, 'broko'),
-    (11, 'admiral')
-;
+    (11, 'admiral');
 
 INSERT INTO t2 VALUES
     (11),
-    (55)
-;
+    (55);
 
 -- title: inner join
 SELECT t1.* FROM t1 JOIN t2 ON t1.x = t2.a;
