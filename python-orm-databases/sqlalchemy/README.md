@@ -2,6 +2,141 @@
 
 https://sqlalchemy.org
 
+## Setting up an engine
+
+```python
+from sqlalchemy import create_engine
+
+engine = create_engine(
+    "sqlite+pysqlite://:memory:",
+    echo=True,
+    future=True
+)
+```
+
+The engine is our API provider that allows us to create connections to the
+database of choice.
+
+Notice that for SQL we used the `sqlite+pysqlite://:memory:` string, where:
+
+- `sqlite` is the dialect
+- `pysqlite` is the python to sqlite connector
+- `:memory:` is the storage location for the database, in our case, it being the
+  RAM.
+
+If we wanted to connect to a Postgres server instead, we could have done
+`postgresql+psycopg2://server_user:server_password@127.0.0.1:5432/database_name`
+
+## Initiating a connection
+
+The `commit()` is necessary for `engine.connect()` and `Session(engine)` context
+blocks, to persist any changes to the database.
+
+The `engine.begin()` does not require `commit()` as it will automatically commit
+at the end of the context block.
+
+### By connecting
+
+```python
+with engine.connect() as conn:
+    ...
+    conn.commit()
+```
+
+### By beginning an auto-commit transaction
+
+```python
+with engine.begin() as conn:
+    ...
+    # .commit() call required
+```
+
+### By creating a session
+
+```python
+from sqlalchemy.orm import Session
+
+with Session(engine) as session:
+    ...
+    conn.commit()
+```
+
+## Using raw sql
+
+Typically you can just call the SQL like:
+
+```python
+from sqlalchemy import text
+
+with engine.connect() as conn:
+    conn.execute(text("CREATE TABLE t1 (x INT)"))
+    conn.commit()
+```
+
+or with session
+
+```python
+with Session(engine) as session:
+    session.execute(text("CREATE TABLE t1 (x INT)"))
+    session.commit()
+```
+
+## Defining ORM models
+
+### Metadata and table
+
+```python
+from sqlalchemy import (
+    MetaData, Table, Column,
+    Integer, String,
+)
+
+metadata_obj = MetaData()
+
+item_table = Table(
+    "item",
+    metadata_obj,
+    Column('id', Integer, primary_key=True),
+    Column('title', String(30)),
+    Column('description', String),
+)
+```
+
+### Registry
+
+```python
+from sqlalchemy.orm import registry
+
+mapper_registry = registry()
+Base = mapper_registry.generate_base()
+
+class Item(Base):
+    __tablename__ = "item"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    title = Column(String(30))
+    description = Column(String, nullable=False)
+    value = Column(Integer)
+```
+
+For which we can obtain the underlying table with `Item.__table__`.
+
+### Declarative base
+
+```python
+from sqlalchemy.orm import declarative_base
+
+Base = declarative_base()
+
+class Item(Base):
+    __tablename__ = "item"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    title = Column(String(30))
+    description = Column(String, nullable=False)
+    value = Column(Integer)
+```
+
 ## SQL to SQLAlchemy mapping
 
 ### Create table
@@ -10,11 +145,42 @@ https://sqlalchemy.org
 CREATE TABLE t1 (val INT, bla VARCHAR(30));
 ```
 
+#### With metadata and table
+
+```python
+metadata_obj = MetaData()
+t1_table = Table(
+    "t1",
+    metadata_obj,
+    Column('val', Integer),
+    Column('bla', String(30))
+)
+
+metadata_obj.create_all(engine)
+```
+
+#### With ORM base
+
+```python
+class T1(Base):
+    __tablename__ = "t1"
+    val = Column(Integer)
+    bla = Column(String(30))
+
+Base.metadata.create_all(engine)
+```
+
+Throughout the rest of the document we will be using ORM tables for
+simplification.
+
 ### Create table if it doesn't exist
 
 ```sql
 CREATE TABLE IF NOT EXISTS t1 (val INT, bla VARCHAR(30));
 ```
+
+There is no specific SQLalchemy parameter or function for `IF NOT EXISTS`.
+Sqlalchemy keeps a track of the tables statuses.
 
 ### Drop table
 
@@ -27,6 +193,8 @@ DROP TABLE t1;
 ```sql
 DROP TABLE IF EXISTS t1;
 ```
+
+There is no specific SQLalchemy parameter or function for `IF EXISTS`.
 
 ### Insert a single value
 
