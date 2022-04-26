@@ -6,7 +6,8 @@ from sqlalchemy import (
 
     insert, select,
 )
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.engine import Engine
+from sqlalchemy.orm import declarative_base, Session
 
 hprint = partial(print, " \n#")
 
@@ -27,42 +28,53 @@ class Item(Base):
         )
 
 
-def main() -> None:
-
-    # create engine
+def prepare_database() -> Engine:
+    print("Create engine ...")
     engine = create_engine(
         "sqlite+pysqlite:///:memory:",
         future=True,
     )
     Base.metadata.create_all(engine)
+    return engine
 
+
+def populate_database(engine: Engine) -> None:
     # insert data
-    hprint("Add some data")
+    print("Add some data ...")
     with engine.begin() as conn:
-        result = conn.execute(
+        conn.execute(
             insert(Item.__table__),
             [
                 {'title': 'kaboom', 'value': 111},
                 {'title': 'traktor', 'value': 222},
             ]
         )
-    hprint("Get the data")
-    with engine.connect() as conn:
-        # Core table
-        hprint("(fields) from the core table")
-        result = conn.execute(
-            select(Item.__table__.c.id, Item.__table__.c.title)
-        )
-        for x in result:
-            print(x)
 
-        # ORM model
-        hprint("(fields) from the ORM table")
-        result = conn.execute(
-            select(Item.id, Item.title)
-        )
-        for x in result:
-            print(x)
+
+def main() -> None:
+
+    engine = prepare_database()
+    populate_database(engine)
+
+    session = Session(engine)
+
+    # Core table
+    hprint("(fields) from the core table")
+    result = session.execute(
+        select(Item.__table__.c.id, Item.__table__.c.title)
+    )
+    for x in result:
+        print(x)
+
+    # ORM model
+    hprint("(fields) from the ORM table")
+    result = session.execute(
+        select(Item.id, Item.title)
+    )
+    for x in result:
+        print(x)
+
+    session.close()
 
 
 if __name__ == "__main__":
