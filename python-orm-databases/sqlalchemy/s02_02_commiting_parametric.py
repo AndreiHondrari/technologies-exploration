@@ -19,11 +19,7 @@ def main() -> None:
         conn.execute(text("CREATE TABLE mytable (x int, d varchar(250))"))
         conn.execute(
             text("INSERT INTO mytable VALUES (:x, :d)"),
-            [
-                {'x': 11, 'd': "Ergo sum est retrostylus"},
-                {'x': 33, 'd': "Duis incididunt laborum tempor aliquip."},
-                {'x': 99, 'd': "Qui ex deserunt occaecat consectetur magna."},
-            ]
+            {'x': 11, 'd': "Ergo sum est retrostylus"}
         )
         conn.commit()
 
