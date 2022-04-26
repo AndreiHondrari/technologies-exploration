@@ -65,17 +65,35 @@ def main() -> None:
     engine = prepare_database()
     populate_database(engine)
 
-    hprint("Get the data")
-    with Session(engine) as session:
-        hprint("All fields")
-        rows = session.execute(select(Item))
-        for r in rows:
-            print(r)
+    session = Session(engine)
 
-        hprint("Specific fields")
-        rows = session.execute(select(Item.id, Item.title, Item.value))
-        for r in rows:
-            print(r)
+    # Core table
+    hprint("From the core table")
+
+    statement = select(Item.__table__)  # notice select on Table
+    result = session.execute(statement)  # ! returns a CursorResult
+
+    print("STATEMENT:", statement)
+    print("RESULT_TYPE", type(result))
+
+    print("\nCore select results")
+    for x in result:
+        print(type(x), x)
+
+    # ORM model
+    hprint("From the ORM table")
+
+    statement = select(Item)  # Notice select on table model
+    result = session.execute(statement)  # ! returns a ChunkedIteratorResult
+
+    print("STATEMENT:", statement)
+    print("RESULT_TYPE", type(result))
+
+    print("\nORM select results")
+    for x in result:
+        print(type(x), x)
+
+    session.close()
 
 
 if __name__ == "__main__":
