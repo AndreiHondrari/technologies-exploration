@@ -12,7 +12,8 @@ from sqlalchemy import (
 
     insert, select,
 )
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.engine import Engine
+from sqlalchemy.orm import declarative_base, Session
 
 hprint = partial(print, " \n#")
 
@@ -33,25 +34,48 @@ class Item(Base):
         )
 
 
+def prepare_database() -> Engine:
+    print("Create engine ...")
+    engine = create_engine(
+        "postgresql+psycopg2://postgres:postgres@127.0.0.1:5432/somedb",
+        future=True
+    )
+    Base.metadata.create_all(engine)
+    return engine
+
+
 def main() -> None:
 
     # create engine
-    engine = create_engine(
-        "sqlite+pysqlite:///:memory:",
-        future=True,
-    )
-    Base.metadata.create_all(engine)
+    engine = prepare_database()
+
+    session = Session(engine)
 
     # insert data
-    hprint("Add some data to 'item' table")
-    with engine.begin() as conn:
-        result = conn.execute(
-            insert(Item).returning(Item.id, Item.title),
-            {'title': 'kaboom', 'value': 111}
-        )
+    print("Add some data to 'item' table ...")
 
-        for r in result:
-            print(r)
+    """
+    NOT SUPPORTED BY ALL dialects
+    - postgres supports
+    - sqlite does not support
+    """
+    statement = insert(Item).returning(Item.id, Item.title)
+    print(" \nSTATEMENT:\n", statement, sep="")
+
+    result = session.execute(
+        statement,
+        [
+            {'title': 'kaboom', 'value': 111},
+            {'title': 'gandalf', 'value': 222},
+            {'title': 'maximilian', 'value': 333}
+        ]
+    )
+
+    hprint("Returned at insert")
+    for r in result:
+        print(r)
+
+    session.close()
 
 
 if __name__ == "__main__":
