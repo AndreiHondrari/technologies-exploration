@@ -23,8 +23,8 @@ strlen: ; define the strlen subroutine
 puts:
     pusha ; snapshot for state restoration (all)
 
-    mov eax, 4
-    mov ebx, 1
+    mov eax, 4 ; linux sys_write opcode
+    mov ebx, 1 ; write to STDOUT file
     int 80h
 
     popa ; state restoration (all)
