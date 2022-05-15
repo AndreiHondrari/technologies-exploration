@@ -3,8 +3,7 @@
 
 section .data
     ; 0x00 is string termination nullbyte
-    msg1 db 'Hello program args!', 0x00
-    msg2 db 'Far over, the misty mountains cold', 0x00
+    msg db 'Hello program args!', 0x00
 
 section .text
     global _start
@@ -12,7 +11,7 @@ section .text
 _start:
     pop ecx ; get number of arguments
 
-    mov ebx, msg1
+    mov ebx, msg
     call sprintLF
 
     .nextarg:
