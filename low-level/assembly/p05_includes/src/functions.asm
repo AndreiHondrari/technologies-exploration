@@ -30,11 +30,11 @@ strlen: ; define the strlen subroutine
     ret
 
 ; -------------------------------------
-; puts(
+; swrite(
 ;   eax : string address,
 ;   ebx : string size
 ; )
-puts:
+swrite:
     push eax
     push ebx
 

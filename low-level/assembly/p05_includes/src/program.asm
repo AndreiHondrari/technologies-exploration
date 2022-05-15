@@ -13,7 +13,7 @@ _start:
 
     mov ebx, eax ; set string size arg
     mov eax, msg ; set string address arg
-    call puts
+    call swrite
 
     ; exiting normally
     call quit

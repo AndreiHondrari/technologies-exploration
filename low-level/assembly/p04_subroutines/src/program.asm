@@ -29,11 +29,11 @@ strlen: ; define the strlen subroutine
     ret
 
 ; -------------------------------------
-; puts(
+; swrite(
 ;   eax : string address,
 ;   ebx : string size
 ; )
-puts:
+swrite:
     push eax
     push ebx
 
@@ -65,9 +65,9 @@ _start:
     mov eax, msg ; set string address arg
 
     ; print three times
-    call puts
-    call puts
-    call puts
+    call swrite
+    call swrite
+    call swrite
 
     ; exiting normally
     call quit

@@ -31,11 +31,11 @@ strlen: ; define the strlen subroutine
     ret
 
 ; -------------------------------------
-; puts(
+; swrite(
 ;   eax : string address,
 ;   ebx : string size
 ; )
-puts:
+swrite:
     ; snapshot for state restoration
     push eax
     push ebx
@@ -70,7 +70,7 @@ sprint:
 
     mov ebx, eax ; set the string size arg
     mov eax, ecx ; set the string address arg
-    call puts ; print the string
+    call swrite ; print the string
 
     ; state restoration
     pop eax
