@@ -1,3 +1,5 @@
+; Notice in this example we don't use 0x0A
+; directly in the string data anymore
 
 %include 'src/functions.asm'
 
@@ -10,10 +12,12 @@ section .text
     global _start
 
 _start:
-    mov ebx, msg1 ; load the message address arg for the strlen subroutine
+    mov eax, msg1 ; set the first msg address
     call sprintLF
-    
-    mov ebx, msg2 ; load the message address arg for the strlen subroutine
+    call sprintLF
+
+    mov eax, msg2 ; set the second msg address
+    call sprintLF
     call sprintLF
 
     ; exiting normally

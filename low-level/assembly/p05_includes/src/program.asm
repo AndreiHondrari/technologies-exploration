@@ -8,10 +8,11 @@ section .text
     global _start
 
 _start:
-    mov ebx, msg ; load the message address arg for the strlen subroutine
+    mov eax, msg ; set string address arg
     call strlen
 
-    mov ecx, msg ; load the message address arg for the puts subroutine
+    mov ebx, eax ; set string size arg
+    mov eax, msg ; set string address arg
     call puts
 
     ; exiting normally

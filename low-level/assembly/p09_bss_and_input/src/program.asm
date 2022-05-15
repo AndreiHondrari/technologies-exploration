@@ -14,19 +14,19 @@ section .text
 
 _start:
     ; ask for name
-    mov ebx, msg1
+    mov eax, msg1 ; set msg1 address
     call sprint
-
 
     ; wait for user to input name
     mov eax, sinput
-    mov edx, 255
+    mov ebx, 255
     call getinput
 
     ; print hello *name*
-    mov ebx, msg2
+    mov eax, msg2
     call sprint
-    mov ebx, sinput
+
+    mov eax, sinput
     call sprint
 
     ; newline

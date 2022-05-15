@@ -11,10 +11,10 @@ section .text
     global _start
 
 _start:
-    mov ebx, msg1 ; load the message address arg for the sprint subroutine
+    mov eax, msg1 ; set string address arg
     call sprint
 
-    mov ebx, msg2 ; load the message address arg for the sprint subroutine
+    mov eax, msg2 ; set string address arg
     call sprint
 
     ; exiting normally

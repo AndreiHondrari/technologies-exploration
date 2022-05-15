@@ -1,51 +1,84 @@
 
-; ------------------------------------
-; strlen(ebx : address of string) -> eax : length of string
+; -------------------------------------
+; quits program
+quit:
+    mov ebx, 0 ; set exit code
+    mov eax, 1 ; set opcode for sys_exit
+    int 80h ; call linux interrupt
+    ret
+
+; -------------------------------------
+; strlen(
+;   eax : string address
+; ) -> eax : string size
+; Calculates the size of the string
 strlen: ; define the strlen subroutine
     ; snapshot for state restoration
     push ebx
 
-    mov eax, 0 ; counts the number of characters
+    mov ebx, eax
 
     .nextchar:
-    cmp byte [ebx], 0 ; check if end of string (nullbyte)
-    je .endcount
-    inc eax ; increase count
-    inc ebx ; select next character
+    cmp byte [eax], 0 ; check if end of string (nullbyte)
+    jz .endcount
+    inc eax
     jmp .nextchar
     .endcount:
 
+    sub eax, ebx ; eax = eax - ebx
+
+    pop ebx
+    ret
+
+; -------------------------------------
+; puts(
+;   eax : string address,
+;   ebx : string size
+; )
+puts:
+    ; snapshot for state restoration
+    push eax
+    push ebx
+
+    ; load args
+    mov ecx, eax ; set string address
+    mov edx, ebx ; set string size
+
+    mov eax, 4 ; set sys_write opcode
+    mov ebx, 1 ; set filedescriptor to STDOUT=1
+    int 80h ; call linux interrupt
+
     ; state restoration
     pop ebx
-
+    pop eax
     ret
 
-puts:
-    pusha ; snapshot for state restoration (all)
-
-    mov eax, 4 ; linux sys_write opcode
-    mov ebx, 1 ; write to STDOUT file
-    int 80h
-
-    popa ; state restoration (all)
-
-    ret
-
-; ------------------------------------
+; -------------------------------------
 ; sprint(
-;   ebx : string first address
-;) -> void
+;   eax : string address message
+; )
+; Calculates the size of the string and prints it
 sprint:
-    pusha ; snapshot for state restoration
+    ; snapshot for state restoration
+    push eax
+    push ebx
+    push ecx
 
-    call strlen
-    mov ecx, ebx ; put the string address into ecx
-    mov edx, eax ; put string length in edx
-    call puts
+    ; load args
+    mov ecx, eax ; ecx as temporary register for string address mem
 
-    popa
+    call strlen ; obtain the string size in EAX
 
+    mov ebx, eax ; set the string size arg
+    mov eax, ecx ; set the string address arg
+    call puts ; print the string
+
+    ; state restoration
+    pop ecx
+    pop ebx
+    pop eax
     ret
+
 
 ; ------------------------------------
 ; sprintLF(
@@ -58,33 +91,17 @@ sprint:
 ;
 sprintLF:
     ; snapshot for state restoration
-    push edx
+    push eax
 
-    ; print our string
     call sprint
 
-    ; 0x0A = 10 is ASCII code for newline
-    mov edx, 0x00 ; a nullbyte to terminate LF
-    push edx
-    mov edx, 0x0A
-    push edx
-
-    ; esp will point to 0x0A on stack
-    ; esp is decreased everytime something is
-    ; pushed onto the stack
-    mov ebx, esp
+    mov eax, 0x0A
+    push eax ; memorize the LF character onto the stack
+    mov eax, esp
     call sprint
+
+    pop eax ; remove the LF character from the stack
 
     ; state restoration
-    pop edx
-    pop edx
-    pop edx
-
-    ret
-
-
-quit:
-    mov ebx, 0 ; set exit code
-    mov eax, 1 ; set opcode for sys_exit
-    int 80h ; call linux interrupt
+    pop eax
     ret

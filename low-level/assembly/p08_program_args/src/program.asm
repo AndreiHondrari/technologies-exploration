@@ -11,14 +11,14 @@ section .text
 _start:
     pop ecx ; get number of arguments
 
-    mov ebx, msg
+    mov eax, msg ; set msg string address
     call sprintLF
 
     .nextarg:
         cmp ecx, 0
         je .nomoreargs
 
-        pop ebx
+        pop eax ; set param string address
         call sprintLF
 
         dec ecx
