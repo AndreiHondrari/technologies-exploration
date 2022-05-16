@@ -6,8 +6,6 @@ startmsg db '** Hello Char! **', 0x00
 endmsg db '** END **', 0x00
 
 SECTION .bss
-diff: resw 2
-characters: resb 255
 
 SECTION .text
 global _start
