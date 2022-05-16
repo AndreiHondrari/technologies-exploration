@@ -307,6 +307,40 @@ convert_digits_to_ascii:
     pop eax
     ret
 
+; ------------------------------------
+; print_integer (
+;   eax : integer to display
+; )
+;
+; Prints a number
+print_integer:
+    ; snapshot registers
+    push ecx
+    push edi
+    push esi
+
+    ; generate array of digits from a given integer
+    mov edi, print_digits
+    call itoa
+    mov dword [print_digits_count], ecx
+
+    ; convert all digits to ASCII codes
+    mov esi, print_digits
+    mov edi, print_char_array
+    call convert_digits_to_ascii
+
+    inc ecx
+    mov byte [print_char_array+ecx], 0x00
+
+    ; print digits
+    mov eax, print_char_array
+    call sprintLF
+
+    ; restore registers
+    pop esi
+    pop edi
+    pop ecx
+    ret
 
 SECTION .data
 non_digit db 'Error! EAX not single digit for dtoascii operation', 0x00
@@ -314,3 +348,8 @@ non_digit db 'Error! EAX not single digit for dtoascii operation', 0x00
 SECTION .bss
 itoa_digits_count: resd 1
 convert_digits_count: resd 1
+
+; it takes 10 bytes to display 4.294.967.295 (0x FF FF FF FF)
+print_digits_count: resd 1
+print_digits: resb 10
+print_char_array: resb 10
