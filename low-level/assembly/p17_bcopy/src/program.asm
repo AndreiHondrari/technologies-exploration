@@ -2,7 +2,7 @@
 %include 'src/functions.asm'
 
 SECTION .data
-startmsg db '** Hello Char! **', 0x00
+startmsg db '** Hello bcopy! **', 0x00
 endmsg db '** END **', 0x00
 some_message db "You can not move forward in an absence of space.", 0x00
 

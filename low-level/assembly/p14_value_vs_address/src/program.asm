@@ -2,7 +2,7 @@
 %include 'src/functions.asm'
 
 SECTION .data
-startmsg db '** Hello Char! **', 0x00
+startmsg db '** Hello values vs addresses! **', 0x00
 endmsg db '** END **', 0x00
 
 SECTION .bss
