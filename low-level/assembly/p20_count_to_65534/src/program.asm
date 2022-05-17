@@ -37,7 +37,7 @@ _start:
         push ecx ; stash loop counter
 
         mov dword eax, [number]
-        call print_integer
+        call iprintLF
 
         pop ecx ; restore loop counter
 

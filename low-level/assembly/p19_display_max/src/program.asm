@@ -27,7 +27,7 @@ _start:
 
     ; generate array of digits from a given integer
     mov eax, 0xFFFFFFFF ; 4 294 967 295 (10 bytes)
-    call print_integer
+    call iprintLF
 
     call printend
     call quit

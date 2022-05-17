@@ -308,13 +308,14 @@ convert_digits_to_ascii:
     ret
 
 ; ------------------------------------
-; print_integer (
+; iprint (
 ;   eax : integer to display
 ; )
 ;
 ; Prints a number
-print_integer:
+iprint:
     ; snapshot registers
+    push eax
     push ecx
     push edi
     push esi
@@ -329,17 +330,28 @@ print_integer:
     mov edi, print_char_array
     call convert_digits_to_ascii
 
-    inc ecx
     mov byte [print_char_array+ecx], 0x00
 
     ; print digits
     mov eax, print_char_array
-    call sprintLF
+    call sprint
 
     ; restore registers
     pop esi
     pop edi
     pop ecx
+    pop eax
+    ret
+
+; ------------------------------------
+; iprintLF (
+;   eax : integer to display
+; )
+;
+; Prints a number and a linefeed
+iprintLF:
+    call iprint
+    call printLF
     ret
 
 SECTION .data

@@ -26,7 +26,7 @@ _start:
     call printstart
 
     mov eax, 11223344
-    call print_integer
+    call iprintLF
 
     call printend
     call quit
