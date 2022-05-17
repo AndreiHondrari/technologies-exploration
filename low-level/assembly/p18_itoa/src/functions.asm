@@ -231,8 +231,19 @@ itoa:
     push ebx
     push edx
 
-    mov ebx, 10 ; set divisor
+
     mov ecx, 0 ; set loop (digits) counter
+
+    cmp eax, 0
+    jnz .extractNonZero
+    mov byte [edi+ecx], 0
+    mov ecx, 1
+
+    jmp .itoaEnd
+
+    .extractNonZero:
+
+    mov ebx, 10 ; set divisor
 
     ; extract individual digits
     .extractDigit:
@@ -267,6 +278,7 @@ itoa:
 
     .endTransferDigits:
 
+    .itoaEnd:
     ; restore registers
     pop edx
     pop ebx
