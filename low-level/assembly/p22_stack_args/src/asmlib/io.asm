@@ -9,6 +9,9 @@
 %include 'src/asmlib/string.asm'
 %include 'src/asmlib/process.asm'
 
+SECTION .data
+STACK_BITS_OFFSET equ 4
+
 SECTION .bss
 
 ; it takes 10 bytes to display 4.294.967.295 (0x FF FF FF FF)

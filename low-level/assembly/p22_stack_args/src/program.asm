@@ -5,8 +5,6 @@
 %include 'src/asmlib/process.asm'
 %include 'src/asmlib/string.asm'
 
-STACK_BITS_OFFSET equ 4
-
 SECTION .data
 startmsg db '** Hello stack args! **', 0x00
 endmsg db '** END **', 0x00
