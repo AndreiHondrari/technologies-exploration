@@ -39,4 +39,4 @@ malloc:
     pop ebx
     ret
 
-%endif ASMLIB_MEMORY
+%endif
