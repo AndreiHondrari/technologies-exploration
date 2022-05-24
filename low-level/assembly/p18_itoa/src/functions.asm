@@ -376,4 +376,4 @@ convert_digits_count: resd 1
 ; it takes 10 bytes to display 4.294.967.295 (0x FF FF FF FF)
 print_digits_count: resd 1
 print_digits: resb 10
-print_char_array: resb 10
+print_char_array: resb 11 ; 10 + 1 byte for 0x00
