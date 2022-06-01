@@ -3,18 +3,24 @@
 function main() {
   console.log("** START **\n");
 
+  // NULLISH COALESCING
+  console.log("# nullish coalescing");
+  console.log("NULL_COALESCE_A", null ?? 11);
+  console.log("NULL_COALESCE_B", undefined ?? 22);
+  console.log("NULL_COALESCE_C", false ?? 33);
+
   // TERNARY
-  console.log("# ternary");
+  console.log(" \n# ternary");
   console.log("TERNARY_A |", true ? 11 : 22);
   console.log("TERNARY_B |", false ? 33 : 44);
 
   // TYPEOF
-  console.log("\n# typeof");
+  console.log(" \n# typeof");
   console.log("TYPEOF_A", typeof 123);
   console.log("TYPEOF_B", typeof "kek");
 
   // VOID
-  console.log("\n# void");
+  console.log(" \n# void");
   function f1(value) {
     console.log("F1", value);
     return value * 111;
@@ -29,7 +35,7 @@ function main() {
   console.log("Y", y);
 
   // IN
-  console.log("\n# in");
+  console.log(" \n# in");
   console.log("IN_A", 22 in [11, 22, 33]);
   console.log("IN_B", 77 in [11, 22, 33]);
   console.log("IN_C", 1 in [11, 22, 33]); // array has index 1
