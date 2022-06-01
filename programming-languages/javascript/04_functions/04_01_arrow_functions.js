@@ -3,11 +3,11 @@
 function main() {
   console.log("** START **\n");
 
-  const doThat = () => {
-    console.log("Doing from arrow func ...");
+  const doThis = () => {
+    console.log("Doing THIS arrow func ...");
   };
 
-  doThat();
+  doThis();
 
   console.log("\n** END **");
 }
