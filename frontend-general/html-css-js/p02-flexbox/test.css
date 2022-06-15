@@ -1,0 +1,163 @@
+
+
+/* TEST 1 */
+.test1 .block {
+    flex-basis: 5%;
+}
+
+/* TEST 2 */
+.test2 .block {
+    flex-basis: auto;
+    width: 50px;
+}
+
+/* TEST 3 */
+.test3 .block {
+    flex-basis: 5%;
+}
+
+.test3 .a {
+    /*
+    the other blocks have
+    flex-grow: 0 by default,
+    so .a takes all the available space
+     */
+    flex-grow: 1;
+}
+
+/* TEST 4 */
+.test4 .block {
+    flex-basis: 50px;
+}
+
+.test4 .a {
+    flex-grow: 1;
+}
+
+/* TEST 5 */
+.test5 .block {
+    flex-basis: 5%;
+    flex-grow: 1;
+}
+
+/* TEST 6 */
+.test6 .block {
+    flex-basis: auto;
+    flex-grow: 1;
+}
+
+/* TEST 7 */
+.test7 .block {
+    flex-basis: auto;
+    flex-grow: 1;
+}
+
+.test7 .a {
+    flex-grow: 3;
+}
+
+.test7 .b {
+    flex-grow: 0;
+}
+
+.test7 .c {
+    flex-grow: 1.5;
+}
+
+/* TEST 8 */
+
+.test8 .block {
+    width: 75%;
+    flex-basis: auto;
+}
+
+.test8 .a {
+    flex-shrink: 0;
+}
+
+/* TEST 9 */
+
+.test9 .block {
+    width: 33.33%;
+    flex-basis: auto;
+}
+
+.test9 .a {
+    flex-shrink: 0;
+}
+
+/* TEST 10 */
+
+.test10 .block {
+    width: 75%;
+    flex-basis: auto;
+}
+
+.test10 .a {
+    flex-shrink: 3;
+}
+
+/* TEST 11 */
+
+.test11 .block {
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.test11 .a {
+    flex-grow: 2;
+}
+
+/* TEST 12 */
+
+.test12 .block {
+    flex-basis: 77%;
+    flex-grow: 1;
+}
+
+.test12 .a {
+    flex-grow: 2;
+}
+
+/* TEST 13 */
+
+.test13 .block {
+    flex-basis: auto;
+}
+
+.test13 .a {
+    width: 10%;
+}
+
+.test13 .b {
+    flex-grow: 1;
+}
+
+.test13 .c {
+    width: 10%;
+}
+
+/* TEST 14 */
+
+.test14 .block {
+}
+
+.test14 .a {
+    height: 50px;
+}
+
+.test14 .b {
+    flex-grow: 1;
+}
+
+.test14 .c {
+    height: 50px;
+}
+
+/* TEST XX */
+
+.testXX .block {
+}
+
+.testXX .a {
+}

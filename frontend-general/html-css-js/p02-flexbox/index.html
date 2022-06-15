@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>CHECK FLEXBOX</title>
+
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="colors.css">
+        <link rel="stylesheet" href="test.css">
+    </head>
+    <body>
+        <h1>Understand flexbox ratios</h1>
+
+        <h2>Test 1</h2>
+        <p>flex-basis 5%</p>
+        <div class="container test1">
+            <div class="block a"></div>
+            <div class="block b"></div>
+            <div class="block c"></div>
+            <div class="block d"></div>
+            <div class="block e"></div>
+            <div class="block f"></div>
+            <div class="block g"></div>
+            <div class="block h"></div>
+        </div>
+
+        <h2>Test 2</h2>
+        <p>flex-basis auto and width 50px</p>
+        <div class="container test2">
+            <div class="block a"></div>
+            <div class="block b"></div>
+            <div class="block c"></div>
+            <div class="block d"></div>
+            <div class="block e"></div>
+            <div class="block f"></div>
+            <div class="block g"></div>
+            <div class="block h"></div>
+        </div>
+
+        <h2>Test 3</h2>
+        <p>flex-basis = 5% and .a flex-grow = 1</p>
+        <div class="container test3">
+            <div class="block a"></div>
+            <div class="block b"></div>
+            <div class="block c"></div>
+            <div class="block d"></div>
+            <div class="block e"></div>
+            <div class="block f"></div>
+            <div class="block g"></div>
+            <div class="block h"></div>
+        </div>
+
+        <h2>Test 4</h2>
+        <p>flex-basis = 50px and .a flex-grow = 1</p>
+        <div class="container test4">
+            <div class="block a"></div>
+            <div class="block b"></div>
+            <div class="block c"></div>
+            <div class="block d"></div>
+            <div class="block e"></div>
+            <div class="block f"></div>
+            <div class="block g"></div>
+            <div class="block h"></div>
+        </div>
+
+        <h2>Test 5</h2>
+        <p>flex-basis = 5% and all flex-grow = 1</p>
+        <div class="container test5">
+            <div class="block a"></div>
+            <div class="block b"></div>
+            <div class="block c"></div>
+            <div class="block d"></div>
+            <div class="block e"></div>
+            <div class="block f"></div>
+            <div class="block g"></div>
+            <div class="block h"></div>
+        </div>
+
+        <h2>Test 6</h2>
+        <p>flex-basis = auto and all flex-grow = 1</p>
+        <div class="container test6">
+            <div class="block a"></div>
+            <div class="block b"></div>
+            <div class="block c"></div>
+            <div class="block d"></div>
+            <div class="block e"></div>
+            <div class="block f"></div>
+            <div class="block g"></div>
+            <div class="block h"></div>
+        </div>
+
+        <h2>Test 7</h2>
+        <p>fb = auto, fg = 1, .a fg = 3, .b fg = 0, .c fg = 1.5</p>
+        <div class="container test7">
+            <div class="block a"></div>
+            <div class="block b"></div>
+            <div class="block c"></div>
+            <div class="block d"></div>
+            <div class="block e"></div>
+            <div class="block f"></div>
+            <div class="block g"></div>
+            <div class="block h"></div>
+        </div>
+
+        <br>
+        <hr>
+        <h2>Formula for flex-shrink</h2>
+        <p>Let's assume we have:</p>
+        <ul>
+            <li>
+                a container with
+                <code>display: flex</code>
+                that has two elements
+            </li>
+
+            <li>
+                the main container has a fixed
+                width of <strong>200px</strong>
+            </li>
+
+            <li>
+                both sub-elements are set to
+                <strong>150px</strong> width
+            </li>
+
+            <li>
+                1<sup>st</sup> element with
+                <code>flex-shrink: 1</code>
+            </li>
+
+            <li>
+
+                2<sup>nd</sup> element with
+                <code>flex-shrink: 3</code>
+            </li>
+        </ul>
+
+        <p>Obtain the outstanding difference:</p>
+        <div class='code-block'>
+            a = (150px + 150px) - 200px = -100px <br>
+        </div>
+
+        <p>
+            Calculate the total flex parts and
+            distribute the outstanding difference
+            to all parts equally.
+        </p>
+        <div class='code-block'>
+            b = 1 + 3 = 4 <br>
+            c = -100px / b = -25px <br>
+        </div>
+
+        <p>Subtract from their actual widths the weighted amount:</p>
+        <div class='code-block'>
+            elem1_width = 150px + -25px * 1 = 125px <br>
+            elem2_width = 150px + -25px * 3 = 75px <br>
+        </div>
+
+        <p>
+            Basically what this formula says is:
+            <strong><cite>subtract from each element as much as
+            their shrink is worth</cite></strong>
+        </p>
+
+        <hr><br>
+
+        <!-- TEST 8 -->
+        <h2>Test 8</h2>
+        <p>
+            <span>fb auto, width 75%</span><br>
+            <span>.a flex-shrink = 0</span><br>
+        </p>
+
+        <p>Basically:</p>
+        <div class="code-block">
+            width_difference = (75% + 75%) - 100% = -50% <br>
+            a_parts + b_parts = 1 <br>
+            diff_per_part = -50% / 1 = -50% <br>
+
+            a_width = 75% + (0 * (-50%)) = 75%<br>
+            b_width = 75% + (1 * (-50%)) = 25%<br>
+        </div>
+        <br>
+
+        <div class="container test8">
+            <div class="block a"></div>
+            <div class="block b"></div>
+        </div>
+
+        <!-- TEST 9 -->
+        <h2>Test 9</h2>
+        <p>
+            <span>fb auto, width 33.33%</span><br>
+            <span>.a flex-shrink = 0</span>
+        </p>
+        <div class="container test9">
+            <div class="block a"></div>
+            <div class="block b"></div>
+        </div>
+
+        <!-- TEST 10 -->
+        <h2>Test 10</h2>
+        <p>
+            <span>fb auto, width 75%</span><br>
+            <span>.a flex-shrink = 2</span>
+            <span>.b flex-shrink = 1 (default)</span>
+        </p>
+
+        <p>Basically:</p>
+        <div class="code-block">
+            width_difference = (75% + 75%) - 100% = -50% <br>
+            a_parts + b_parts = 4 <br>
+            diff_per_part = -50% / 4 = -12.5% <br>
+
+            a_width = 75% + (3 * -12.5%) = 37.5%<br>
+            b_width = 75% + (1 * -12.5%) = 62.5%<br>
+        </div>
+        <br>
+
+        <div class="container test10">
+            <div class="block a"></div>
+            <div class="block b"></div>
+        </div>
+
+        <h2>Test 11</h2>
+        <p>
+            <span>fb: 0, fg: 1</span><br>
+            <span>.a fg: 2</span>
+        </p>
+        <div class="container test11">
+            <div class="block a"></div>
+            <div class="block b"></div>
+            <div class="block c"></div>
+            <div class="block d"></div>
+        </div>
+
+        <h2>Test 12</h2>
+        <p>
+            <span>fb: 77%, fg: 1</span><br>
+            <span>.a fg: 1</span><br>
+            <span>Basically flex-grow is ignored.</span>
+        </p>
+        <div class="container test12">
+            <div class="block a"></div>
+            <div class="block b"></div>
+            <div class="block c"></div>
+        </div>
+
+        <h2>Test 13</h2>
+        <p>
+            <span>fb: auto</span><br>
+            <span>.a w: 10%</span><br>
+            <span>.b fg: 1</span><br>
+            <span>.c w: 10%</span>
+        </p>
+        <div class="container test13">
+            <div class="block a"></div>
+            <div class="block b"></div>
+            <div class="block c"></div>
+            <div class="block d"></div>
+            <div class="block e"></div>
+            <div class="block f"></div>
+            <div class="block g"></div>
+            <div class="block h"></div>
+        </div>
+
+        <h2>Test 14</h2>
+        <p></p>
+        <div class="container vertical test14">
+            <div class="block a"></div>
+            <div class="block b">
+                <div class="spot"></div>
+                <div class="spot"></div>
+                <div class="spot"></div>
+            </div>
+            <div class="block c"></div>
+        </div>
+
+        <h2>Test XX</h2>
+        <p></p>
+        <div class="container testXX">
+            <div class="block a"></div>
+            <div class="block b"></div>
+            <div class="block c"></div>
+            <div class="block d"></div>
+            <div class="block e"></div>
+            <div class="block f"></div>
+            <div class="block g"></div>
+            <div class="block h"></div>
+        </div>
+
+    </body>
+</html>
