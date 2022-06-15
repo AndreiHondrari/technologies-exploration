@@ -1,0 +1,312 @@
+
+
+.test-wrapper {
+    overflow: hidden;
+}
+
+.test-wrapper::after {
+    content: "";
+    display: block;
+    margin-top: 2vmin;
+    border-bottom: 1px solid white;
+}
+
+/* TEST 1 */
+.test1 {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* TEST 2 */
+.test2 {
+    grid-template-columns: 50% 50%;
+}
+
+/* TEST 3 */
+.test3 {
+    grid-template-columns: 10vmin 10vmin;
+}
+
+/* TEST 4 */
+.test4 {
+    grid-template-rows: 10vmin 10vmin;
+}
+
+/* TEST 5 */
+.test5 {
+    grid-template-rows: 10vmin 10vmin;
+    grid-auto-flow: column;
+}
+
+/* TEST 6 */
+.test6 {
+    width: 50vw;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+}
+
+/* TEST 7 */
+.test7 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* TEST 8 */
+.test8 {
+    grid-template-rows: repeat(6, 1fr);
+}
+
+/* TEST 9 */
+.test9 {
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.test9 .a {
+    grid-row: 4 / 6;
+}
+
+.test9 .b {
+    grid-row: 7 / span 3;
+}
+
+/* TEST 10 */
+.test10 {
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.test10 .a {
+    grid-row: 4 / 6;
+}
+
+.test10 .b {
+    grid-row: 7 / span 3;
+}
+
+.test10 .c {
+    grid-row: 5 / span 4;
+}
+
+/* TEST 11 */
+.test11 {
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.test11 .a {
+    grid-column: 4 / 6;
+}
+
+.test11 .b {
+    grid-column: 7 / span 3;
+}
+
+.test11 .c {
+    grid-column: 5 / span 4;
+}
+
+/* TEST 12 */
+.test12 {
+    grid-template-columns: repeat(10, 1fr);
+    grid-auto-flow: column;
+}
+
+.test12 .a {
+    grid-column: 4 / 6;
+}
+
+.test12 .b {
+    grid-column: 7 / span 3;
+}
+
+.test12 .c {
+    grid-column: 5 / span 4;
+}
+
+
+/* TEST 13 */
+.test13 {
+    grid-template:
+        "kek kek kek" 1fr
+        "foo bar bar" 1fr
+        "foo bar bar" 1fr /
+        1fr 1fr 1fr;
+}
+
+.test13 .a {
+    grid-area: kek;
+}
+
+.test13 .b {
+    grid-area: foo;
+}
+
+.test13 .c {
+    grid-area: bar;
+}
+
+/* TEST 14 */
+.test14 {
+    grid-template: 10vh 5vh / 20vw 30vw;
+}
+
+/* TEST 15 */
+.test15 {
+    grid-template:
+        [line1] 10vh
+        [line2] 5vh /
+        [col1] 20vw
+        [col2] 30vw;
+}
+
+.test15 .a {
+    grid-area: line2 / col2;
+}
+
+.test15 .b {
+    /* row start / col start / row end / col end */
+    grid-area: line1 / col1 / auto / span 2;
+}
+
+/* TEST 16 */
+.test16 {
+    grid-template-areas:
+        "kek kek kek"
+        "foo bar bar"
+        "foo bar bar";
+
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.test16 .a {
+    grid-area: foo;
+}
+
+.test16 .b {
+    grid-area: kek;
+}
+
+.test16 .c {
+    grid-area: bar;
+}
+
+/* TEST 17 */
+.test17-wrapper {
+    border: 1px solid red;
+    color: red;
+    margin: 5vmin 0;
+    padding: 0 5vmin;
+}
+
+.test17 {
+
+    grid-template-areas:
+        "foo bar"
+        "foo bar"
+        "foo bar"
+        "foo bar";
+
+    grid-template-columns: repeat(2, 5vmin);
+    grid-template-rows: repeat(4, 5vmin);
+}
+
+.test17 .a {
+    grid-area: 1 / 1 / 1 foo;
+}
+
+.test17 .b {
+    grid-area: 3 [bar];
+}
+
+/* TEST 18 */
+.test18 {
+    grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+    grid-gap: 2vmin;
+}
+
+/* TEST 19 */
+.test19 {
+    grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+    grid-column-gap: 2vmin;
+}
+
+/* TEST 20 */
+.test20 {
+    grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+    grid-row-gap: 2vmin;
+}
+
+/* TEST 21 */
+.test21 {
+    width: 30vmin;
+    height: 30vmin;
+
+    grid-template: auto / repeat(2, 5vmin);
+}
+
+/* TEST 22 */
+.test22 {
+    width: 30vmin;
+    height: 30vmin;
+
+    grid-template: auto / repeat(2, 5vmin);
+    justify-content: center;
+}
+
+/* TEST 23 */
+.test23 {
+    width: 30vmin;
+    height: 30vmin;
+
+    grid-template: auto / repeat(2, 5vmin);
+    align-content: center;
+}
+
+/* TEST 24 */
+.test24 {
+    width: 30vmin;
+    height: 30vmin;
+
+    grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+    justify-items: center;
+}
+
+/* TEST 25 */
+.test25 {
+    width: 30vmin;
+    height: 30vmin;
+
+    grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+    align-items: center;
+}
+
+/* TEST 26 */
+.test26 {
+    width: 30vmin;
+    height: 30vmin;
+
+    grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+}
+
+.test26 .a {
+    justify-self: start;
+    align-self: start;
+}
+
+.test26 .b {
+    justify-self: end;
+    align-self: end;
+}
+
+.test26 .c {
+    justify-self: center;
+    align-self: center;
+}
+
+.test26 .d {
+    justify-self: end;
+}
+
+.test26 .e {
+    align-self: end;
+}
+
+/* TEST XX */
+.testXX {
+    grid-template-columns: auto;
+}

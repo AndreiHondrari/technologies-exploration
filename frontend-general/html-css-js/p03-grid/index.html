@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Explore grid</title>
+
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="colors.css">
+        <link rel="stylesheet" href="test.css">
+    </head>
+    <body>
+        <h1>Explore grid</h1>
+
+        <!-- TEST 1 -->
+        <div class="test-wrapper">
+            <h2>Test 1</h2>
+            <p>grid-template-columns: 1fr 1fr</p>
+            <div class="container test1">
+                <div class="block a"></div>
+                <div class="block b"></div>
+                <div class="block c"></div>
+                <div class="block d"></div>
+            </div>
+        </div>
+
+        <!-- TEST 2 -->
+        <div class="test-wrapper">
+            <h2>Test 2</h2>
+            <p>
+                <span>grid-template-columns: 50% 50%</span><br>
+                <span>where block size is fixed</span>
+            </p>
+            <div class="container test2">
+                <div class="block a"></div>
+                <div class="block b"></div>
+                <div class="block c"></div>
+                <div class="block d"></div>
+            </div>
+        </div>
+
+        <!-- TEST 3 -->
+        <div class="test-wrapper">
+            <h2>Test 3</h2>
+            <p>
+                <span>grid-template-columns: 10vmin 10vmin</span><br>
+                <span></span>
+            </p>
+            <div class="container test3">
+                <div class="block a"></div>
+                <div class="block b"></div>
+                <div class="block c"></div>
+                <div class="block d"></div>
+            </div>
+        </div>
+
+        <!-- TEST 4 -->
+        <div class="test-wrapper">
+            <h2>Test 4</h2>
+            <p>
+                <span>grid-template-rows: 10vmin 10vmin</span><br>
+            </p>
+            <div class="container test4">
+                <div class="block a"></div>
+                <div class="block b"></div>
+                <div class="block c"></div>
+                <div class="block d"></div>
+            </div>
+        </div>
+
+        <!-- TEST 5 -->
+        <div class="test-wrapper">
+            <h2>Test 5</h2>
+            <p>
+                <span>grid-template-rows: 10vmin 10vmin</span><br>
+                <span>grid-auto-flow: column</span>
+            </p>
+            <div class="container test5">
+                <div class="block a"></div>
+                <div class="block b"></div>
+                <div class="block c"></div>
+                <div class="block d"></div>
+            </div>
+        </div>
+
+        <!-- TEST 6 -->
+        <div class="test-wrapper">
+            <h2>Test 6</h2>
+            <p>
+                <span>container width: 50vw</span><br>
+                <span>grid-template-columns: 33.33% 33.33% 33.33%</span>
+            </p>
+            <div class="container test6">
+                <div class="block a"></div>
+                <div class="block b"></div>
+                <div class="block c"></div>
+                <div class="block d"></div>
+            </div>
+        </div>
+
+        <!-- TEST 7 -->
+        <div class="test-wrapper">
+            <h2>Test 7</h2>
+            <p>
+                <span>grid-template-columns: repeat(2, 1fr)</span><br>
+            </p>
+            <div class="container test7">
+                <div class="block a"></div>
+                <div class="block b"></div>
+                <div class="block c"></div>
+                <div class="block d"></div>
+            </div>
+        </div>
+
+        <!-- TEST 8 -->
+        <div class="test-wrapper">
+            <h2>Test 8</h2>
+            <p>
+                <span>grid-template-rows: repeat(6, 1fr)</span><br>
+            </p>
+            <div class="container test8">
+                <div class="block a"></div>
+                <div class="block b"></div>
+                <div class="block c"></div>
+                <div class="block d"></div>
+            </div>
+        </div>
+
+        <!-- TEST 9 -->
+        <div class="test-wrapper">
+            <h2>Test 9</h2>
+            <p>
+                <span>grid-template-rows: repeat(10, 1fr)</span><br>
+                <span>
+                    .a grid-row: 4 / 6
+                    (start at 4 end at 6)
+                </span><br>
+                <span>
+                    .b grid-row: 7 / span 3
+                    (start at 7 and go for 3 cells)
+                </span><br>
+                <span>C and D default on the top of the grid</span>
+            </p>
+            <div class="container test9">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+            </div>
+        </div>
+
+        <!-- TEST 10 -->
+        <div class="test-wrapper">
+            <h2>Test 10</h2>
+            <p>
+                <span>grid-template-rows: repeat(10, 1fr)</span><br>
+                <span>
+                    .a grid-row: 4 / 6
+                    (start at 4 end at 6)
+                </span><br>
+                <span>
+                    .b grid-row: 7 / span 3
+                    (start at 7 and go for 3 cells)
+                </span><br>
+                <span>
+                    .c grid-row: 5 / span 4
+                    (start at 5 and go for 4 cells)
+                </span><br>
+                <span>
+                    obviously there is an overlap of C over A and B,
+                    so CSS forces the C cell on a new column
+                </span>
+            </p>
+            <div class="container test10">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+            </div>
+        </div>
+
+        <!-- TEST 11 -->
+        <div class="test-wrapper">
+            <h2>Test 11</h2>
+            <p>
+                <span>
+                    grid-template-columns: repeat(10, 1fr);
+                </span><br>
+                <span>
+                    .a grid-column: 4 / 6
+                    (start at 4 end at 6)
+                </span><br>
+                <span>
+                    .b grid-column: 7 / span 3
+                    (start at 7 and go for 3 cells)
+                </span><br>
+                <span>
+                    .c grid-column: 5 / span 4
+                    (start at 5 and go for 4 cells)
+                </span><br>
+            </p>
+            <div class="container test11">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+            </div>
+        </div>
+
+        <!-- TEST 12 -->
+        <div class="test-wrapper">
+            <h2>Test 12</h2>
+            <p>
+                <span>
+                    grid-template-columns: repeat(10, 1fr);
+                </span><br>
+                <span>
+                    grid-auto-flow: column;
+                </span><br>
+                <span>
+                    .a grid-column: 4 / 6
+                    (start at 4 end at 6)
+                </span><br>
+                <span>
+                    .b grid-column: 7 / span 3
+                    (start at 7 and go for 3 cells)
+                </span><br>
+                <span>
+                    .c grid-column: 5 / span 4
+                    (start at 5 and go for 4 cells)
+                </span><br>
+            </p>
+            <div class="container test12">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+            </div>
+        </div>
+
+        <!-- TEST 13 -->
+        <div class="test-wrapper">
+            <h2>Test 13</h2>
+            <p>
+                <span>
+                    grid-template:<br>
+                    "kek kek kek" 1fr<br>
+                    "foo bar bar" 1fr<br>
+                    "foo bar bar" 1fr /<br>
+                    1fr 1fr 1fr;<br>
+                </span><br>
+
+                <span>.a grid-area: kek</span><br>
+                <span>.b grid-area: foo</span><br>
+                <span>.c grid-area: bar</span><br>
+            </p>
+            <div class="container test13">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+            </div>
+        </div>
+
+        <!-- TEST 14 -->
+        <div class="test-wrapper">
+            <h2>Test 14</h2>
+            <p>
+                <span>grid-template: 10vh 5vh / 20vw 30vw</span><br>
+            </p>
+            <div class="container test14">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+            </div>
+        </div>
+
+        <!-- TEST 15 -->
+        <div class="test-wrapper">
+            <h2>Test 15</h2>
+            <p>
+                <span>
+                    grid-template:<br>
+                    [line1] 10vh<br>
+                    [line2] 5vh /<br>
+                    [col1] 20vw<br>
+                    [col2] 30vw;
+                </span><br>
+            </p>
+            <p>
+                <code>grid-area: row start / col start / row end / col end</code><br>
+                <span>.a grid-area: line2 / col2</span><br>
+                <span>.b grid-area: line1 / col1 / auto / span 2</span><br>
+            </p>
+            <div class="container test15">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+            </div>
+        </div>
+
+        <!-- TEST 16 -->
+        <div class="test-wrapper">
+            <h2>Test 16</h2>
+            <p>
+                <span>
+                    grid-template-areas:<br>
+                    "kek kek kek"<br>
+                    "foo bar bar"<br>
+                    "foo bar bar";<br>
+                </span><br>
+
+            </p>
+
+            <p>
+                <span>grid-template-rows: repeat(3, 1fr)</span><br>
+                <span>
+                    necessary because otherwise the <br>
+                    "foo bar bar" lines get squashed into one
+                </span>
+            </p>
+
+            <p>
+                <span>.a grid-area: kek</span><br>
+                <span>.b grid-area: foo</span><br>
+                <span>.c grid-area: bar</span><br>
+            </p>
+            <div class="container test16">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+            </div>
+        </div>
+
+        <!-- TEST 17 -->
+        <div class="test-wrapper test17-wrapper">
+            <h2>Test 17</h2>
+            <p>
+                <span>!!! NOT WORKING</span><br>
+            </p>
+
+            <p>
+                <code>grid area: &lt;integer&gt; &lt;identity&gt;</code><br>
+                <span>
+                    is supposed to force the cell to span
+                    over # of elements of named area,
+                    but can't do it?
+                </span>
+            </p>
+            <div class="container test17">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+            </div>
+        </div>
+
+        <!-- TEST 18 -->
+        <div class="test-wrapper">
+            <h2>Test 18</h2>
+            <p>
+                <span>grid gap</span><br>
+            </p>
+            <div class="container test18">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+            </div>
+        </div>
+
+        <!-- TEST 19 -->
+        <div class="test-wrapper">
+            <h2>Test 19</h2>
+            <p>
+                <span>column gap</span><br>
+            </p>
+            <div class="container test19">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+            </div>
+        </div>
+
+        <!-- TEST 20 -->
+        <div class="test-wrapper">
+            <h2>Test 20</h2>
+            <p>
+                <span>row gap</span><br>
+            </p>
+            <div class="container test20">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+            </div>
+        </div>
+
+        <!-- TEST 21 -->
+        <div class="test-wrapper">
+            <h2>Test 21</h2>
+            <p>
+                <span>fixed grid container width and height</span><br>
+                <span>fixed grid cell width and height</span>
+            </p>
+            <div class="container test21">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+                <div class="block e">E</div>
+            </div>
+        </div>
+
+        <!-- TEST 22 -->
+        <div class="test-wrapper">
+            <h2>Test 22</h2>
+            <p>
+                <span>fixed grid container width and height</span><br>
+                <span>fixed grid cell width and height</span><br>
+                <span>justify-content: center</span><br>
+            </p>
+            <div class="container test22">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+                <div class="block e">E</div>
+            </div>
+        </div>
+
+        <!-- TEST 23 -->
+        <div class="test-wrapper">
+            <h2>Test 23</h2>
+            <p>
+                <span>fixed grid container width and height</span><br>
+                <span>fixed grid cell width and height</span><br>
+                <span>align-content: center</span><br>
+            </p>
+            <div class="container test23">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+                <div class="block e">E</div>
+            </div>
+        </div>
+
+        <!-- TEST 24 -->
+        <div class="test-wrapper">
+            <h2>Test 24</h2>
+            <p>
+                <span>fixed grid container width and height</span><br>
+                <span>flexible grid cell width and height</span><br>
+                <span>justify-items: center;</span><br>
+            </p>
+            <div class="container test24">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+                <div class="block e">E</div>
+            </div>
+        </div>
+
+        <!-- TEST 25 -->
+        <div class="test-wrapper">
+            <h2>Test 25</h2>
+            <p>
+                <span>fixed grid container width and height</span><br>
+                <span>flexible grid cell width and height</span><br>
+                <span>align-items: center;</span><br>
+            </p>
+            <div class="container test25">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+                <div class="block e">E</div>
+            </div>
+        </div>
+
+        <!-- TEST 26 -->
+        <div class="test-wrapper">
+            <h2>Test 26</h2>
+            <p>
+                <span>fixed grid container width and height</span><br>
+                <span>flexible grid cell width and height</span><br>
+                <span>justify-self and align-self combinations</span>
+            </p>
+            <div class="container test26">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+                <div class="block e">E</div>
+            </div>
+        </div>
+
+        <!-- TEST XX -->
+        <div class="test-wrapper">
+            <h2>Test XX</h2>
+            <p>
+                <span></span><br>
+            </p>
+            <div class="container testXX">
+                <div class="block a">A</div>
+                <div class="block b">B</div>
+                <div class="block c">C</div>
+                <div class="block d">D</div>
+            </div>
+        </div>
+
+    </body>
+</html>
