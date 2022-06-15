@@ -1,0 +1,69 @@
+
+
+.test-wrapper {
+    overflow: hidden;
+}
+
+.test-wrapper::after {
+    content: "";
+    display: block;
+    margin-top: 2vmin;
+    border-bottom: 1px solid white;
+}
+
+/* TEST 1 */
+.test1 .inner-container .block {
+    float: left;
+}
+
+/* TEST 2 */
+.test2 .inner-container .block {
+    float: right;
+}
+
+/* TEST 3 */
+.test3 .inner-container {
+    width: 50vw;
+}
+
+.test3 .inner-container .block {
+    float: left;
+}
+
+/* TEST 4 */
+.test4 .inner-container {
+    width: 50vw;
+    overflow: hidden;
+}
+
+.test4 .inner-container .block {
+    float: left;
+}
+
+/* TEST 5 */
+.test5 .inner-container {
+    width: 50vw;
+    display: flow-root;
+}
+
+.test5 .inner-container .block {
+    float: left;
+}
+
+/* TEST 6 */
+.test6 .inner-container {
+    width: 50vw;
+    display: flow-root;
+}
+
+.test6 .inner-container .block {
+    float: left;
+    width: 50%;
+}
+
+/* TEST XX */
+.testXX .inner-container {
+}
+
+.testXX .inner-container .block {
+}
