@@ -1,16 +1,4 @@
 
-
-.test-wrapper {
-    overflow: hidden;
-}
-
-.test-wrapper::after {
-    content: "";
-    display: block;
-    margin-top: 2vmin;
-    border-bottom: 1px solid white;
-}
-
 /* TEST 1 */
 .test1 {
     display: flex;
@@ -69,6 +57,34 @@
     height: 75%;
 }
 
+
+/* TEST 5 */
+.test5 {
+    width: 100vw;
+}
+
+.test5 .a {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 20%;
+}
+
+.test5 .b {
+    position: absolute;
+    left: 20%;
+    top: 0;
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.test5 .b .inner {
+    margin: 0 5vmin 5vmin 5vmin;
+}
 
 /* TEST XX */
 .testXX {

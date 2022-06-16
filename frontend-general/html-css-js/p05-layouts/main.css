@@ -19,6 +19,7 @@ body {
 .block {
     --size: 5vmin;
     box-sizing: border-box;
+    margin: 0;
     background-color: #333;
     min-height: var(--size);
     min-width: var(--size);
@@ -32,6 +33,16 @@ body {
 
     font-size: 2cm;
     font-weight: bold;
-    /* line-height: var(--size); */
     text-align: center;
+}
+
+.block p {
+    font-size: 3vmin;
+    color: black;
+    text-shadow: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
 }
