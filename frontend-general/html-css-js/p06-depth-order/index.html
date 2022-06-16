@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="colors.css">
+        <link rel="stylesheet" href="test.css">
+    </head>
+    <body>
+        <h1>Depth ordering</h1>
+
+        <!-- TEST 1 -->
+        <div class="test-wrapper">
+            <h2>Test 1</h2>
+            <p>
+                <span>all blocks are absolute</span><br>
+                <span>
+                    z positioning is default to the
+                    actual declaration order
+                </span>
+            </p>
+            <div class="container test1">
+                <div class="inner-container">
+                    <div class="block a">A</div>
+                    <div class="block b">B</div>
+                    <div class="block c">C</div>
+                    <div class="block d">D</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEST 2 -->
+        <div class="test-wrapper">
+            <h2>Test 2</h2>
+            <p>
+                <span>all blocks are absolute</span><br>
+                <span>.b z-index: 3</span><br>
+                <span>.c z-index: 2</span><br>
+                <span>
+                    z positioning is affected by the z-index
+                    property on blocks b and c
+                </span>
+            </p>
+            <div class="container test2">
+                <div class="inner-container">
+                    <div class="block a">A</div>
+                    <div class="block b">B</div>
+                    <div class="block c">C</div>
+                    <div class="block d">D</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEST 3 -->
+        <div class="test-wrapper">
+            <h2>Test 3</h2>
+            <p>
+                <span>
+                    all blocks are floated and
+                    relatively positioend
+                </span><br>
+                <span>
+                    .a, .b, .c, .d left with negative
+                    position to overlap
+                </span>><br>
+                <span>.b z-index: 3</span><br>
+                <span>.c z-index: 2</span><br>
+                <span>
+                    z positioning is affected by the z-index
+                    property on blocks b and c
+                </span>
+            </p>
+            <div class="container test3">
+                <div class="inner-container">
+                    <div class="block a">A</div>
+                    <div class="block b">B</div>
+                    <div class="block c">C</div>
+                    <div class="block d">D</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEST 4 -->
+        <div class="test-wrapper">
+            <h2>Test 4</h2>
+            <p>
+                <span>all blocks are absolute</span><br>
+                <span>
+                    blocks with equal z-index are
+                    ordered according to their declaration
+                    order
+                </span>
+            </p>
+            <div class="container test4">
+                <div class="inner-container">
+                    <div class="block a">A</div>
+                    <div class="block b">B</div>
+                    <div class="block c">C</div>
+                    <div class="block d">D</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEST 5 -->
+        <div class="test-wrapper">
+            <h2>Test 5</h2>
+            <p>
+                <span>all blocks are absolute</span><br>
+                <span>
+                    negative indexes make blocks
+                    go behind all normal blocks or with
+                    positive z-index
+                </span>
+            </p>
+            <div class="container test5">
+                <div class="inner-container">
+                    <div class="block a">A</div>
+                    <div class="block b">B</div>
+                    <div class="block c">C</div>
+                    <div class="block d">D</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- TEST XX -->
+        <div class="test-wrapper">
+            <h2>Test XX</h2>
+            <p>
+                <span></span><br>
+            </p>
+            <div class="container testXX">
+                <div class="inner-container">
+                    <div class="block a">A</div>
+                    <div class="block b">B</div>
+                    <div class="block c">C</div>
+                    <div class="block d">D</div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
