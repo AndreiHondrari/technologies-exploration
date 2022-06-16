@@ -142,6 +142,36 @@
     }
 }
 
+/* TEST 8 */
+.test8 {
+    width: 100%;
+    height: auto;
+}
+
+@media (orientation: landscape) {
+
+    .test8 .a {
+        background-color: turquoise;
+        width: 30vmin;
+        height: 40vmin;
+    }
+}
+
+/* TEST 9 */
+.test9 {
+    width: 100%;
+    height: auto;
+}
+
+@media (orientation: landscape) {
+    .test9 .b {
+        background-color: antiquewhite;
+        width: 30vmin;
+        height: 30vmin;
+        border-radius: 50%;
+    }
+}
+
 /* TEST XX */
 .testXX {
 }
