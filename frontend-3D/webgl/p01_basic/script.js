@@ -6,7 +6,7 @@ function loadShader(gl, shaderType, shaderSource) {
   gl.compileShader(shader);
 
   // check if shader compiled successfully
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+  if (!gl.getShaderParameter(shader, WebGLRenderingContext.COMPILE_STATUS)) {
     const shaderInfoLog = gl.getShaderInfoLog(shader);
     alert(
       `Could not compile shader ${shaderSource} | ${shaderInfoLog}`,
@@ -22,13 +22,13 @@ function initShaderProgram(gl, vsSource, fsSource) {
   // load our shaders
   const vertexShader = loadShader(
     gl,
-    gl.VERTEX_SHADER,
+    WebGLRenderingContext.VERTEX_SHADER,
     vsSource,
   );
 
   const fragmentShader = loadShader(
     gl,
-    gl.FRAGMENT_SHADER,
+    WebGLRenderingContext.FRAGMENT_SHADER,
     fsSource,
   );
 
@@ -40,7 +40,9 @@ function initShaderProgram(gl, vsSource, fsSource) {
 
   gl.linkProgram(shaderProgram);
 
-  if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+  if (
+    !gl.getProgramParameter(shaderProgram, WebGLRenderingContext.LINK_STATUS)
+  ) {
     const programInfoLog = gl.getProgramInfoLog(shaderProgram);
     alert(`Unable to link program | ${programInfoLog}`);
     return null;
@@ -52,7 +54,7 @@ function initShaderProgram(gl, vsSource, fsSource) {
 function initBuffers(gl) {
   const positionBuffer = gl.createBuffer();
 
-  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+  gl.bindBuffer(WebGLRenderingContext.ARRAY_BUFFER, positionBuffer);
 
   const positions = [
     // top right
@@ -73,9 +75,9 @@ function initBuffers(gl) {
   ];
 
   gl.bufferData(
-    gl.ARRAY_BUFFER,
+    WebGLRenderingContext.ARRAY_BUFFER,
     new Float32Array(positions),
-    gl.STATIC_DRAW,
+    WebGLRenderingContext.STATIC_DRAW,
   );
 
   return {
@@ -83,32 +85,50 @@ function initBuffers(gl) {
   };
 }
 
-function drawScene(gl, programInfo) {
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
-  gl.clear(gl.COLOR_BUFFER_BIT);
-
-  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-  // scope
-  {
-    const numComponents = 2;
-    const bufferType = gl.FLOAT;
-    const normalize = false;
-    const stride = 0;
-    const offset = 0;
-
-    gl.vertexAttribPointer(
-      programInfo.attribLocations.vertexPosition,
+class BufferAttribBindArgs {
+  constructor(
+    {
       numComponents,
-      bufferType,
-      normalize,
-      stride,
-      offset,
-    );
-
-    gl.enableVertexAttribArray(
-      programInfo.attribLocations.vertexPosition,
-    );
+      bufferType = WebGLRenderingContext.FLOAT,
+      normalize = false,
+      stride = 0,
+      offset = 0,
+    },
+  ) {
+    this.numComponents = numComponents;
+    this.bufferType = bufferType;
+    this.normalize = normalize;
+    this.stride = stride;
+    this.offset = offset;
   }
+}
+
+function bindBufferToAttrib(gl, target, buffer, attribPosition, bindArgs) {
+  gl.bindBuffer(target, buffer);
+
+  gl.vertexAttribPointer(
+    attribPosition,
+    bindArgs.numComponents,
+    bindArgs.bufferType,
+    bindArgs.normalize,
+    bindArgs.stride,
+    bindArgs.offset,
+  );
+
+  gl.enableVertexAttribArray(attribPosition);
+}
+
+function drawScene(gl, programInfo, buffers) {
+  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  gl.clear(WebGLRenderingContext.COLOR_BUFFER_BIT);
+
+  bindBufferToAttrib(
+    gl,
+    WebGLRenderingContext.ARRAY_BUFFER,
+    buffers.position,
+    programInfo.attribLocations.vertexPosition,
+    new BufferAttribBindArgs({ numComponents: 2 }),
+  );
 
   // program
   gl.useProgram(programInfo.program);
@@ -117,7 +137,7 @@ function drawScene(gl, programInfo) {
   {
     const offset = 0;
     const vertexCount = 4;
-    gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
+    gl.drawArrays(WebGLRenderingContext.TRIANGLE_STRIP, offset, vertexCount);
   }
 }
 
