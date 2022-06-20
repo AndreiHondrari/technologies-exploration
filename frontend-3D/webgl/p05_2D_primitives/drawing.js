@@ -150,13 +150,19 @@ function makeSceneState() {
   const sceneState = {
     modelTranslationVec: glMatrix.vec3.create(),
     forward: true,
+    rotationAngle: 0,
   };
   return sceneState;
 }
 
+const ROTATION_AMOUNT_DEG = 3;
+const ROTATION_AMOUNT_RAD = Math.PI * (ROTATION_AMOUNT_DEG / 180);
+
 function updateModel(sceneState) {
   const TRANS_AMOUNT = 20;
   const ADVANCE_AMOUNT = 0.50;
+
+  // translate frame
   if (
     (sceneState.modelTranslationVec[0]) >= TRANS_AMOUNT |
     (sceneState.modelTranslationVec[0]) >= TRANS_AMOUNT
@@ -184,6 +190,13 @@ function updateModel(sceneState) {
       [-ADVANCE_AMOUNT, -ADVANCE_AMOUNT, 0],
     );
   }
+
+  // rotate frame
+  sceneState.rotationAngle += ROTATION_AMOUNT_RAD;
+
+  if (sceneState.rotationAngle >= (Math.PI * 2)) {
+    sceneState.rotationAngle = 0;
+  }
 }
 
 function drawScene(gl, programInfo, sceneInfo, sceneState, callback) {
@@ -207,6 +220,12 @@ function drawScene(gl, programInfo, sceneInfo, sceneState, callback) {
     modelMatrix,
     modelMatrix,
     sceneState.modelTranslationVec,
+  );
+  glMatrix.mat4.rotate(
+    modelMatrix,
+    modelMatrix,
+    sceneState.rotationAngle,
+    [0, 0, 1],
   );
 
   // bind position array to the shader attribute
