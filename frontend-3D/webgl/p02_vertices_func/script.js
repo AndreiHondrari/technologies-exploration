@@ -131,10 +131,7 @@ function initBuffers(gl, positions, colors) {
 
 function drawScene(gl, programInfo, buffers, positions) {
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
-  gl.clearDepth(1.0);
-  gl.enable(gl.DEPTH_TEST);
-  gl.depthFunc(gl.LEQUAL);
-  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  gl.clear(gl.COLOR_BUFFER_BIT);
 
   gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position);
   // vertex position attrib to buffer bind
