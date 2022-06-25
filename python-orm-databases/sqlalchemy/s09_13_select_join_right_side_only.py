@@ -73,7 +73,7 @@ def populate_database(engine: Engine) -> None:
     POTATO_VALUES = [
         {
             'name': f"bulba-{i}",
-            'worthiness': i * 11,
+            'worth': i * 11,
             'item_id': 5,
         }
         for i in range(5)
