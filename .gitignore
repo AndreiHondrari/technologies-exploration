@@ -133,3 +133,6 @@ dmypy.json
 
 # DBeaver
 **/.dbeaver/*json.bak
+
+# JavaScript
+node_modules
