@@ -69,11 +69,28 @@ def populate_database(engine: Engine) -> None:
 
     POTATO_VALUES = [
         {
+            'name': "bulba-999",
+            'worth': 999,
+            'item_id': 3,
+        }
+    ]
+
+    POTATO_VALUES += [
+        {
             'name': f"bulba-{i}",
-            'worthiness': i * 11,
+            'worth': (i+1) * 11,
             'item_id': 5,
         }
-        for i in range(5)
+        for i in range(3)
+    ]
+
+    POTATO_VALUES += [
+        {
+            'name': f"bulba-{i}",
+            'worth': (i+1) * 111,
+            'item_id': 7,
+        }
+        for i in range(2)
     ]
 
     with engine.begin() as conn:
@@ -86,7 +103,7 @@ def main() -> None:
     engine = prepare_database()
     populate_database(engine)
 
-    hprint("COUNT ITEMS")
+    hprint("Statement")
     statement = select(Item, Potato).select_from(Item).join(
         Potato,
         Item.id == Potato.item_id  # ON
