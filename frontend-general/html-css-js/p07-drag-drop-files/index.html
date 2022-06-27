@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Drag & drop files test</title>
+
+        <link rel="stylesheet" href="main.css">
+        <link rel="shortcut icon" href="data:;">
+        <script src="script.js" charset="utf-8"></script>
+    </head>
+    <body>
+
+        <div
+            class="drop-zone"
+            ondragover="dragOverHandler(event);"
+            ondragstart="dragStartHandler(event);"
+            ondragenter="dragEnterHandler(event);"
+            ondragleave="dragLeaveHandler(event);"
+            ondrop="dropHandler(event);"
+        >
+
+            <p>Drag & drop files here</p>
+
+        </div>
+    </body>
+</html>
