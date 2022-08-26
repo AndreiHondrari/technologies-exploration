@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Overlayed screens</title>
+
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <h1>Overlayed screens</h1>
+        <div class="wrapper">
+            <div class="screen screen-1">
+                <p>Screen 1</p>
+            </div>
+
+            <div class="screen screen-2">
+                <p>Screen 1</p>
+            </div>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        window.addEventListener('load', function(event) {
+            const wrapper = document.querySelector(".wrapper");
+
+            wrapper.addEventListener('click', function(event) {
+                let nextMarked = false;
+                let nextToggled = false;
+
+                for (const screenElement of wrapper.children) {
+                    console.log(screenElement);
+                }
+            });
+
+
+        });
+    </script>
+</html>
