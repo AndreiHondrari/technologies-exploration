@@ -41,10 +41,4 @@ fn main() {
 
     println!("f32\t: {var13}");
     println!("f64\t: {var14}");
-
-    // println!("{var}");
-    // println!("{var}");
-    // println!("{var}");
-    // println!("{var}");
-    // println!("{var}");
 }

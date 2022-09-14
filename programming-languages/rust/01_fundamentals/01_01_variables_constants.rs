@@ -9,7 +9,7 @@ fn main() {
 
     // lines necessary otherwise
     // compiler complains
-    println!("y before: {y}")
+    println!("y before: {y}");
     y = 22;
 
     // constant: notice type anotation is mandatory
