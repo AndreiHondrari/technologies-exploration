@@ -25,5 +25,4 @@ fn main() {
     // use the second reference
     let v2 = r2;
     println!("{}", v2);
-
 }
