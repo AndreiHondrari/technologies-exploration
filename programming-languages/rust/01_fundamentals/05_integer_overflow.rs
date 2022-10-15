@@ -1,3 +1,13 @@
+/*
+Adding over the maximum of an integer
+by default results in an error,
+that makes you acknowledge that fact.
+
+It is possible to safely add by
+starting from 0 with the special method wrapping_add(value).
+This means you are purposefully performing
+this operation.
+*/
 
 fn main() {
     let k: u8 = 255;

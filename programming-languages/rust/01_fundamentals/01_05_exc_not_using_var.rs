@@ -1,4 +1,6 @@
-
+/*
+Example of how to hide unused variables.
+*/
 
 fn main() {
     let x = 11;

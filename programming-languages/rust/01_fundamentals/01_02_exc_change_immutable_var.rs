@@ -1,4 +1,6 @@
-
+/*
+Explicit error when changing immutables.
+*/
 
 fn main() {
     let x = 11;

@@ -1,3 +1,6 @@
+/*
+Various primitives.
+*/
 
 fn main() {
     let var1: char = 'a';
@@ -21,6 +24,9 @@ fn main() {
     let var13: f32 = 3.14;
     let var14: f64 = 6.28;
 
+    let var15: f64 = f64::MIN;
+    let var16: f64 = f64::MAX;
+
     println!("char\t: {var1}");
     println!("bool\t: {var2}");
 
@@ -41,4 +47,7 @@ fn main() {
 
     println!("f32\t: {var13}");
     println!("f64\t: {var14}");
+
+    println!("f64 MIN\t: {var15}");
+    println!("f64 MAX\t: {var16}");
 }

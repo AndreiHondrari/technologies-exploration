@@ -1,3 +1,9 @@
+/*
+Explicit warning when changing before using.
+
+It might be that you intended to
+declare an immutable.
+*/
 
 
 fn main() {

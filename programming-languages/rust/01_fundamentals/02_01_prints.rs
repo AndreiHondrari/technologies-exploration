@@ -1,4 +1,6 @@
-
+/*
+Various ways to print.
+*/
 
 fn main() {
     print!("aaa");

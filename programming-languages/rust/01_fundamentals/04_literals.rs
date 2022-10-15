@@ -1,4 +1,6 @@
-
+/*
+Various literals for integers
+*/
 
 fn main() {
     let v1: u32 = 12_345;

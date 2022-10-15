@@ -1,4 +1,6 @@
-
+/*
+Various print formats.
+*/
 
 fn main() {
     println!("# 01_01 {1} {} {0} {}", 11, 22);

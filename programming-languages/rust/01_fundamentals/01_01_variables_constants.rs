@@ -1,4 +1,8 @@
-
+/*
+Immutables - can't be changed
+Mutables - MUST be changed, otherwise change code.
+Constants - MUST have capitalized identifier
+*/
 
 fn main() {
     // immutable variable
@@ -15,5 +19,5 @@ fn main() {
     // constant: notice type anotation is mandatory
     const Z: i32 = 33;
 
-    println!("{x}, {y}, {Z}");
+    println!("x: {x}, y: {y}, Z: {Z}");
 }
