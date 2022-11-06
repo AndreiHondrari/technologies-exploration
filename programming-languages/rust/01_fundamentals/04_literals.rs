@@ -1,5 +1,5 @@
 /*
-Various literals for integers
+Various literals
 */
 
 fn main() {
@@ -8,10 +8,12 @@ fn main() {
     let v3: u8 = 0o377; // 255
     let v4: u8 = 0b1111_1111; // 255
     let v5: u8 = b'\xff'; // 255
+    let v6: char = '\x41';
 
     println!("{}", v1);
     println!("{}", v2);
     println!("{}", v3);
     println!("{}", v4);
     println!("{}", v5);
+    println!("{}", v6);
 }
