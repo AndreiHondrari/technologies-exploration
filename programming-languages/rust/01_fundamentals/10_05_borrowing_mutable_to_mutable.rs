@@ -14,6 +14,7 @@ fn main() {
     */
     let mut x: i32 = 1234;
 
+    // ### IGNORE ###
     // use variable to prevent compiler from complaining before mutation
     let mut _nul: i32 = x;
 
@@ -60,6 +61,7 @@ fn main() {
     */
     x = 333;
 
+    // ### IGNORE ###
     // use variable to prevent compiler from complaining after mutation
     _nul = x;
 }

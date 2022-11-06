@@ -20,6 +20,7 @@ fn main() {
     a = 333;
     b = 444;
 
+    // ### IGNORE ###
     // use them so that the compiler does not complain
     let mut _nul = a;
     _nul = b;
