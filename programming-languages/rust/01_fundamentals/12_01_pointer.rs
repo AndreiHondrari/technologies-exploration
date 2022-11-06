@@ -1,5 +1,7 @@
 /*
+Pointers
 
+Notice raw pointers can be dereferenced only in unsafe blocks.
 */
 
 fn main() {
@@ -20,4 +22,9 @@ fn main() {
         k = *py;
         println!("{k}");
     }
+
+    println!("\n# Addresses");
+    println!("{:p} | {:p}", &x, px);
+    println!("{:p} | {:p}", &y, py);
+
 }
