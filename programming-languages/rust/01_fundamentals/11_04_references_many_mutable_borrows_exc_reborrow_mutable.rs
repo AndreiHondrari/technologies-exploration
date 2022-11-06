@@ -1,7 +1,7 @@
 /*
 References
 
-Many immutable borrows can occur
+Only one mutable borrow can occur
 */
 
 
