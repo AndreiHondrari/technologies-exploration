@@ -1,14 +1,6 @@
 /*
-Functions as parameters
+Closures as parameters
 */
-
-fn f1() {
-    println!("calling f1 ...");
-}
-
-fn f2() {
-    println!("calling f2 ...");
-}
 
 fn my_func(
     message: &str,
@@ -19,6 +11,15 @@ fn my_func(
 }
 
 fn main() {
+    let x = 10;
+    let f1 = || {
+        println!("calling f1 ... {x}");
+    };
+
+    let f2 = || {
+        println!("calling f2 ...");
+    };
+
     my_func("XXX", f1);
     my_func("ZZZ", f2);
 }
