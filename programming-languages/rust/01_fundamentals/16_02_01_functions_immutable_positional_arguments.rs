@@ -1,5 +1,5 @@
 /*
-Functions
+Functions - immutable positional arguments
 */
 
 fn do_some(x: u32, y: u32) {
