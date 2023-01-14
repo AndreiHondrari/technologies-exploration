@@ -7,7 +7,7 @@ fn main() {
     let mut x: i32 = 1234;
     let mut y: i32 = x;  // x is copied into a new place called y
 
-    x = 3333;
+    x = 3333;  // only x is changed in memory
 
     println!("{}, {}", x, y);  // both are usable here distinctively
 
