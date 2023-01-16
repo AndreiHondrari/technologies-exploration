@@ -1,5 +1,5 @@
 /*
-Structs
+Structs - as tuples
 
 Struct can define named tuples.
 */
