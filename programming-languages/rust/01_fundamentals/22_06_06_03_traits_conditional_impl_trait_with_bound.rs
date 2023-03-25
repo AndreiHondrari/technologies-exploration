@@ -1,7 +1,7 @@
 /*
-Traits - Conditional implementation of struct with trait bounds
+Traits - Conditional implementation of trait for struct with trait bounds
 
-By using trait bounds with impl blocks we practically
+By using trait bounds with impl trait blocks we practically
 limit which entities get specific methods or not.
 */
 
@@ -11,15 +11,18 @@ trait TraitKek {
     fn do_kek(&self);
 }
 
+// trait for structure
+
+trait TraitMain {
+    fn do_special(&self);
+}
+
 // our main structure
 struct Something<T> {
     name: String,
     x: T
 }
 
-// default implementation for main struct
-// the <T> is required for impl
-// so that we have available for the struct
 impl<T> Something<T> {
     fn do_something(&self) {
         println!("{} does something", self.name);
@@ -27,7 +30,7 @@ impl<T> Something<T> {
 }
 
 // conditional implementation for main struct
-impl<T: TraitKek> Something<T> {
+impl<T: TraitKek> TraitMain for Something<T> {
     fn do_special(&self) {
         println!("{} do_special PRE", self.name);
         self.x.do_kek();
@@ -39,8 +42,8 @@ impl<T: TraitKek> Something<T> {
 struct Foo {substruct_name: String}
 struct Bar {}
 
-// attach TraitKek impl to Foo
-// to distinguish it from Bar
+// attach TraitKek impl to Bar
+// to distinguish it from Foo
 impl TraitKek for Foo {
     fn do_kek(&self) {
         println!("{} does kek", self.substruct_name);

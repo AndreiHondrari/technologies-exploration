@@ -34,17 +34,17 @@ impl<T: TraitKek> Something<T> {
     fn do_special(&self) {
         println!("{} do_special PRE", self.name);
         self.x.do_kek();
-        println!("{} do_special PPOST", self.name);
+        println!("{} do_special POST", self.name);
     }
 }
 
 // sub structures affecting the implementation of the main struct
-struct Foo {}
-struct Bar {substruct_name: String}
+struct Foo {substruct_name: String}
+struct Bar {}
 
-// attach TraitKek impl to Bar
-// to distinguish it from Foo
-impl TraitKek for Bar {
+// attach TraitKek impl to Foo
+// to distinguish it from Bar
+impl TraitKek for Foo {
     fn do_kek(&self) {
         println!("{} does kek", self.substruct_name);
     }
@@ -52,8 +52,8 @@ impl TraitKek for Bar {
 
 
 fn main() {
-    let foo = Foo {};
-    let bar = Bar {substruct_name: String::from("BarInstance")};
+    let foo = Foo {substruct_name: String::from("FooInstance")};
+    let bar = Bar {};
 
     let s1: Something<Foo> = Something {
         name: String::from("S1_foo"),
@@ -69,12 +69,12 @@ fn main() {
     s2.do_something();
 
     // the following works because do_special is
-    // attached to the s2 entity, since it was initialized
-    // with a substruct (Bar) that implements TraitKek
-    s2.do_special();
+    // attached to the s1 entity, since it was initialized
+    // with a substruct (Foo) that implements TraitKek
+    s1.do_special();
 
-    // alternatively s1 was initialized with a substruct (Foo)
+    // alternatively s2 was initialized with a substruct (Bar)
     // that does not implement TraitKek, so the impl bound
     // will prevent from adding do_special to it
-    s1.do_special  // WILL NOT WORK
+    s2.do_special();  // WILL NOT WORK
 }
