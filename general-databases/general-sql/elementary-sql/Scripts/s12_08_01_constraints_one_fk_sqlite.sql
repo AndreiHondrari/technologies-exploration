@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS t1 (
      * it can't be referenced as FK
      */
     a integer unique,
-    b integer
+    b varchar
 );
 
 CREATE TABLE IF NOT EXISTS t2 (
