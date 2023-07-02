@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile rust file",
+            "type": "shell",
+            "command": "rustc ${file} -o /tmp/rust-app-for-test && /tmp/rust-app-for-test && rm /tmp/rust-app-for-test",
+            "group": {
+                "kind": "none",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            }
+        }
+    ]
+}
