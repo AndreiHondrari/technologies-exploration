@@ -1,7 +1,7 @@
 /*
 Structs
 
-Struct update syntax
+Nested structs
 */
 
 

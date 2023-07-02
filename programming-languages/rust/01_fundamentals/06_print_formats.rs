@@ -42,11 +42,12 @@ fn main() {
 
     println!("# 09_02 {:.*}", 5, 3.1425678903456);
     println!("# 09_03 {1} {2:.*}", 7, "x", 3.1425678903456);
+    println!("# 09_05 {} {:.*}", "x", 7, 3.1425678903456);
 
     // let's say we want 3 digits of integral part and 2 digits for precision
     // 3 + 1 (dot) + 2 = 6
     println!(
-        "# 09_04 {:0total_width$.precision$}",
+        "# 09_06 {:0total_width$.precision$}",
         3.1425678903456,
         // includes integral part, the dot, and the precision part
         total_width=6,
