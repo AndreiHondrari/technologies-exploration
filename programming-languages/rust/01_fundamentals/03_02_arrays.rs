@@ -12,7 +12,6 @@ declaration.
 */
 
 fn main() {
-
     println!("Fixed declared array");
     let arr1: [i32; 2] = [123; 2];
     for x in arr1 {
