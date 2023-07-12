@@ -17,6 +17,4 @@ fn main() {
     println!("newe thing    {:?}", new_thing);
     
     // !!! 'original' no longer usable at this point
-    
-    
 }
