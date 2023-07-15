@@ -1,5 +1,9 @@
 /*
- 
+Non primitives move
+
+Moving occurs when a non-primitive data structure
+which does not derive or implement the Copy/Clone traits
+is assigned to a new variable.
 */
 
 #[derive(Debug)]
@@ -14,7 +18,7 @@ fn main() {
     
     // move original into new_thing
     let new_thing = original;
-    println!("newe thing    {:?}", new_thing);
+    println!("new thing     {:?}", new_thing);
     
     // !!! 'original' no longer usable at this point
 }

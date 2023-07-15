@@ -1,5 +1,5 @@
 /*
- 
+Non primitives move - exception exhibit
 */
 
 #[derive(Debug)]
@@ -13,7 +13,7 @@ fn main() {
     println!("original      {:?}", original);
     
     let new_thing = original;
-    println!("newe thing    {:?}", new_thing);
+    println!("new thing     {:?}", new_thing);
     
     // !!! 'original' no longer usable at this point
     let _other_new_thing = original;  // <-- WILL NOT COMPILE
