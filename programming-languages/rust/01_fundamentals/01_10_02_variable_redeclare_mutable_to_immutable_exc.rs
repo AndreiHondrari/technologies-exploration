@@ -1,7 +1,5 @@
 /*
-Freeze variable
-
-Transform mutable variable into immutable one
+Redeclare variable as immutable (from mutable) - DOES NOT COMPILE
 */
 
 fn main() {
@@ -18,5 +16,5 @@ fn main() {
     println!("{x}");
 
     // can no longer mutate it here
-    // x = 33; // WILL NOT WORK 
+    x = 33; // WILL NOT WORK
 }
