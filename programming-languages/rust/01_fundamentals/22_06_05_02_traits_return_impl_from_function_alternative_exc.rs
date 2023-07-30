@@ -14,23 +14,23 @@ struct Bar;
 
 // declare traits - common behaviour interface
 trait TraitKek {
-    fn do_some(&self) { println!("Whatever"); };
+    fn do_some(&self) {
+        println!("Whatever");
+    }
 }
 
 // implement behaviour for structs
-impl TraitKek for Foo {};
-impl TraitKek for Bar {};
+impl TraitKek for Foo {}
+impl TraitKek for Bar {}
 
 // functions returning alternative structs implementing trait
-fn give_this(is_stuff: bool) -> impl TraitKek
-{
-    if (is_stuff) {
+fn give_this(is_stuff: bool) -> impl TraitKek {
+    if is_stuff {
         return Foo {};
     } else {
-        return Bar {};  // will not be allowed by compiler
+        return Bar {}; // will not be allowed by compiler
     };
 }
-
 
 fn main() {
     // Notice that trying to annotate x with 'impl TraitKek'
@@ -39,6 +39,6 @@ fn main() {
     let x = give_this(true);
     x.do_some();
 
-    x = give_this(false);
-    x.do_some();
+    let y = give_this(false);
+    y.do_some();
 }
