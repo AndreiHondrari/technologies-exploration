@@ -20,16 +20,14 @@ impl TraitKek for Foo {
 }
 
 // functions returning struct implementing trait
-fn give_this() -> impl TraitKek
-{
+fn give_this() -> impl TraitKek {
     return Foo {};
 }
-
 
 fn main() {
     // Notice that trying to annotate x with 'impl TraitKek'
     // does not really work
     let x = give_this();
-    println!("\n{}", "after return");
+    println!("after return");
     x.do_some();
 }
