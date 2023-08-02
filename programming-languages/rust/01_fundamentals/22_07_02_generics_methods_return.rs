@@ -1,23 +1,17 @@
 /*
-generics - methods - return type 
+generics - methods - return type
 */
-use std::convert::TryFrom;
 
-struct Something {}
+struct Something;
 
 impl Something {
-
-    fn do_some<T>(&self) -> T
-    where
-        T: TryFrom<i32> + Default
-    {
-        T::try_from(123).unwrap_or_default()
+    fn get_some<T>(&self, x: T) -> T {
+        x
     }
 }
 
-
 fn main() {
-    let s1 = Something{};
-    let k: u32 = s1.do_some();
+    let s1 = Something {};
+    let k: u32 = s1.get_some(123);
     println!("{k}");
 }

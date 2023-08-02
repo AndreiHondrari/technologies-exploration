@@ -2,22 +2,20 @@
 smart pointers - reference count
 */
 
-
 use std::rc::Rc;
 
 #[derive(PartialEq)]
 struct Node {
     name: String,
-    next: Option<Rc<Node>>
+    next: Option<Rc<Node>>,
 }
 
 fn traverse(node: &Rc<Node>) {
     println!("{}", node.name);
-    if node.next != Option::None {
+    if !node.next.is_none() {
         traverse(node.next.as_ref().unwrap());
     }
 }
-
 
 fn main() {
     /*
@@ -29,24 +27,24 @@ fn main() {
     */
     let c = Rc::new(Node {
         name: String::from("C"),
-        next: Option::None
+        next: Option::None,
     });
     let b = Rc::new(Node {
         name: String::from("B"),
-        next: Option::Some(Rc::clone(&c))
+        next: Option::Some(Rc::clone(&c)),
     });
     let a = Rc::new(Node {
         name: String::from("A"),
-        next: Option::Some(Rc::clone(&b))
+        next: Option::Some(Rc::clone(&b)),
     });
 
     let x = Rc::new(Node {
         name: String::from("X"),
-        next: Option::Some(Rc::clone(&a))
+        next: Option::Some(Rc::clone(&a)),
     });
     let y = Rc::new(Node {
         name: String::from("Y"),
-        next: Option::Some(Rc::clone(&a))
+        next: Option::Some(Rc::clone(&a)),
     });
 
     println!("\nTraverse from x");

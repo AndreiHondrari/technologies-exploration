@@ -1,5 +1,5 @@
 /*
-smart pointers - heap
+smart pointers - heap - primitives
 */
 
 fn main() {

@@ -16,11 +16,11 @@ trait Some {
 
 // declare some structs
 struct Foo {
-    x: u32
+    x: u32,
 }
 
 struct Bar {
-    y: u16
+    y: u16,
 }
 
 // implement behaviour for structs
@@ -36,10 +36,9 @@ impl Some for Bar {
     }
 }
 
-
 fn main() {
-    let foo = Foo {x: 111};
-    let bar = Bar {y: 222};
+    let foo = Foo { x: 111 };
+    let bar = Bar { y: 222 };
 
     // Notice k can take any reference that implements a specific trait
     let mut k: &dyn Some = &foo;
