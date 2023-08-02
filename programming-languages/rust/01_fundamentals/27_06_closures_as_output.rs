@@ -2,11 +2,9 @@
 Functions as output
 */
 
-
-
 fn my_func() -> fn() {
     return || {
-        println!("calling inside");
+        println!("calling closure");
     };
 }
 

@@ -2,10 +2,7 @@
 Closures as parameters
 */
 
-fn my_func(
-    message: &str,
-    some_f: fn()
-) {
+fn my_func<F: Fn()>(message: &str, some_f: F) {
     println!("my_func: {message}");
     some_f();
 }
@@ -13,7 +10,7 @@ fn my_func(
 fn main() {
     let x = 10;
     let f1 = || {
-        println!("calling f1 ... {x}");
+        println!("calling f1 ... {}", x);
     };
 
     let f2 = || {

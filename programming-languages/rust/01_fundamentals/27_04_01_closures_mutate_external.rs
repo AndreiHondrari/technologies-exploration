@@ -7,9 +7,8 @@ that doesn't intersect with an immutable borrow
 
 
 fn main() {
-
+                #[allow(unused_assignments)]
                 let mut x = 123;
-                let mut _y = x;  // to silence the compiler
 
                 println!("non-mutated x\t {}", x);
 
