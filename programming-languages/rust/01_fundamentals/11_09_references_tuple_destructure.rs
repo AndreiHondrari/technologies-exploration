@@ -11,7 +11,16 @@ fn main() {
     // structure as tuple
     let tup: (u16, f32) = (a, b);
 
-    // destructure from tuple as references
+    /*
+    destructure from tuple as references.
+
+    x is &u16
+    y is &f32
+
+    because destructuring from a reference
+    causes the destructured parts to be
+    interpolated as references.
+    */
     let (x, y): &(u16, f32) = &tup;
 
     println!("{x} {y}");
