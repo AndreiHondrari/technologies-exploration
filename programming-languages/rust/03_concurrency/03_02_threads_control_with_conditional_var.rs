@@ -2,10 +2,14 @@
 
 */
 
+use std::thread;
+
 use std::sync::Arc;
 use std::sync::Condvar;
+use std::sync::LockResult;
 use std::sync::Mutex;
-use std::thread;
+use std::sync::MutexGuard;
+
 use std::time::Duration;
 
 fn do_thread_run(pair_rc: Arc<(Mutex<bool>, Condvar)>) {
@@ -18,7 +22,14 @@ fn do_thread_run(pair_rc: Arc<(Mutex<bool>, Condvar)>) {
 
     println!("[{name}] wait for master ...");
     let duration = Duration::from_secs(5);
-    cvar.wait_timeout(mutex.lock().unwrap(), duration).ok();
+
+    let lock_result: LockResult<MutexGuard<bool>> = mutex.lock();
+
+    let unwrapped_guard: MutexGuard<bool> = lock_result.unwrap();
+
+    let result = cvar.wait_timeout(unwrapped_guard, duration);
+
+    result.ok();
 
     println!("[{name}] END");
 }
