@@ -14,7 +14,7 @@ fn main() {
         println!("my_func {}", x); // use the internal x
     };
 
-    my_func(); // uses the value defined insidex
+    my_func(); // uses the value defined inside
 
     x = 333; // mutates outside x
 
