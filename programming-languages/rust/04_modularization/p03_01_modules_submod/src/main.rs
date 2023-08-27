@@ -1,6 +1,6 @@
-mod some_mod;
-
 use some_mod::do_something;
+
+mod some_mod;
 
 fn main() {
     println!("Hello, world!");
