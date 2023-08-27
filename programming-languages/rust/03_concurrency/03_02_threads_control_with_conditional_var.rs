@@ -16,20 +16,23 @@ fn do_thread_run(pair_rc: Arc<(Mutex<bool>, Condvar)>) {
     let current = thread::current();
     let name = current.name().unwrap();
 
-    let (mutex, cvar) = &*pair_rc;
-
     println!("[{name}] START");
 
-    println!("[{name}] wait for master ...");
-    let duration = Duration::from_secs(5);
+    // unfold the mutex and the condvar
+    let (mutex, cvar) = &*pair_rc;
 
+    // lock the associated mutex
     let lock_result: LockResult<MutexGuard<bool>> = mutex.lock();
-
     let unwrapped_guard: MutexGuard<bool> = lock_result.unwrap();
 
-    let result = cvar.wait_timeout(unwrapped_guard, duration);
+    println!("[{name}] wait for master ...");
+    let timeout_duration = Duration::from_secs(5);
+    // when calling wait, the unwrapped guard is released
+    let result = cvar.wait_timeout(unwrapped_guard, timeout_duration);
 
-    result.ok();
+    if result.is_err() {
+        println!("[{name}] timed out!")
+    }
 
     println!("[{name}] END");
 }
@@ -39,6 +42,9 @@ fn do_master_handle(pair_rc: Arc<(Mutex<bool>, Condvar)>) {
 
     let (_mutex, cvar) = &*pair_rc;
 
+    // dummy wait to demonstrate
+    // that slave threads will not continue
+    // until timeout or notification
     thread::sleep(Duration::from_secs(1));
 
     println!("[MASTER] NOTIFY ALL");

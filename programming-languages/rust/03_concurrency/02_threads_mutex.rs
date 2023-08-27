@@ -15,7 +15,7 @@ fn do_some(shared_thing: Arc<Mutex<u16>>, upper_limit: u16) {
     let current = thread::current();
     let name = current.name().unwrap();
 
-    // ceva
+    // do some things inside the thread
     for _ in 0..upper_limit {
         {
             let locked_thing: LockResult<MutexGuard<u16>> = shared_thing.lock();

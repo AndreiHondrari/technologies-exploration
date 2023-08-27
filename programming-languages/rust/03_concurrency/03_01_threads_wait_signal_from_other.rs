@@ -9,6 +9,7 @@ use std::time::Duration;
 fn main() {
     let (tx, rx) = mpsc::channel::<bool>();
 
+    // spawn RECEIVER thread
     let thread_a = thread::spawn(move || {
         println!("[TH A] START");
 
@@ -18,6 +19,7 @@ fn main() {
         println!("[TH A] END");
     });
 
+    // spawn SENDER thread
     let thread_b = thread::spawn(move || {
         println!("[TH B] START");
 

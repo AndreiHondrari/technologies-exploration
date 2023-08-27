@@ -11,10 +11,15 @@ fn do_some() {
 }
 
 fn main() {
+    /*
+    spawn threads using a builder factory
+    to configure the threads
+    */
     let thread_a = thread::Builder::new()
         .name("aaa".into())
         .spawn(&do_some)
         .unwrap();
+
     let thread_b = thread::Builder::new()
         .name("bbb".into())
         .spawn(&do_some)
