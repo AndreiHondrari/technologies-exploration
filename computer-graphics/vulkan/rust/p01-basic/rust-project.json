@@ -1,0 +1,19 @@
+{
+    "sysroot_src": "/Users/nemexis/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/library",
+    "crates": [
+        {
+            "root_module": "src/main.rs",
+            "edition": "2021",
+            "deps": [
+                {
+                    "crate": 0,
+                    "name": "winit"
+                },
+                {
+                    "crate": 0,
+                    "name": "vulkano"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,71 @@
+{
+  "folders": [
+    {
+      "name": "",
+      "path": "."
+    },
+    {
+      "name": "Stdlib",
+      "path": "/Users/nemexis/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/library"
+    },
+    {
+      "name": "External Libraries",
+      "path": "/Users/nemexis/.cargo/registry/src/index.crates.io-6f17d22bba15001f"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "ahash-0.7.6": true,
+      "seahash-4.1.0": true,
+      "clap_derive-3.2.25": true,
+      "termcolor-1.2.0": true,
+      "ptr_meta_derive-0.1.4": true,
+      "clap_lex-0.2.4": true,
+      "rand-0.8.5": true,
+      "proc-macro-error-1.0.4": true,
+      "proc-macro-error-attr-1.0.4": true,
+      "radium-0.7.0": true,
+      "rend-0.4.0": true,
+      "borsh-derive-internal-0.10.3": true,
+      "borsh-derive-0.10.3": true,
+      "dirs-sys-0.3.7": true,
+      "bitvec-1.0.1": true,
+      "textwrap-0.16.0": true,
+      "strsim-0.10.0": true,
+      "ppv-lite86-0.2.17": true,
+      "uuid-1.4.1": true,
+      "bytecheck_derive-0.6.11": true,
+      "rand_chacha-0.3.1": true,
+      "atty-0.2.14": true,
+      "anyhow-1.0.75": true,
+      "num-traits-0.2.16": true,
+      "wyz-0.5.1": true,
+      "tinyvec_macros-0.1.1": true,
+      "rust_decimal-1.32.0": true,
+      "borsh-schema-derive-internal-0.10.3": true,
+      "tinyvec-1.6.0": true,
+      "rand_core-0.6.4": true,
+      "rkyv-0.7.42": true,
+      "bytes-1.4.0": true,
+      "cargo-ws-0.2.6": true,
+      "rkyv_derive-0.7.42": true,
+      "toml-0.5.11": true,
+      "dirs-4.0.0": true,
+      "bytecheck-0.6.11": true,
+      "simdutf8-0.1.4": true,
+      "proc-macro-crate-0.1.5": true,
+      "hashbrown-0.13.2": true,
+      "rust_decimal_macros-1.32.0": true,
+      "clap-3.2.25": true,
+      "os_str_bytes-6.5.1": true,
+      "borsh-0.10.3": true,
+      "funty-2.0.0": true,
+      "ptr_meta-0.1.4": true,
+      "tap-1.0.1": true
+    },
+    "rust-analyzer.files.excludeDirs": [
+      "/Users/nemexis/.cargo/registry/src/index.crates.io-6f17d22bba15001f",
+      "/Users/nemexis/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/library"
+    ]
+  }
+}
