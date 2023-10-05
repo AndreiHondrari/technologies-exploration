@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "p04_01_modules_inline_mod"
+name = "p11_global_import"
 version = "0.1.0"

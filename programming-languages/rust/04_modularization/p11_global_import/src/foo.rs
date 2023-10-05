@@ -1,4 +1,4 @@
-use bar::*; // NOTICE <-- global import
+use crate::bar::*; // NOTICE <-- global import
 
 pub fn do_some() {
     do_this();

@@ -1,6 +1,6 @@
-mod bar;
+mod bar; // <- inside BAR is the {self, something} syntax used
 mod foo;
-mod kek; // <- inside KEK is the {self, something} syntax used
+mod kek;
 
 use self::bar::do_other;
 use foo::do_some;
