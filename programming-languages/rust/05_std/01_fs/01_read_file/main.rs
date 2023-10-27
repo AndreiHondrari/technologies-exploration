@@ -1,5 +1,5 @@
 use std::fs::*;
-use std::io::Read;
+use std::io::prelude::*;
 
 fn main() {
     let mut some_file = File::open("some.txt").unwrap();
