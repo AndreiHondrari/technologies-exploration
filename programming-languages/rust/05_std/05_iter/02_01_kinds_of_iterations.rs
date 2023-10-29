@@ -50,7 +50,7 @@ fn iterator_on_values(values: [u8; 3]) {
 
 fn main() {
     let values: [u8; 3] = [11, 22, 33];
-    println!("origina array:    {:?}", values);
+    println!("original array:    {:?}", values);
 
     head_print!("Iterator on references");
     iterator_on_references(values);
