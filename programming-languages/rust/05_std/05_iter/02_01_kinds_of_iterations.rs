@@ -40,10 +40,17 @@ fn iterator_on_mutable_references(mut values: [u8; 3]) {
 /*
 iteration over values.
 next() gives values
+
+Please notice that in some cases the values are moved from the original array into the iterator.
+This means you can no longer use those values from the original array/collection.
 */
 fn iterator_on_values(values: [u8; 3]) {
-    // let mut i3 = v1.into_iter();
-    let mut values_iterator = IntoIterator::into_iter(values);
+    /*
+    `values.into_iter()` works normally for fixed size arrays only in edition 2021
+    because of
+    https://doc.rust-lang.org/edition-guide/rust-2021/IntoIterator-for-arrays.html
+    */
+    let mut values_iterator: std::array::IntoIter<u8, 3> = IntoIterator::into_iter(values);
     let val: u8 = values_iterator.next().unwrap();
     println!("value {}", val);
 }

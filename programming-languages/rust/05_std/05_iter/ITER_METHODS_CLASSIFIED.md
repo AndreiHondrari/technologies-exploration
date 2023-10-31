@@ -5,6 +5,40 @@
 - nth
 - last
 
+## ownership & conversion
+
+- by_ref
+- cloned
+- collect
+- copied
+
+## transformation
+
+- step_by
+- filter
+- filter_map
+- for_each
+- map
+- map_while
+- partition
+- rev
+
+- peekable
+- skip
+- skip_while
+- take
+- take_while
+- enumerate
+
+- chain
+- cycle
+- flat_map
+- flatten
+- fuse
+- unzip
+- zip
+- inspect
+
 ## evaluation
 
 - all
@@ -39,37 +73,3 @@
 - min
 - min_by
 - min_by_key
-
-## transformation
-
-- step_by
-- filter
-- filter_map
-- for_each
-- map
-- map_while
-- partition
-- rev
-
-- peekable
-- skip
-- skip_while
-- take
-- take_while
-- enumerate
-
-- chain
-- cycle
-- flat_map
-- flatten
-- fuse
-- unzip
-- zip
-- inspect
-
-## ownership & conversion
-
-- by_ref
-- cloned
-- collect
-- copied
