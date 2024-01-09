@@ -1,5 +1,0 @@
-{
-    "key": "f4",
-    "command": "workbench.action.tasks.runTask",
-    "args": "Compile rust file"
-}
