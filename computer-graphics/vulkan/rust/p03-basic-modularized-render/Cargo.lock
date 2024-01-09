@@ -64,7 +64,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "more-stuff"
+name = "p03-basic-modularized-render"
 version = "0.1.0"
 dependencies = [
  "ash",
