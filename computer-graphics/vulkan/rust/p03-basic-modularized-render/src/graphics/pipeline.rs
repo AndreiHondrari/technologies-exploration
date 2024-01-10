@@ -67,17 +67,37 @@ pub fn create_pipeline(
     let shader_stages: [PipelineShaderStageCreateInfo; 2] = [vert_stage, frag_stage];
 
     // vertex input state
-    let vertex_attribute_descriptions = [vk::VertexInputAttributeDescription {
-        binding: 0,
-        location: 0,
-        offset: 0,
-        format: vk::Format::R32G32_SFLOAT,
-    }];
-    let vertex_binding_descriptions = [vk::VertexInputBindingDescription {
-        binding: 0,
-        stride: (std::mem::size_of::<f32>() * 2) as u32,
-        input_rate: vk::VertexInputRate::VERTEX,
-    }];
+  
+    let vertex_attribute_descriptions = [
+        vk::VertexInputAttributeDescription {
+            binding: 0,
+            location: 0,
+            offset: 0,
+            format: vk::Format::R32G32_SFLOAT,
+        },
+        vk::VertexInputAttributeDescription {
+            binding: 1,
+            location: 1,
+            offset: 0,
+            format: vk::Format::R32G32B32A32_SFLOAT,
+        }
+    ];
+    
+    let vertex_position_stride: u32 = (std::mem::size_of::<f32>() * 2) as u32;
+    let vertex_color_stride: u32 = (std::mem::size_of::<f32>() * 4) as u32;
+    
+    let vertex_binding_descriptions = [
+        vk::VertexInputBindingDescription {
+            binding: 0,
+            stride: vertex_position_stride,
+            input_rate: vk::VertexInputRate::VERTEX,
+        },
+        vk::VertexInputBindingDescription {
+            binding: 1,
+            stride: vertex_color_stride,
+            input_rate: vk::VertexInputRate::VERTEX,
+        },
+    ];
 
     let vertex_input_state_create_info = PipelineVertexInputStateCreateInfo::builder()
         .vertex_attribute_descriptions(&vertex_attribute_descriptions)

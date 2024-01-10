@@ -23,6 +23,16 @@ const VERTICES: &[f32] = &[
 
 const VERTEX_COUNT: u32 = VERTICES.len() as u32 / 2;
 
+const VERTICES_COLORS: &[f32] = &[
+    1.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 0.0, 1.0,
+    0.0, 0.0, 1.0, 1.0,
+
+    1.0, 0.0, 0.0, 1.0,
+    0.0, 1.0, 0.0, 1.0,
+    0.0, 0.0, 1.0, 1.0,
+];
+
 
 fn setup_window() -> (
     sdl2::Sdl, 
@@ -171,15 +181,52 @@ fn handle_surface(
     return (surface_handle, surface_capabilities);
 }
 
+struct BufferParts {
+    buffer: vk::Buffer,
+    memory: vk::DeviceMemory,
+    mapped: *mut f32
+}
+
+fn make_memory(
+    device: &Device, 
+    data: &[f32],
+    selected_memory_type_index: u32
+) -> BufferParts {
+    let size_data: vk::DeviceSize = std::mem::size_of_val(&data) as u64;
+    println!("-> vertex data size: {:?}", size_data);
+
+    let buffer: vk::Buffer = graphics::memory::create_device_buffer(
+        &device, 
+        size_data, 
+        vk::BufferUsageFlags::VERTEX_BUFFER
+    );
+    let buffer_memory: vk::DeviceMemory;
+    let mapped_memory: *mut f32;
+    
+    (
+        buffer_memory,
+        mapped_memory 
+    ) = graphics::memory::allocate_memory(
+        &device, 
+        buffer, 
+        selected_memory_type_index, 
+        size_data
+    );
+    
+    BufferParts {
+        buffer,
+        memory: buffer_memory,
+        mapped: mapped_memory
+    }
+}
+
 fn handle_memory(
     instance: &Instance,
     device: &Device,
     selected_physical_device: vk::PhysicalDevice,
-) -> (
-    vk::Buffer,
-    vk::DeviceMemory,
-    *mut f32
-) {
+    vertices: &[f32],
+    colors: &[f32]
+) -> (BufferParts, BufferParts) {
     let device_memory_properties: vk::PhysicalDeviceMemoryProperties = unsafe {
         instance.get_physical_device_memory_properties(selected_physical_device)
     };
@@ -192,30 +239,12 @@ fn handle_memory(
     println!("Selected memory type with index: {:?}", selected_memory_type_index);
 
     // create vertex buffer
+    let vertex_buffer_parts = make_memory(device, vertices, selected_memory_type_index);
 
-    let size_vertex_data: vk::DeviceSize = std::mem::size_of_val(&VERTICES) as u64;
-    println!("-> vertex data size: {:?}", size_vertex_data);
-
-    let vertex_buffer: vk::Buffer = graphics::memory::create_device_buffer(&device, size_vertex_data, vk::BufferUsageFlags::VERTEX_BUFFER);
-
-    let vertex_buffer_memory: vk::DeviceMemory;
-    let vertex_mapped_memory: *mut f32;
-    
-    (
-        vertex_buffer_memory,
-        vertex_mapped_memory 
-    ) = graphics::memory::allocate_memory(
-        &device, 
-        vertex_buffer, 
-        selected_memory_type_index, 
-        size_vertex_data
-    );
-
-    return (
-        vertex_buffer,
-        vertex_buffer_memory,
-        vertex_mapped_memory
-    )
+    // create color buffer
+    let color_buffer_parts = make_memory(device, colors, selected_memory_type_index);
+  
+    return (vertex_buffer_parts, color_buffer_parts);
     
 }
 
@@ -224,8 +253,9 @@ fn setup_commands(
     framebuffers: &Vec<vk::Framebuffer>,
     render_pass: vk::RenderPass ,
     surface_capabilities: &vk::SurfaceCapabilitiesKHR,
-    graphics_pipeline: vk::Pipeline ,
-    vertex_buffer: &vk::Buffer 
+    graphics_pipeline: vk::Pipeline,
+    vertex_buffer: &vk::Buffer,
+    color_buffer: &vk::Buffer 
 ) -> (
   vk::CommandPool,
   Vec<vk::CommandBuffer>
@@ -247,7 +277,8 @@ fn setup_commands(
             surface_capabilities.current_extent,
             graphics_pipeline,
             VERTEX_COUNT,
-            &vertex_buffer
+            &vertex_buffer,
+            &color_buffer,
         );
     }
 
@@ -386,19 +417,20 @@ fn main() {
     let frag_module: vk::ShaderModule;
     (vert_module, frag_module) = graphics::shaders::get_shaders(&device);
 
+    // let vertices_data = VERTICES.to_vec();
     
-    let vertex_buffer: vk::Buffer;
-    let vertex_buffer_memory: vk::DeviceMemory;
-    let vertex_mapped_memory: *mut f32;
+    let vertex_buffer_parts: BufferParts;
+    let color_buffer_parts: BufferParts;
 
     (
-        vertex_buffer,
-        vertex_buffer_memory,
-        vertex_mapped_memory
+        vertex_buffer_parts,
+        color_buffer_parts
     ) = handle_memory(
         &instance, 
         &device,
-        selected_physical_device
+        selected_physical_device,
+        VERTICES.to_vec().as_slice(),
+        VERTICES_COLORS.to_vec().as_slice()
     );
 
     // create pipeline
@@ -429,7 +461,8 @@ fn main() {
         render_pass,
         &surface_capabilities,
         graphics_pipeline,
-        &vertex_buffer
+        &vertex_buffer_parts.buffer,
+        &color_buffer_parts.buffer,
     );
        
     // synchronization setup
@@ -441,9 +474,14 @@ fn main() {
 
     // TODO test TO SEE
     unsafe {
-        vertex_mapped_memory.copy_from_nonoverlapping(
+        vertex_buffer_parts.mapped.copy_from_nonoverlapping(
             VERTICES.as_ptr(), 
             VERTICES.len()
+        );
+
+        color_buffer_parts.mapped.copy_from_nonoverlapping(
+            VERTICES_COLORS.as_ptr(), 
+            VERTICES_COLORS.len()
         );
     };
 
@@ -483,10 +521,13 @@ fn main() {
             device.destroy_framebuffer(framebuffer, None);
         }
 
-        device.destroy_buffer(vertex_buffer, None);
+        device.destroy_buffer(vertex_buffer_parts.buffer, None);
+        device.unmap_memory(vertex_buffer_parts.memory);
+        device.free_memory(vertex_buffer_parts.memory, None);
 
-        device.unmap_memory(vertex_buffer_memory);
-        device.free_memory(vertex_buffer_memory, None);
+        device.destroy_buffer(color_buffer_parts.buffer, None);
+        device.unmap_memory(color_buffer_parts.memory);
+        device.free_memory(color_buffer_parts.memory, None);
         
         device.destroy_render_pass(render_pass, None);
         device.destroy_pipeline_layout(pipeline_layout, None);

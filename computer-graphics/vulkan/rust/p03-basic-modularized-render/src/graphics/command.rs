@@ -41,7 +41,8 @@ pub fn add_instructions(
     extent: vk::Extent2D,
     pipeline: vk::Pipeline,
     vertex_count: u32,
-    vertex_buffer: &vk::Buffer
+    vertex_buffer: &vk::Buffer,
+    color_buffer: &vk::Buffer,
 ) {
 
 
@@ -82,6 +83,7 @@ pub fn add_instructions(
 
         // 
         device.cmd_bind_vertex_buffers(command_buffer, 0, &[*vertex_buffer], &[0]);
+        device.cmd_bind_vertex_buffers(command_buffer, 1, &[*color_buffer], &[0]);
         
         // draw
         device.cmd_draw(command_buffer, vertex_count, 1, 0, 0);
