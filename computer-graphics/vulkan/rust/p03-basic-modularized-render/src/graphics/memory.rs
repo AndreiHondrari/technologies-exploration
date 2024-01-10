@@ -43,7 +43,7 @@ pub fn allocate_memory<T>(
     buffer: vk::Buffer,
     memory_type_index: u32,
     memory_size: u64
-) -> (*mut T, DeviceMemory) {
+) -> (DeviceMemory, *mut T) {
 
     let buffer_memory_requirements: vk::MemoryRequirements = unsafe {
         device.get_buffer_memory_requirements(buffer)
@@ -75,5 +75,5 @@ pub fn allocate_memory<T>(
             .expect("Map buffer memory") as *mut T
     };
 
-    return (mapped_memory, buffer_memory);
+    return (buffer_memory, mapped_memory);
 }
