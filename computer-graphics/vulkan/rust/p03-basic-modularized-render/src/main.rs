@@ -175,7 +175,6 @@ fn handle_memory(
     instance: &Instance,
     device: &Device,
     selected_physical_device: vk::PhysicalDevice,
-
 ) -> (
     vk::Buffer,
     vk::DeviceMemory,
@@ -254,30 +253,6 @@ fn setup_commands(
 
     return (pool, command_buffers);
 }
-
-// fn setup_() {
-    
-// }
-
-// fn setup_() {
-    
-// }
-
-// fn setup_() {
-    
-// }
-
-// fn setup_() {
-    
-// }
-
-// fn setup_() {
-    
-// }
-
-// fn setup_() {
-    
-// }
 
 fn do_first_draw(
     device: &Device,
