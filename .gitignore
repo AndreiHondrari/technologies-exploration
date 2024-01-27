@@ -139,4 +139,5 @@ node_modules
 
 # VSCode
 .vscode
-.code-workspace
+*.code-workspace
+
