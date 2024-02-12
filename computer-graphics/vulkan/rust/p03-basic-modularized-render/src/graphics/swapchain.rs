@@ -1,6 +1,8 @@
 use ash::*;
 use ash::extensions::khr::Swapchain;
 
+pub type SwapchainLoader = Swapchain;
+pub type SwapchainHandle = vk::SwapchainKHR;
 
 pub fn create_swapchain(
     instance: &Instance,
@@ -10,7 +12,7 @@ pub fn create_swapchain(
     surface_capabilities: vk::SurfaceCapabilitiesKHR,
     selected_format: vk::Format,
     color_space: vk::ColorSpaceKHR,
-) -> (Swapchain, vk::SwapchainKHR) {
+) -> (SwapchainLoader, SwapchainHandle) {
     let swapchain_create_info_builder = vk::SwapchainCreateInfoKHR::builder()
         .surface(surface_handle)
         .min_image_count(
@@ -31,18 +33,23 @@ pub fn create_swapchain(
     let swapchain_create_info = swapchain_create_info_builder.build();
 
     let swapchain_loader = Swapchain::new(instance, device);
-    let swapchain: vk::SwapchainKHR = unsafe { swapchain_loader.create_swapchain(&swapchain_create_info, None).unwrap() };
+    let swapchain_handle: SwapchainHandle = unsafe { 
+        swapchain_loader.create_swapchain(
+            &swapchain_create_info,
+            None
+        ).unwrap() 
+    };
     
-    return (swapchain_loader, swapchain);
+    return (swapchain_loader, swapchain_handle);
 
 }
 
 pub fn create_images(
-    swapchain_loader: &Swapchain,
-    swapchain: vk::SwapchainKHR
+    swapchain_loader: &SwapchainLoader,
+    swapchain_handle: SwapchainHandle
 ) -> Vec<vk::Image> {
     unsafe {
-        swapchain_loader.get_swapchain_images(swapchain).unwrap()
+        swapchain_loader.get_swapchain_images(swapchain_handle).unwrap()
     }
 }
 

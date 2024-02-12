@@ -394,9 +394,9 @@ fn main() {
 
     // SWAPCHAIN
     let swapchain_loader: Swapchain;
-    let swapchain: vk::SwapchainKHR;
+    let swapchain_handle: vk::SwapchainKHR;
     
-    (swapchain_loader, swapchain) = graphics::swapchain::create_swapchain(
+    (swapchain_loader, swapchain_handle) = graphics::swapchain::create_swapchain(
         &instance, 
         &device, 
         surface_handle, 
@@ -407,7 +407,7 @@ fn main() {
     );
 
     println!("Swapchain images creation ...");
-    let swapchain_images: Vec<vk::Image> = graphics::swapchain::create_images(&swapchain_loader, swapchain);
+    let swapchain_images: Vec<vk::Image> = graphics::swapchain::create_images(&swapchain_loader, swapchain_handle);
     println!("Created {} swapchain images!", &swapchain_images.len());
     
     let swapchain_imageviews: Vec<vk::ImageView> = graphics::swapchain::create_image_views(&device, &swapchain_images, selected_format);
@@ -489,7 +489,7 @@ fn main() {
         &device, 
         graphics_queue, 
         &swapchain_loader, 
-        swapchain, 
+        swapchain_handle, 
         &sync_gates, 
         &command_buffers
     );
@@ -539,7 +539,7 @@ fn main() {
         for image_view in swapchain_imageviews { 
             device.destroy_image_view(image_view, None);
         };
-        swapchain_loader.destroy_swapchain(swapchain, None);
+        swapchain_loader.destroy_swapchain(swapchain_handle, None);
         
         device.destroy_device(None);
         debug_utils_loader.destroy_debug_utils_messenger(debug_callback, None);
