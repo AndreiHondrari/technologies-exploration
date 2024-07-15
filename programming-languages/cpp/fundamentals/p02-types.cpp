@@ -1,6 +1,7 @@
 #include <iostream>
 #include <limits>
 #include <cfloat>
+#include <string>
 #include <fmt/format.h>
 
 using namespace std;
@@ -76,7 +77,10 @@ int main(int argc, char const *argv[]) {
     cout << endl;
 
     long double ldouble_val = LDBL_MAX;
-    fmt::print(FLOAT_FORMAT, "LONG DOUBLE MAX ", ldouble_val);
+    string ldouble_val_str = to_string(ldouble_val);
+    ldouble_val_str = ldouble_val_str.substr(0, 500);
+    ldouble_val_str = fmt::format("{} ...", ldouble_val_str);
+    fmt::print(ANY_FORMAT, "LONG DOUBLE MAX ", ldouble_val_str);
 
     return 0;
 }
