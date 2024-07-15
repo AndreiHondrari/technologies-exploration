@@ -8,7 +8,7 @@ fn main() {
 
     println!("{a} {b}");
 
-    // structure as tuple
+    // structure as tuple (notice a and b are copied into the tuple)
     let tup: (u16, f32) = (a, b);
 
     /*

@@ -7,10 +7,12 @@ There is a distinction between the mutability of the data being referenced and
 the mutability of the function parameter itself.
 */
 
+#[allow(unused_mut)] // to silence to compiler about no mutation
 fn do_immutable_some(mut x: &u32) {
     println!("do_immutable_some {}", x);
 }
 
+#[allow(unused_mut)] // to silence to compiler about no mutation
 fn do_mutable_some(mut x: &mut u32) {
     println!("do_mutable_some BEF {}", x);
     *x = 777;

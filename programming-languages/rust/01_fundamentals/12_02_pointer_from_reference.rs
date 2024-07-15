@@ -10,9 +10,7 @@ the original memory area.
 `&*identifier` and `&(*identifier)` work the same way.
 */
 
-
 fn main() {
-
     let x: u16 = 123;
 
     let y: &u16 = &x;

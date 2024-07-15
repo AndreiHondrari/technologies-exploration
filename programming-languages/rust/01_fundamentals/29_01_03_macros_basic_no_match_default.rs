@@ -15,5 +15,5 @@ macro_rules! some_thing {
 }
 
 fn main() {
-    some_thing!(222); // WILL NOT COMPILE
+    some_thing!(222);
 }

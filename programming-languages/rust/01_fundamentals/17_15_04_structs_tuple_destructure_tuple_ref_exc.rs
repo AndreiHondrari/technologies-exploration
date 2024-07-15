@@ -20,6 +20,6 @@ fn main() {
     println!("{x:?} | {y:?}");
 
     // WILL NOT WORK because a and b are moved into the tuple (a, b)
-    // let _k = a;
-    // let _p = b;
+    let _k = a;
+    let _p = b;
 }
