@@ -1,9 +1,8 @@
 /*
 References
 
-References can immutably reference mutable variables.
+References can mutably reference mutable variables.
 */
-
 
 fn main() {
     let mut x: i32 = 123;
