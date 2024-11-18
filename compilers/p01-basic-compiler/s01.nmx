@@ -1,0 +1,12 @@
+
+
+be x = 11
+
+
+
+be y = 22
+
+be z = add x y
+be k = add add 1 2 add 3 4
+
+print z
