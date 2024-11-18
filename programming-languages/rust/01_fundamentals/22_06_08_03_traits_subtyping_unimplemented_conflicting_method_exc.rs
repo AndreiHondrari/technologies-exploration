@@ -27,7 +27,7 @@ impl LameTrait for Foo {
 
     /*
     <-- NOTICE LACK OF do_mega
-    compiled will fail here
+    compilation will fail here
     because there is no inheritance
     in Rust
     */

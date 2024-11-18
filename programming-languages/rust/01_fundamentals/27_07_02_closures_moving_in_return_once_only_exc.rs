@@ -1,5 +1,5 @@
 /*
-Closures - moving in return
+Closures - moving in return - COMPILATION ERROR
 */
 
 #[allow(dead_code)]
@@ -16,7 +16,7 @@ fn main() {
 
     // calling my_func again will not work
     // because x moves out of the closure
-    // let p = my_func(); // WILL NOT WORK -> COMPILATION ERROR
+    let _p = my_func(); // WILL NOT WORK -> COMPILATION ERROR
 
     println!("{k:?}");
 }

@@ -2,10 +2,9 @@
 smart pointers - drop irrelevant for primitives and Copy
 */
 
-
 #[derive(Debug)]
 struct Something {
-    k: u32
+    k: u32,
 }
 
 impl Copy for Something {}
@@ -21,13 +20,16 @@ fn main() {
     {
         println!("Entering scope");
 
-        let s1 = Something {k: 111};
+        let s1 = Something { k: 111 };
         let x = 222;
 
         println!("About to drop!!");
 
         // does not affect these values
+        #[allow(dropping_copy_types)]
         drop(s1);
+
+        #[allow(dropping_copy_types)]
         drop(x);
 
         // still usable here

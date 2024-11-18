@@ -5,9 +5,10 @@ smart pointers - dereferencing mutable
 use std::ops::Deref;
 use std::ops::DerefMut;
 
+#[derive(Debug)]
 struct Something {
     x: u16,
-    y: u16
+    y: u16,
 }
 
 // this is necessary
@@ -29,13 +30,13 @@ impl DerefMut for Something {
 }
 
 fn main() {
-    let mut s1 = Something {x: 123, y: 777};
+    let mut s1 = Something { x: 123, y: 777 };
 
-    println!("BEF {}", *s1);
+    println!("BEF {:?}", s1);
 
     *s1 = 999;
 
-    println!("AFT {}", *s1);
+    println!("AFT {:?}", s1);
 
     // ignore
     let _i = s1.y;
