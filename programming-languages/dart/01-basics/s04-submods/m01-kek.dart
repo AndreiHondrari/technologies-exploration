@@ -1,0 +1,5 @@
+
+
+void doKek() {
+  print("Kek!");
+}
