@@ -6,9 +6,9 @@
 - [x] **Project:** Build a linear regression engine ($y = mx + b$) using pure code that updates its weights using a custom loop.
 
 ## 02-the-engine
-- [ ] **Theory:** Neural networks as pipelines, backpropagation, and tokenization.
-- [ ] **Practice:** Build a simple forward-pass neuron pipeline and calculate errors.
-- [ ] **Project:** Code a mini Transformer "Self-Attention" mechanism (Fuzzy Dictionary) from scratch.
+- [x] **Theory:** Neural networks as pipelines, backpropagation, and tokenization.
+- [x] **Practice:** Build a simple forward-pass neuron pipeline and calculate errors.
+- [x] **Project:** Code a mini Transformer "Self-Attention" mechanism (Fuzzy Dictionary) from scratch.
 
 ## 03-model-taxonomy
 - [ ] **Theory:** Vectorizers, Embeddings, LLMs vs SLMs vs Edge models.

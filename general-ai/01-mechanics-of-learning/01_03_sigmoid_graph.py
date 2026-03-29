@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Enable dark mode for the plot
+plt.style.use('dark_background')
+
 
 def sigmoid(x):
     """Calculates the sigmoid function."""

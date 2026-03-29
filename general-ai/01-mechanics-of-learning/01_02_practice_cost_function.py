@@ -9,6 +9,14 @@ def mean_squared_error(x_train, y_train, m, b):
     """
     Calculate the average of (prediction - actual)^2 for all points.
     This is our 'Cost Function' or 'Loss Function'.
+    
+    Why square the error?
+    1. Eliminates negatives: If prediction is off by -5 and +5, they don't cancel out to 0. 
+       Squaring makes them 25 and 25 (total 50).
+    2. Punishes large errors: An error of 2 becomes 4. An error of 10 becomes 100!
+       This forces the model to focus on its most terrible predictions.
+    3. Calculus is easier: The derivative ("slope") of x^2 is just 2x, forming a smooth curve 
+       (Gradient Descent), making it easier for our algorithm to roll down to the minimum.
     """
     total_error = 0.0
     n = len(x_train)
