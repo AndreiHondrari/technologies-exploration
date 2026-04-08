@@ -23,11 +23,14 @@ This is the core intuition of AI: It doesn't "think"—it measures distances and
 A Model is just a function (e.g. `predict(x)`). A **Cost Function** is a function that calculates exactly how *wrong* the model is.
 **Mean Squared Error (MSE)** is a common cost function: it loops over all predictions, subtracts the actual correct answers, squares the errors (to make them positive and penalize large errors heavily), and takes the average.
 
-**Why exactly squared ($x^2$) and not Absolute Value ($|x|$) or others?**
-* **Why not Mean Absolute Error ($|x|$)?** Absolute value solves the negative numbers problem, but it creates a new calculus problem! The derivative of $|x|$ is always exactly `1` or `-1`. Because this "slope" never changes, the model takes the exact same size steps when it's miles away as when it's millimetres away from the perfect answer. This causes it to bounce back and forth wildly over the minimum instead of gracefully slowing down. Squaring the error ($x^2$) makes the derivative ($2x$) get smaller and smaller as the error approaches 0, allowing the model to smoothly "settle" into the exact answer.
-* **Why not $x^3$?** Cubic math preserves the negative sign ($-2^3 = -8$, while $2^3 = 8$). Because they can cancel each other out to `0`, the algorithm can't tell if it's doing well or just perfectly wrong in opposite directions!
-* **Why not $x^4$?** Quartic math *does* eliminate negatives, but it's too aggressive. The gradients become so violently massive for outliers that you run into the "Exploding Gradient" problem where your weights get thrown off into infinity.
-* **The Mathematical Proof (Gauss):** In 1795, Carl Friedrich Gauss proved that minimizing the squared error is mathematically identical to finding the *Maximum Likelihood Estimation (MLE)* under the assumption that the noise/errors in your data follow a normal distribution (a Gaussian Bell Curve). In other words, $x^2$ is the literal mathematical translation of "errors happen naturally like a bell curve."
+For any single prediction, the raw error is calculated simply as:
+`error = target - prediction`
+
+**Why exactly squared ($error^2$) and not Absolute Value ($|error|$) or others?**
+* **Why not Mean Absolute Error ($|error|$)?** Absolute value solves the negative numbers problem, but it creates a new calculus problem! The derivative of $|error|$ is always exactly `1` or `-1`. Because this "slope" never changes, the model takes the exact same size steps when it's miles away as when it's millimetres away from the perfect answer. This causes it to bounce back and forth wildly over the minimum instead of gracefully slowing down. Squaring the error ($error^2$) makes the derivative ($2 \times error$) get smaller and smaller as the error approaches 0, allowing the model to smoothly "settle" into the exact answer.
+* **Why not $error^3$?** Cubic math preserves the negative sign ($-2^3 = -8$, while $2^3 = 8$). Because they can cancel each other out to `0`, the algorithm can't tell if it's doing well or just perfectly wrong in opposite directions!
+* **Why not $error^4$?** Quartic math *does* eliminate negatives, but it's too aggressive. The gradients become so violently massive for outliers that you run into the "Exploding Gradient" problem where your weights get thrown off into infinity.
+* **The Mathematical Proof (Gauss):** In 1795, Carl Friedrich Gauss proved that minimizing the squared error is mathematically identical to finding the *Maximum Likelihood Estimation (MLE)* under the assumption that the noise/errors in your data follow a normal distribution (a Gaussian Bell Curve). In other words, $error^2$ is the literal mathematical translation of "errors happen naturally like a bell curve."
 
 ### 3. Gradient Descent (The "Blame Game")
 

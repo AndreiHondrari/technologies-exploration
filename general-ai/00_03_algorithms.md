@@ -8,9 +8,11 @@ Algorithms that learn from labeled data (e.g., "Here is a picture of a cat, it i
 | Algorithm | Category | Primary Purpose | How It Works (The "Code" Intuition) |
 | :--- | :--- | :--- | :--- |
 | **Linear Regression** | Regression | Predicting continuous numbers (Price, Temp) | Draws a straight mathematical line ($y=mx+b$) through data points to minimize total error distances. |
+| **Ridge & Lasso (Regularization)** | Regression | Preventing Overfitting | Modifies Linear Regression by adding a mathematical penalty to shrink large weights, forcing the line to be simpler and generalize better. |
 | **Logistic Regression** | Classification | Binary Yes/No (Pass/Fail, Spam) | Uses a Sigmoid function to squash a Linear Regression output into a 0% to 100% boundary. |
 | **Decision Trees** | Both | Interpretability & Logic Rules | Automatically writes a giant nested `if/else` statement by splitting data based on the most informative features. |
 | **Random Forest** | Both | Robustness & Accuracy | Creates 1,000 different Decision Trees and makes them "vote" on the final answer to prevent overfitting. |
+| **Gradient Boosting (XGBoost, etc.)** | Both | Extreme Accuracy (Tabular Data) | Builds trees sequentially. Instead of voting, each new tree looks at the mathematical mistakes (the residuals) of the previous tree and tries to correct them. |
 | **K-Nearest Neighbors (KNN)** | Classification | Grouping by similarity | Plots data on a grid. To classify a new point, it looks at its $K$ closest neighbors using geometric distance math (Pythagorean Theorem) and copies them. |
 | **Support Vector Machines (SVM)** | Classification | Distinct separation boundaries | Draws the widest, fattest possible barrier (hyperplane) perfectly between two different clusters of data. |
 | **Naive Bayes** | Classification | Text & Spam filtering | Uses pure probability math (Bayes' Theorem) counting how often certain words appear in "Spam" vs "Not Spam". Fast but assumes words are independent. |
@@ -21,6 +23,7 @@ Algorithms that find patterns in raw, unlabeled data without knowing what they a
 | Algorithm | Category | Primary Purpose | How It Works (The "Code" Intuition) |
 | :--- | :--- | :--- | :--- |
 | **K-Means Clustering** | Clustering | Finding unknown groups (Market segments) | Drops $K$ random center-points onto a graph. Points gravitate to the closest center. The centers repeatedly jump to the middle of their group until stable. |
+| **DBSCAN** | Clustering | Finding complex shapes & outliers | Groups data based on density instead of distance from a center. It crawls outward connecting points that are packed closely together; lone points are labeled as "noise". |
 | **Principal Component Analysis (PCA)** | Dimensionality Reduction | Compression | Squashes a 100-dimension array into a 3-dimension array by finding the mathematically most "important" angles, throwing away useless noise. |
 
 ## 3. Deep Learning Architectures
