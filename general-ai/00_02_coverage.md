@@ -6,8 +6,12 @@
 - [x] **Project:** Build a linear regression engine using pure code that updates weights via loop.
 
 ## Part 2: Classical Machine Learning
-- [ ] **Theory:** Understand data patterns without neurons (Decision Trees, KNN, K-Means Clustering).
-- [ ] **Practice:** Build a basic un-guided clustering algorithm or decision split from scratch.
+- [x] **Theory:** Understand data patterns without neurons (Decision Trees, KNN, K-Means) (`02_00_theory_overview.md`).
+- [x] **Practice (Unsupervised):** Build a K-Means clustering algorithm from scratch (`02_01_01_k_means_clustering.py`).
+- [x] **Practice (Supervised Geometry):** Build a K-Nearest Neighbors (KNN) classifier (`02_01_02_knn_classifier.py`).
+- [x] **Practice (Entropy Logic):** Build an autonomous Decision Tree builder (`02_01_03_decision_tree.py`).
+- [x] **Practice (Ensembling):** Evolve the tree into a Random Forest voting system (`02_01_04_random_forest.py`).
+- [x] **Practice (GOFAI):** Implement an A* Pathfinding graph search algorithm (`02_01_05_astar_pathfinding.py`).
 - [ ] **Project:** Compare the speed and accuracy of a classical supervised learner to a deep learning pipeline.
 
 ## Part 3: The Deep Learning Engine (Neural Networks)
