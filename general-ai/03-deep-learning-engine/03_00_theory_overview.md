@@ -1,4 +1,4 @@
-# 02-the-engine: Deep Learning & Neural Networks
+# 03-deep-learning-engine: Deep Learning & Neural Networks
 
 If a single linear regression function wrapped in a sigmoid is a "Neuron", what happens when you chain them together? You get Deep Learning.
 

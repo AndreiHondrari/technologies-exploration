@@ -11,15 +11,15 @@
 - [ ] **Project:** Compare the speed and accuracy of a classical supervised learner to a deep learning pipeline.
 
 ## Part 3: The Deep Learning Engine (Neural Networks)
-- [x] **Theory:** Neural networks as math pipelines and Backpropagation (`02_00_theory_overview.md`).
-- [x] **Practice:** Build single & chained neurons, and calculate N-to-1 networks (`02_01_01` to `02_01_04`).
-- [x] **Practice (Linearity):** Train a single neuron to solve a linear problem like the OR Logic Gate (`02_01_05_neuron_net.py`).
-- [x] **Practice (Non-Linearity):** Prove a single neuron fails the XOR problem (`02_01_06_neuron_net_nonlinear.py`), then fix it using chained Hidden Layers.
-- [ ] **Project:** Refactor the hardcoded layers into a dynamic N-to-M architecture Engine (`02_01_07_dynamic_n_to_m.py`).
+- [x] **Theory:** Neural networks as math pipelines and Backpropagation (`03_00_theory_overview.md`).
+- [x] **Practice:** Build single & chained neurons, and calculate N-to-1 networks (`03_01_01` to `03_01_04`).
+- [x] **Practice (Linearity):** Train a single neuron to solve a linear problem like the OR Logic Gate (`03_01_05_neuron_net.py`).
+- [x] **Practice (Non-Linearity):** Prove a single neuron fails the XOR problem (`03_01_06_neuron_net_nonlinear.py`), then fix it using chained Hidden Layers.
+- [ ] **Project:** Refactor the hardcoded layers into a dynamic N-to-M architecture Engine (`03_01_07_dynamic_n_to_m.py`).
 
 ## Part 4: Data Architectures (Space and Time)
 - [ ] **Theory:** CNNs for vision, RNNs for sequence/memory.
-- [ ] **Practice:** Build a 36-input flat classification network (one neuron per cell) to prove it fails without spatial awareness (`02_01_08_neuron_per_cell.py`).
+- [ ] **Practice:** Build a 36-input flat classification network (one neuron per cell) to prove it fails without spatial awareness (`04_01_01_neuron_per_cell.py`).
 - [ ] **Project:** Write a basic Convolution logic script (passing a sliding window over a 2D array).
 
 ## Part 5: Natural Language & The Transformer

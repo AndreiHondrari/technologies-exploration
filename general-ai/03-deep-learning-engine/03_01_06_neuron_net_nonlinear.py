@@ -1,5 +1,5 @@
 """
-02_01_06_neuron_net_nonlinear.py
+03_01_06_neuron_net_nonlinear.py
 
 The Historic XOR Problem (1969 "AI Winter")
 
