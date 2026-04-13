@@ -1,11 +1,11 @@
 """
-02_01_01_k_means_clustering.py
+02_01_01c_k_means_local_minima.py
 
 Unsupervised Machine Learning: K-Means Clustering
-EXPERIMENT 1: Standard Mathematical Success
+EXPERIMENT 3: The "Local Minima" Gotcha
 
-We drop Unlabeled Data Points into a 2D space and run K-Means with K=3.
-Watch it flawlessly discover the hidden groups!
+We intentionally spawn all 3 centroids in the exact same bottom corner.
+Watch how they get stuck (Local Minima) and fail to cluster correctly!
 """
 import math
 import random
@@ -39,11 +39,8 @@ def calculate_inertia(clusters, centroids):
 # 2. CORE ALGORITHM LOGIC
 # ==========================================
 def run_kmeans(data_points, K, max_iterations=20, manual_centroids=None):
-    # 1. INITIALIZATION: Spawn the random Centroids
-    if manual_centroids:
-        centroids = [list(c) for c in manual_centroids]
-    else:
-        centroids = [[random.uniform(0, 10), random.uniform(0, 10)] for _ in range(K)]
+    # 1. INITIALIZATION: Spawn the forced (bad) Centroids
+    centroids = [list(c) for c in manual_centroids]
         
     # To fulfill the animation request, we create a chronological timeline of its state!
     history = []
@@ -89,17 +86,26 @@ def run_kmeans(data_points, K, max_iterations=20, manual_centroids=None):
 
 if __name__ == "__main__":
     raw_data = []
-    for _ in range(15): raw_data.append([random.uniform(0, 4), random.uniform(0, 4)]) # Cluster 1
-    for _ in range(15): raw_data.append([random.uniform(6, 10), random.uniform(6, 10)]) # Cluster 2
-    for _ in range(15): raw_data.append([random.uniform(0, 4), random.uniform(6, 10)]) # Cluster 3
-    random.shuffle(raw_data)
+    # To guarantee the Local Minimum trap locks permanently, we generate perfectly 
+    # symmetrical fixed lattice points instead of floating randomization, preventing drift!
+    # Cluster 1 (Bottom Left)
+    for x in [1, 2, 3]: 
+        for y in [1, 2, 3]: raw_data.append([x, y]) 
+    # Cluster 2 (Top Left)
+    for x in [1, 2, 3]: 
+        for y in [7, 8, 9]: raw_data.append([x, y]) 
+    # Cluster 3 (Bottom Right)
+    for x in [7, 8, 9]: 
+        for y in [1, 2, 3]: raw_data.append([x, y])
 
-    print("=== EXPERIMENT 1: STANDARD K-MEANS ===")
+    print("=== EXPERIMENT 3: LOCAL MINIMA FAILURE ===")
     
     if not CAN_VISUALIZE:
         print("\n[!] Please run 'pip install matplotlib' for the visual experiments to work!")
         sys.exit(1)
 
-    print("Running Perfect K-Means with K=3...")
-    history_standard, _, _, _ = run_kmeans(raw_data, K=3)
-    visualize_kmeans_animation(history_standard, raw_data, title="Experiment 1: Standard Success (K=3)")
+    print("Spawning centroids into an inescapable symmetrical trap...")
+    bad_spawns = [[8.0, 1.9], [8.0, 2.1], [2.0, 5.0]]
+    
+    history_bad, _, _, _ = run_kmeans(raw_data, K=3, manual_centroids=bad_spawns)
+    visualize_kmeans_animation(history_bad, raw_data, title="Experiment 3: Catastrophic Local Minima Trap")

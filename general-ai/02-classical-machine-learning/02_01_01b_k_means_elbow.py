@@ -1,18 +1,19 @@
 """
-02_01_01_k_means_clustering.py
+02_01_01b_k_means_elbow.py
 
 Unsupervised Machine Learning: K-Means Clustering
-EXPERIMENT 1: Standard Mathematical Success
+EXPERIMENT 2: The Elbow Method (Finding K blind)
 
-We drop Unlabeled Data Points into a 2D space and run K-Means with K=3.
-Watch it flawlessly discover the hidden groups!
+In the real world, we don't know how many groups exist!
+Here we run K-Means independently for K=1 through K=7, 
+measuring the 'Total Error' (Inertia) to find the mathematical Elbow!
 """
 import math
 import random
 import sys
 
 try:
-    from utils.visualisation.kmeans import visualize_kmeans_animation
+    from utils.visualisation.kmeans import visualize_elbow_multipanel_animation
     CAN_VISUALIZE = True
 except ImportError:
     CAN_VISUALIZE = False
@@ -38,14 +39,10 @@ def calculate_inertia(clusters, centroids):
 # ==========================================
 # 2. CORE ALGORITHM LOGIC
 # ==========================================
-def run_kmeans(data_points, K, max_iterations=20, manual_centroids=None):
+def run_kmeans(data_points, K, max_iterations=20):
     # 1. INITIALIZATION: Spawn the random Centroids
-    if manual_centroids:
-        centroids = [list(c) for c in manual_centroids]
-    else:
-        centroids = [[random.uniform(0, 10), random.uniform(0, 10)] for _ in range(K)]
-        
-    # To fulfill the animation request, we create a chronological timeline of its state!
+    centroids = [[random.uniform(0, 10), random.uniform(0, 10)] for _ in range(K)]
+    
     history = []
     history.append(( [list(c) for c in centroids], [] ))
     clusters = []
@@ -76,15 +73,14 @@ def run_kmeans(data_points, K, max_iterations=20, manual_centroids=None):
             centroids[i][0] = sum_x / len(clusters[i])
             centroids[i][1] = sum_y / len(clusters[i])
             
-        # Take snapshot for the UI Animator!
         history.append(( [list(c) for c in centroids], [[list(p) for p in c] for c in clusters] ))
-        
+            
         # Step C: Check for Convergence. If they stopped moving, we found the groups!
         total_movement = sum(euclidean_distance(prev, new) for prev, new in zip(previous_centroids, centroids))
         if total_movement < 0.001: break
             
     total_inertia = calculate_inertia(clusters, centroids)
-    return history, centroids, clusters, total_inertia
+    return history, total_inertia
 
 
 if __name__ == "__main__":
@@ -94,12 +90,20 @@ if __name__ == "__main__":
     for _ in range(15): raw_data.append([random.uniform(0, 4), random.uniform(6, 10)]) # Cluster 3
     random.shuffle(raw_data)
 
-    print("=== EXPERIMENT 1: STANDARD K-MEANS ===")
+    print("=== EXPERIMENT 2: THE ELBOW METHOD ===")
     
     if not CAN_VISUALIZE:
         print("\n[!] Please run 'pip install matplotlib' for the visual experiments to work!")
         sys.exit(1)
 
-    print("Running Perfect K-Means with K=3...")
-    history_standard, _, _, _ = run_kmeans(raw_data, K=3)
-    visualize_kmeans_animation(history_standard, raw_data, title="Experiment 1: Standard Success (K=3)")
+    k_experiments = range(1, 8)
+    all_errors = []
+    all_histories = []
+    
+    for k_test in k_experiments:
+        history, inertia = run_kmeans(raw_data, K=k_test)
+        all_histories.append(history)
+        all_errors.append(inertia)
+        print(f"   Tested K={k_test} -> Total Error Distance: {inertia:.1f}")
+        
+    visualize_elbow_multipanel_animation(k_experiments, all_histories, all_errors, raw_data)

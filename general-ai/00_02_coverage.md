@@ -7,7 +7,7 @@
 
 ## Part 2: Classical Machine Learning
 - [x] **Theory:** Understand data patterns without neurons (Decision Trees, KNN, K-Means) (`02_00_theory_overview.md`).
-- [x] **Practice (Unsupervised):** Build a K-Means clustering algorithm from scratch (`02_01_01_k_means_clustering.py`).
+- [x] **Practice (Unsupervised):** Build K-Means clustering, Elbow Method, and Local Minima traps (`02_01_01`, `b`, `c`).
 - [x] **Practice (Supervised Geometry):** Build a K-Nearest Neighbors (KNN) classifier (`02_01_02_knn_classifier.py`).
 - [x] **Practice (Entropy Logic):** Build an autonomous Decision Tree builder (`02_01_03_decision_tree.py`).
 - [x] **Practice (Ensembling):** Evolve the tree into a Random Forest voting system (`02_01_04_random_forest.py`).
